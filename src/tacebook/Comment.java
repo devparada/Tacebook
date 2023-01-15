@@ -9,5 +9,7 @@ package tacebook;
  * @author Bilo Alejandro Martins Gonzalez
  */
 public class Comment {
-    
+    private int id;
+    private Date date;
+    private String text;
 }
