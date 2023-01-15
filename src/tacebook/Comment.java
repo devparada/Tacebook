@@ -16,15 +16,11 @@ public class Comment {
     private int id;
     private Date date;
     private String text;
-    private ArrayList<Profile> sourceProfile;
-    private ArrayList<Post> post;
 
-    public Comment(int id, Date date, String text, ArrayList<Profile> sourceProfile, ArrayList<Post> post) {
+    public Comment(int id, Date date, String text) {
         this.id = id;
         this.date = date;
         this.text = text;
-        this.sourceProfile = sourceProfile;
-        this.post = post;
     }
 
     public int getId() {
