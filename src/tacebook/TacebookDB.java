@@ -4,10 +4,18 @@
  */
 package tacebook;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Bilo Alejandro Martins Gonzalez
  */
 public class TacebookDB {
     
+    private static ArrayList <Profile> profiles = new ArrayList();
+
+    public static ArrayList<Profile> getProfiles() {
+        return profiles;
+    }
+
 }
