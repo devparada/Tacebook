@@ -4,10 +4,17 @@
  */
 package tacebook;
 
+import java.util.Date;
+
 /**
  *
  * @author Bilo Alejandro Martins Gonzalez
  */
 public class Message {
+    
+    private int id;
+    private String text;
+    private Date date;
+    private boolean read;
     
 }
