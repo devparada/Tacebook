@@ -9,7 +9,12 @@ package tacebook;
  * @author Bilo Alejandro Martins Gonzalez
  */
 public class InitMenuController {
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
-        
+        // TODO code application logic here
     }
+
 }
