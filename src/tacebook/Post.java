@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  *
- * @author Bilo Alejandro Martins Gonzalez
+ * @author Bilo Alejandro Martins González y Raúl Parada de la Fuente
  */
 public class Post {
 
