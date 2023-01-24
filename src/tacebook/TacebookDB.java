@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class TacebookDB {
     
-    private static ArrayList <Profile> profiles = new ArrayList();
+    private static ArrayList <Profile> profiles = new ArrayList<>();
 
     public static ArrayList<Profile> getProfiles() {
         return profiles;
