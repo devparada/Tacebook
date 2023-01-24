@@ -4,7 +4,6 @@
  */
 package tacebook;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -18,19 +17,37 @@ public class InitMenuView {
         Scanner scan = new Scanner(System.in);
         InitMenuController initMenuController = new InitMenuController();
 
-        System.out.println("Usuario");
-        String username = scan.nextLine();
-        System.out.println("Contrasinal");
-        String password = scan.nextLine();
+        String username;
+        String password;
 
-        initMenuController.login(username, password);
-        initMenuController.register();
+        int select;
 
-        System.out.println("Queres sair da aplicacion:");
-        char option = scan.nextLine().toLowerCase().charAt(0);
-        
-        if (option == 'S') {
-            return true;
+        do {
+            System.out.println("1.");
+            System.out.println("2");
+            System.out.println("3");
+            select = scan.nextInt();
+        } while (select > 3);
+
+        switch (select) {
+            case 1:
+                System.out.println("Usuario");
+                username = scan.nextLine();
+                System.out.println("Contrasinal");
+                password = scan.nextLine();
+                initMenuController.login(username, password);
+                break;
+            case 2:
+                showRegisterMenu();
+                break;
+            case 3:
+                System.out.println("Queres sair da aplicacion:");
+                char option = scan.nextLine().toLowerCase().charAt(0);
+
+                if (option == 'S') {
+                    return true;
+                }
+                break;
         }
 
         return false;
