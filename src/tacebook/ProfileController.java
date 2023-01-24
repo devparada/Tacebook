@@ -9,7 +9,7 @@ package tacebook;
  * @author Bilo Alejandro Martins González y Raúl Parada de la Fuente
  */
 public class ProfileController {
-
+//TODO: Falta terminar esto, tocar el boolean own profile etc etc etc
     private void showProfileInfo(boolean ownProfile, Profile profile) {
         System.out.println(profile);
         
