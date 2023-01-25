@@ -9,9 +9,37 @@ package tacebook;
  * @author Bilo Alejandro Martins González y Raúl Parada de la Fuente
  */
 public class ProfileController {
-//TODO: Falta terminar esto, tocar el boolean own profile etc etc etc
-    private void showProfileInfo(boolean ownProfile, Profile profile) {
-        System.out.println(profile);
-        
+
+    private ProfileView profileView;
+    private Profile sessionProfile;
+
+    /**
+     * puede ser que este constructor esté mal, una alternativa seria sacar
+     * estos parametros y dejarlo algo como esto:
+     *
+     * public ProfileController() { 
+     * profileWiew = new ProfileView(this); 
+     * }
+     */
+
+    public ProfileController(ProfileView profileView) {
+        this.profileView = profileView;
     }
+
+    public int getPostsShowed() {
+        return 0;
+    }
+
+    public void reloadProfile() {
+
+    }
+
+    public void openSession(Profile sessionProfile) {
+
+    }
+
+    public void updateProfileStatus(String newStatus) {
+
+    }
+
 }
