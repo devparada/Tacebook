@@ -20,14 +20,12 @@ public class InitMenuController {
 
     // !!
     public void login(String name, String password) {
-        ProfileController profileController = new ProfileController();
+        //ProfileController profileController = new ProfileController();
         
         System.out.println("SSSSSSSS");
         
 //        if (ProfileDB.findByNameAndPassword(name, password, 0).getName().equals(name)) {
-//            System.out.println("AAAAA");
 //            initMenuView.showLoginErrorMessage();
-//            System.out.println("DDDD");
 //        } else {
 //            profileController.openSession();
 //        }
