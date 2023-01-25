@@ -27,6 +27,7 @@ public class InitMenuView {
             System.out.println("2");
             System.out.println("3");
             select = scan.nextInt();
+            scan.nextLine();
         } while (select > 3);
 
         switch (select) {
@@ -41,13 +42,7 @@ public class InitMenuView {
                 showRegisterMenu();
                 break;
             case 3:
-                System.out.println("Queres sair da aplicacion:");
-                char option = scan.nextLine().toLowerCase().charAt(0);
-
-                if (option == 'S') {
-                    return true;
-                }
-                break;
+                return true;
         }
 
         return false;
@@ -83,6 +78,11 @@ public class InitMenuView {
 
     // !!
     public String showNewNameMenu() {
-        return "";
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("O nome introducido xa está en uso");
+        System.out.println("Introduce outre nome: ");
+        String name = scan.next();
+        return name;
     }
 }

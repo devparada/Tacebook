@@ -11,11 +11,11 @@ package tacebook;
 public class InitMenuController {
 
     private InitMenuView initMenuView = new InitMenuView();
-    
+
     private void init() {
-        do {
+        while (!initMenuView.showLoginMenu()) {
             initMenuView.showLoginMenu();
-        } while (initMenuView.showLoginMenu());
+        }
     }
 
     // !!
