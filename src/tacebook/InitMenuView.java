@@ -23,9 +23,9 @@ public class InitMenuView {
         int select;
 
         do {
-            System.out.println("1.");
-            System.out.println("2");
-            System.out.println("3");
+            System.out.println("1. Iniciar sesion");
+            System.out.println("2. Registrarse");
+            System.out.println("3. Sair da aplicacion");
             select = scan.nextInt();
             scan.nextLine();
         } while (select > 3);
