@@ -6,7 +6,8 @@ package tacebook;
 
 /**
  *
- * @author Bilo Alejandro Martins González y Raúl Parada de la Fuente
+ * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
+ * Parada de la Fuente
  */
 public class InitMenuController {
 
@@ -21,9 +22,9 @@ public class InitMenuController {
     // !!
     public void login(String name, String password) {
         //ProfileController profileController = new ProfileController();
-        
+
         System.out.println("SSSSSSSS");
-        
+
 //        if (ProfileDB.findByNameAndPassword(name, password, 0).getName().equals(name)) {
 //            initMenuView.showLoginErrorMessage();
 //        } else {

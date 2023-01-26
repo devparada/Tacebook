@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- *
- * @author Bilo Alejandro Martins González y Raúl Parada de la Fuente
+ * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
+ * Parada de la Fuente
  */
 public class Comment {
 

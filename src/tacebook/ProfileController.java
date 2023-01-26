@@ -6,7 +6,8 @@ package tacebook;
 
 /**
  *
- * @author Bilo Alejandro Martins González y Raúl Parada de la Fuente
+ * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
+ * Parada de la Fuente
  */
 public class ProfileController {
 
@@ -17,11 +18,8 @@ public class ProfileController {
      * puede ser que este constructor esté mal, una alternativa seria sacar
      * estos parametros y dejarlo algo como esto:
      *
-     * public ProfileController() { 
-     * profileWiew = new ProfileView(this); 
-     * }
+     * public ProfileController() { profileWiew = new ProfileView(this); }
      */
-
     public ProfileController(ProfileView profileView) {
         this.profileView = profileView;
     }

@@ -10,7 +10,8 @@ package tacebook;
  * funcionalidad utilizaremos los metodos findByName, findByNameAndPassword,
  * save y update.
  *
- * @author Bilo Alejandro Martins González y Raúl Parada de la Fuente
+ * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
+ * Parada de la Fuente
  */
 public class ProfileDB {
 
