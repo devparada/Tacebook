@@ -4,6 +4,8 @@
  */
 package tacebook;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
@@ -11,9 +13,33 @@ package tacebook;
  */
 public class ProfileView {
 
-    //TODO: Falta terminar esto, tocar el boolean own profile etc etc etc
+    private int postsShowed = 10;
+    private ProfileController profileController;
+
+    public ProfileView(ProfileController profileController) {
+        this.profileController = profileController;
+    }
+
     private void showProfileInfo(boolean ownProfile, Profile profile) {
-        System.out.println(profile);
+        System.out.println("Username: " + profile.getName());
+        System.out.println("Status: " + profile.getStatus());
+    }
+
+    private void changeStatus(boolean ownProfile, Scanner scanner, Profile profile) {
+        System.out.println("Escribe como quieres cambiar tu status");
+        Scanner sc = new Scanner(System.in);
 
     }
+
+    public void showProfileMenu(Profile profile) {
+    }
+
+    public int getPostsShowed() {
+        return postsShowed;
+    }
+
+    public void setPostsShowed(int postsShowed) {
+        this.postsShowed = postsShowed;
+    }
+
 }

@@ -14,30 +14,72 @@ public class ProfileController {
     private ProfileView profileView;
     private Profile sessionProfile;
 
-    /**
-     * puede ser que este constructor esté mal, una alternativa seria sacar
-     * estos parametros y dejarlo algo como esto:
-     *
-     * public ProfileController() { profileWiew = new ProfileView(this); }
-     */
     public ProfileController(ProfileView profileView) {
         this.profileView = profileView;
     }
 
+    /**
+     * 
+     * @return
+     */
     public int getPostsShowed() {
-        return 0;
+        return profileView.getPostsShowed();
     }
 
+    /**
+     *
+     */
     public void reloadProfile() {
-
+        sessionProfile = ProfileDB.findByName(sessionProfile.getName(), getPostsShowed());
+        profileView.showProfileMenu(sessionProfile);
     }
 
+    /**
+     *
+     * @param sessionProfile
+     */
     public void openSession(Profile sessionProfile) {
 
     }
 
+    /**
+     *
+     * @param newStatus
+     */
     public void updateProfileStatus(String newStatus) {
 
+    }
+
+    /**
+     *
+     * @return
+     */
+    public ProfileView getProfileView() {
+        return profileView;
+    }
+
+    /**
+     *
+     * @param profileView
+     */
+    public void setProfileView(ProfileView profileView) {
+        this.profileView = profileView;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Profile getSessionProfile() {
+        return sessionProfile;
+    }
+
+    /**
+     *
+     * @param sessionProfile
+     */
+    public void setSessionProfile(Profile sessionProfile) {
+        this.sessionProfile = sessionProfile;
     }
 
 }
