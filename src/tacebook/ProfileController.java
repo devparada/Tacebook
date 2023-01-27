@@ -14,12 +14,16 @@ public class ProfileController {
     private ProfileView profileView;
     private Profile sessionProfile;
 
+    /**
+     *
+     * @param profileView
+     */
     public ProfileController(ProfileView profileView) {
         this.profileView = profileView;
     }
 
     /**
-     * 
+     *
      * @return
      */
     public int getPostsShowed() {
@@ -39,7 +43,7 @@ public class ProfileController {
      * @param sessionProfile
      */
     public void openSession(Profile sessionProfile) {
-
+        profileView.showProfileMenu(sessionProfile);
     }
 
     /**
@@ -47,7 +51,9 @@ public class ProfileController {
      * @param newStatus
      */
     public void updateProfileStatus(String newStatus) {
-
+        sessionProfile.setStatus(newStatus);
+        ProfileDB.save(sessionProfile);
+        reloadProfile();
     }
 
     /**
