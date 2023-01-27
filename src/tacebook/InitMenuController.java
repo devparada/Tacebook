@@ -11,28 +11,42 @@ package tacebook;
  */
 public class InitMenuController {
 
-    private InitMenuView initMenuView = new InitMenuView();
+    private InitMenuView initMenuView;
+
+    public InitMenuController(InitMenuView initMenuView) {
+        this.initMenuView = initMenuView;
+    }
+
+    InitMenuController() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
     private void init() {
         while (!initMenuView.showLoginMenu()) {
-            initMenuView.showLoginMenu();
         }
     }
 
-    // !!
     public void login(String name, String password) {
-        //ProfileController profileController = new ProfileController();
+        Profile p = ProfileDB.findByNameAndPassword(name, password, controller.getPostsShowed());
+        if (p == null) {
+            initMenuView.showLoginErrorMessage();
+        } else {
+            controller.openSession(p);
+        }
+    }        
 
-        System.out.println("SSSSSSSS");
+public void login (String name, String password){
 
-//        if (ProfileDB.findByNameAndPassword(name, password, 0).getName().equals(name)) {
-//            initMenuView.showLoginErrorMessage();
-//        } else {
-//            profileController.openSession();
+}
+
+//        ProfileController profilecontrol = new ProfileController(initMenuView);
+//        Profile profile = ProfileDB.findByNameAndPassword(name, password, 0);
+//        if (profile == null) {
+//            
 //        }
-    }
 
-    public void register() {
+
+public void register() {
         initMenuView.showRegisterMenu();
     }
 
@@ -47,8 +61,7 @@ public class InitMenuController {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        InitMenuController intiMenuController = new InitMenuController();
-        intiMenuController.init();
+       
     }
 
 }
