@@ -40,6 +40,15 @@ public class ProfileDB {
     datos, implementaremos la recuperacion de profile pero con name, password y 
     number of posts
      */
+
+    /**
+     *
+     * @param name
+     * @param password
+     * @param numberOfPosts
+     * @return
+     */
+
     public static Profile findByNameAndPassword(String name, String password, int numberOfPosts) {
         //Enhanced for para percorrer todos los objetos profile de TacebookDB
         for (Profile profile : TacebookDB.getProfiles()) {
@@ -70,6 +79,7 @@ public class ProfileDB {
      * Este método de momento no hace nada, dejaré el javadoc añadido para ya
      * tener esto en cuenta, aun que puede que sea necesario añadir algum param
      * o return, ya veremos..
+     * @param profile
      */
     public static void update(Profile profile) {
 

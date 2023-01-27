@@ -14,6 +14,11 @@ import java.util.Scanner;
 public class InitMenuView {
 
     // !!
+
+    /**
+     *
+     * @return
+     */
     public boolean showLoginMenu() {
         Scanner scan = new Scanner(System.in);
         InitMenuController initMenuController = new InitMenuController();
@@ -50,11 +55,19 @@ public class InitMenuView {
     }
 
     // !!
+
+    /**
+     *
+     */
     public void showLoginErrorMessage() {
         System.out.println("Usuario o contrasinal incorrecto");
     }
 
     // !!
+
+    /**
+     *
+     */
     public void showRegisterMenu() {
         Scanner scan = new Scanner(System.in);
 
@@ -78,6 +91,11 @@ public class InitMenuView {
     }
 
     // !!
+
+    /**
+     *
+     * @return
+     */
     public String showNewNameMenu() {
         Scanner scan = new Scanner(System.in);
 
