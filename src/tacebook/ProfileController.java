@@ -14,6 +14,10 @@ public class ProfileController {
     private ProfileView profileView;
     private Profile sessionProfile;
 
+    public ProfileController() {
+        profileView = new ProfileView(this);
+    }
+
     /**
      *
      * @return
@@ -35,7 +39,7 @@ public class ProfileController {
      * @param sessionProfile
      */
     public void openSession(Profile sessionProfile) {
-        profileView.showProfileMenu(this.sessionProfile);
+        profileView.showProfileMenu(sessionProfile);
     }
 
     /**
