@@ -25,21 +25,24 @@ public class ProfileView {
     }
 
     private void showProfileInfo(boolean ownProfile, Profile profile) {
+        if (ownProfile) {
+            System.out.println("Estás vendo o teu propio perfil");
+        } else {
+            System.out.println("Estás vendo o perfil de " + profile.getName());
+        }
         System.out.println("Username: " + profile.getName());
         System.out.println("Status: " + profile.getStatus());
     }
 
-    private void changeStatus(boolean ownProfile, Profile profile) {
+    private void changeStatus(boolean ownProfile, Scanner scanner, Profile profile) {
         if (ownProfile) {
-            Scanner sc = new Scanner(System.in);
             System.out.println("Actualiza tu status: ");
-            String status = sc.nextLine();
-            profileController.updateProfileStatus(status);
+            String newStatus = scanner.next();
+            profileController.updateProfileStatus(newStatus);
         } else {
             System.out.println("Esta opción solo se puede utilizar en tu propia biografia");
             showProfileMenu(profile);
         }
-
     }
 
     /**
@@ -47,9 +50,27 @@ public class ProfileView {
      * @param profile
      */
     public void showProfileMenu(Profile profile) {
+        Scanner scan = new Scanner(System.in);
+
         showProfileInfo(true, profile);
-        changeStatus(true, profile);
-        //a lo mejor se necesita meter algo más aqui !
+
+        int select;
+
+        do {
+            System.out.println("1. Cambiar estado");
+            System.out.println("2. Sair da aplicacion");
+            select = scan.nextInt();
+            scan.nextLine();
+        } while (select > 2);
+
+        switch (select) {
+            case 1:
+                changeStatus(true, scan, profile);
+                break;
+            case 2:
+                break;
+            //a lo mejor se necesita meter algo más aqui !
+        }
     }
 
     /**
