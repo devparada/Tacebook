@@ -21,14 +21,20 @@ public class InitMenuController {
 
     // !!
     public void login(String name, String password) {
-        //ProfileController profileController = new ProfileController();
+        ProfileController profileController = new ProfileController();
+        Profile profile = ProfileDB.findByNameAndPassword(name, password, profileController.getPostsShowed());
 
-        System.out.println("SSSSSSSS");
-
-//        if (ProfileDB.findByNameAndPassword(name, password, 0).getName().equals(name)) {
+        if (profile == null) {
+            initMenuView.showLoginErrorMessage();
+        } else {
+            profileController.openSession(profile);
+            System.out.println("Bienvenido una vez más a Tacebook!");
+        }
+//        if (!ProfileDB.findByName(name, 0).getName().equals(name) || !ProfileDB.findByNameAndPassword(name, password, 0).getPassword().equals(password)) {
 //            initMenuView.showLoginErrorMessage();
 //        } else {
-//            profileController.openSession();
+//            System.out.println("Sesión iniciada");
+//            profileController.openSession(profile);
 //        }
     }
 
@@ -37,18 +43,22 @@ public class InitMenuController {
     }
 
     public void createProfile(String name, String password, String status) {
-        //ProfileController profileController = new ProfileController();
         Profile profile = new Profile(name, password, status);
         ProfileDB.save(profile);
-        //profileController.openSession();
+        ProfileController profileController = new ProfileController();
+        profileController.openSession(profile);
+        while (ProfileDB.findByName(name, 0) != null) {
+            name = initMenuView.showNewNameMenu();
+        }
+
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        InitMenuController initMenuController = new InitMenuController();
-        initMenuController.init();
+        InitMenuController intiMenuController = new InitMenuController();
+        intiMenuController.init();
     }
 
 }
