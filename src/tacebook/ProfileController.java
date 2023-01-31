@@ -16,14 +16,6 @@ public class ProfileController {
 
     /**
      *
-     * @param profileView
-     */
-    public ProfileController(ProfileView profileView) {
-        this.profileView = profileView;
-    }
-
-    /**
-     *
      * @return
      */
     public int getPostsShowed() {
@@ -42,9 +34,14 @@ public class ProfileController {
      *
      * @param sessionProfile
      */
-    public void openSession(Profile sessionProfile) {
-        profileView.showProfileMenu(sessionProfile);
+     public void openSession(Profile sessionProfile) {
+        this.sessionProfile = sessionProfile;
+        profileWiew.showProfileMenu(this.sessionProfile);
     }
+//    public void openSession(Profile sessionProfile) {
+//
+//        profileView.showProfileMenu(sessionProfile);
+//    }
 
     /**
      *
@@ -66,26 +63,10 @@ public class ProfileController {
 
     /**
      *
-     * @param profileView
-     */
-    public void setProfileView(ProfileView profileView) {
-        this.profileView = profileView;
-    }
-
-    /**
-     *
      * @return
      */
     public Profile getSessionProfile() {
         return sessionProfile;
-    }
-
-    /**
-     *
-     * @param sessionProfile
-     */
-    public void setSessionProfile(Profile sessionProfile) {
-        this.sessionProfile = sessionProfile;
     }
 
 }
