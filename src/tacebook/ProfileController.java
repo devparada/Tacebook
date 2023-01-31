@@ -34,14 +34,9 @@ public class ProfileController {
      *
      * @param sessionProfile
      */
-     public void openSession(Profile sessionProfile) {
-        this.sessionProfile = sessionProfile;
-        profileWiew.showProfileMenu(this.sessionProfile);
+    public void openSession(Profile sessionProfile) {
+        profileView.showProfileMenu(this.sessionProfile);
     }
-//    public void openSession(Profile sessionProfile) {
-//
-//        profileView.showProfileMenu(sessionProfile);
-//    }
 
     /**
      *
