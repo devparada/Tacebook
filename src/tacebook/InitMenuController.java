@@ -20,6 +20,12 @@ public class InitMenuController {
     }
 
     // !!
+
+    /**
+     *
+     * @param name
+     * @param password
+     */
     public void login(String name, String password) {
         ProfileController profileController = new ProfileController();
         Profile profile = ProfileDB.findByNameAndPassword(name, password, profileController.getPostsShowed());
@@ -38,10 +44,19 @@ public class InitMenuController {
 //        }
     }
 
+    /**
+     *
+     */
     public void register() {
         initMenuView.showRegisterMenu();
     }
 
+    /**
+     *
+     * @param name
+     * @param password
+     * @param status
+     */
     public void createProfile(String name, String password, String status) {
         Profile profile = new Profile(name, password, status);
         ProfileDB.save(profile);
