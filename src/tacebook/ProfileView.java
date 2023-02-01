@@ -50,8 +50,8 @@ public class ProfileView {
              */
             System.out.println("Estás vendo o perfil de " + profile.getName());
         }
-        System.out.println("Username: " + profile.getName());
-        System.out.println("Status: " + profile.getStatus());
+        System.out.println("Tu usuario: " + profile.getName());
+        System.out.println("Tu estado: " + profile.getStatus());
     }
 
     /**
@@ -65,7 +65,7 @@ public class ProfileView {
         datos.
          */
         if (ownProfile) {
-            System.out.println("Actualiza tu status: ");
+            System.out.println("Actualiza o teu estado: ");
             String newStatus = scanner.next();
             profileController.updateProfileStatus(newStatus);
         } else {
@@ -73,7 +73,7 @@ public class ProfileView {
             Si own profile es false, avisará que el estado solo se puede cambiar
             en su propia biografia.
              */
-            System.out.println("Esta opción solo se puede utilizar en tu propia biografia");
+            System.out.println("Esta opción solo se pode utilizar no teu propio perfil");
             showProfileMenu(profile);
         }
     }
@@ -93,7 +93,7 @@ public class ProfileView {
 
         do {
             System.out.println("1. Cambiar estado");
-            System.out.println("2. Sair da aplicacion");
+            System.out.println("2. Pechar a sesion");
             select = scan.nextInt();
             scan.nextLine();
         } while (select > 2);
