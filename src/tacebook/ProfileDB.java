@@ -17,12 +17,12 @@ public class ProfileDB {
 
     /**
      * Este método percorre el arrayList profile de la clase TacebookDB,
-     * haciendo un filtrado para obtener la cantidad de posts de cada perfil,
-     * haciendo llamada al getter de nuestro arrayList, con solo llamar el name,
+     * haciendo un filtrado para obtener la cantidad de posts de cada perfil.
+     * Hace una llamada al getter de nuestro arrayList, con solo llamar el name,
      * ya obtenemos como parametro el atributo que almancena la cantidad de
      * posts
      *
-     * @param name nnombre del perfil (la persona en concreto)
+     * @param name nombre del perfil
      * @param numberOfPosts atributo que guarda la cantidad de posts del usario
      * @return profile
      */
@@ -35,28 +35,30 @@ public class ProfileDB {
         return null;
     }
 
-    /*
-    Este metodo, igual que findByName pero, con operador and porque quieres mas 
-    datos, implementaremos la recuperacion de profile pero con name, password y 
-    number of posts
-     */
-
     /**
+     * Este método accede el arrayList profile de la clase TacebookDB para
+     * buscar en la base de datos el nombre de usuario, la contraseña y la
+     * cantidad de posts de ese perfil.
      *
-     * @param name
-     * @param password
-     * @param numberOfPosts
+     * @param name nombre del perfil
+     * @param password contraseña del usuario
+     * @param numberOfPosts atributo que guarda la cantidad de posts del usario
      * @return
      */
-
     public static Profile findByNameAndPassword(String name, String password, int numberOfPosts) {
         //Enhanced for para percorrer todos los objetos profile de TacebookDB
         for (Profile profile : TacebookDB.getProfiles()) {
-            //Es exactamente los mismo que el otro método pero añadiendo un 
-            //operador && para hacer llamada a getPassword
+            /*
+            Queremos encontrar no solo um nombre de usuario sino una 
+            contraseña asociada a ese nombre, entonces dentro de la condicion 
+            if debemos declarar como true si name y password a la vez 
+            son true, es decir, si ya existen.
+             */
             if (profile.getName().equals(name) && profile.getPassword().equals(password)) {
-                //Una vez percorrido todo el arrayList "profile", ya podemos 
-                //retornar nuestro objeto profile, ahora ya está filtrado
+                /*
+                Una vez percorrido todo el arrayList "profile", ya podemos 
+                retornar nuestro objeto profile, ahora ya está filtrado
+                 */
                 return profile;
             }
         }
@@ -64,10 +66,8 @@ public class ProfileDB {
     }
 
     /**
-     * Este método guarda el perfil en el arraylist profile de la clase
-     * TacebookDB, entonces todo lo que tiene que hacer es una llamada al
-     * arraylist con el metodo getter, lo accedemos y añadimos el nuevo
-     * 'profile'
+     * Este método accede el arrayList 'profile' de la clase TacebookDB y guarda
+     * un nuevo perfil.
      *
      * @param profile perfil del arrayList
      */
@@ -76,9 +76,8 @@ public class ProfileDB {
     }
 
     /**
-     * Este método de momento no hace nada, dejaré el javadoc añadido para ya
-     * tener esto en cuenta, aun que puede que sea necesario añadir algum param
-     * o return, ya veremos..
+     * Este método actualiza el perfil.
+     *
      * @param profile
      */
     public static void update(Profile profile) {
