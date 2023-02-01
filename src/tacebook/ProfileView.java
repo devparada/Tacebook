@@ -36,14 +36,18 @@ public class ProfileView {
      * propio perfil, sacando mensajes por pantalla.
      */
     private void showProfileInfo(boolean ownProfile, Profile profile) {
-        //Si está mirando su proprio perfil, entonces le damos una condicion 
-        //verdadera, que será llamada de ownprofile
+        /*
+        Si está mirando su proprio perfil, entonces le damos una condicion 
+        verdadera, que será llamada de ownprofile
+         */
         if (ownProfile) {
-            //y aquí avisará que está mirando su propio perfil
+            //aquí avisará que está mirando su propio perfil
             System.out.println("Estás vendo o teu propio perfil");
         } else {
-            //Pero si ownprofile es false, significa que esta mirando un perfil
-            //por lo cual indicamos ese perfil llamando a getname y getstatus
+            /*
+            Pero si ownprofile es false, significa que esta mirando un perfil 
+            por lo cual indicamos ese perfil llamando a getname y getstatus
+             */
             System.out.println("Estás vendo o perfil de " + profile.getName());
         }
         System.out.println("Username: " + profile.getName());
@@ -55,16 +59,20 @@ public class ProfileView {
      * false, avisará que el estado solo se puede cambiar en su propia biografia
      */
     private void changeStatus(boolean ownProfile, Scanner scanner, Profile profile) {
-        //Si ownprofile es true, indica que el usuario está intentando cambiar 
-        //su propio estado, por lo cual el método sacará un scanner pidiendo los
-        //datos.
+        /*
+        Si ownprofile es true, indica que el usuario está intentando cambiar su 
+        propio estado, por lo cual el método sacará un scanner pidiendo los 
+        datos.
+         */
         if (ownProfile) {
             System.out.println("Actualiza tu status: ");
             String newStatus = scanner.next();
             profileController.updateProfileStatus(newStatus);
         } else {
-            //Si own profile es false, avisará que el estado solo se puede
-            //cambiar en su propia biografia
+            /*
+            Si own profile es false, avisará que el estado solo se puede cambiar
+            en su propia biografia.
+             */
             System.out.println("Esta opción solo se puede utilizar en tu propia biografia");
             showProfileMenu(profile);
         }
@@ -91,13 +99,17 @@ public class ProfileView {
         } while (select > 2);
 
         switch (select) {
-            //Si el usuario selecciona la opcion 1, que reciba un scanner
-            //para que pueda cambiar su estado.
+            /*
+            Si el usuario selecciona la opcion 1, que reciba un scanner para que
+            pueda cambiar su estado.
+             */
             case 1:
                 changeStatus(true, scan, profile);
                 break;
-            //Si el usuario selecciona la opcion 2, que simplemente cierre
-            //la sesión y que salga del bucle.
+            /*
+            Si el usuario selecciona la opcion 2, que simplemente cierre la 
+            sesión y que salga del bucle.
+             */
             case 2:
                 break;
         }
