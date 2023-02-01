@@ -13,7 +13,11 @@ import java.util.Scanner;
  */
 public class InitMenuView {
 
-    // !!
+    private InitMenuController initMenuController;
+
+    public InitMenuView(InitMenuController initMenuController) {
+        this.initMenuController = initMenuController;
+    }
 
     /**
      *
@@ -21,7 +25,6 @@ public class InitMenuView {
      */
     public boolean showLoginMenu() {
         Scanner scan = new Scanner(System.in);
-        InitMenuController initMenuController = new InitMenuController();
 
         String username;
         String password;
@@ -55,7 +58,6 @@ public class InitMenuView {
     }
 
     // !!
-
     /**
      *
      */
@@ -64,7 +66,6 @@ public class InitMenuView {
     }
 
     // !!
-
     /**
      *
      */
@@ -86,12 +87,12 @@ public class InitMenuView {
         System.out.println("Estado:");
         String status = scan.nextLine();
 
-        InitMenuController initMenuController = new InitMenuController();
         initMenuController.createProfile(username, password, status);
     }
 
-    // !!
-
+    /*
+    Este método falla la verificación if falta por completar está incompleto este método.
+     */
     /**
      *
      * @return
@@ -99,9 +100,16 @@ public class InitMenuView {
     public String showNewNameMenu() {
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("O nome introducido xa está en uso");
-        System.out.println("Introduce outre nome: ");
-        String name = scan.next();
-        return name;
+        String result = "";
+        
+        for (int i = 0; i < TacebookDB.getProfiles().size(); i++) {
+            if ("S".equals(TacebookDB.getProfiles().get(i).getName())) {
+                System.out.println("O nome introducido xa está en uso");
+                System.out.println("Introduce outre nome: ");
+                result = scan.next();
+                return result;
+            }
+        }
+    return result;
     }
 }

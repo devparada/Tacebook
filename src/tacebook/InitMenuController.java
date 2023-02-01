@@ -11,7 +11,7 @@ package tacebook;
  */
 public class InitMenuController {
 
-    private InitMenuView initMenuView = new InitMenuView();
+    private InitMenuView initMenuView = new InitMenuView(this);
 
     private void init() {
         while (!initMenuView.showLoginMenu()) {
@@ -20,7 +20,6 @@ public class InitMenuController {
     }
 
     // !!
-
     /**
      *
      * @param name
@@ -33,15 +32,9 @@ public class InitMenuController {
         if (profile == null) {
             initMenuView.showLoginErrorMessage();
         } else {
-            profileController.openSession(profile);
             System.out.println("Bienvenido una vez más a Tacebook!");
+            profileController.openSession(profile);
         }
-//        if (!ProfileDB.findByName(name, 0).getName().equals(name) || !ProfileDB.findByNameAndPassword(name, password, 0).getPassword().equals(password)) {
-//            initMenuView.showLoginErrorMessage();
-//        } else {
-//            System.out.println("Sesión iniciada");
-//            profileController.openSession(profile);
-//        }
     }
 
     /**
@@ -62,7 +55,7 @@ public class InitMenuController {
         ProfileDB.save(profile);
         ProfileController profileController = new ProfileController();
         profileController.openSession(profile);
-        while (ProfileDB.findByName(name, 0) != null) {
+        while (ProfileDB.findByName(name, 0) == null) {
             name = initMenuView.showNewNameMenu();
         }
 
