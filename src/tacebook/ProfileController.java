@@ -14,7 +14,7 @@ package tacebook;
  */
 public class ProfileController {
 
-    private shownProfile ;
+    private Profile shownProfile ;
     private ProfileView profileView;
     //AVISO
     /*
