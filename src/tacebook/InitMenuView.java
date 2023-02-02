@@ -99,7 +99,7 @@ public class InitMenuView {
 
     /**
      * Este método se encarga de mostrar un mensaje cuando se intentan crear una
-     * cuenta con un usuari que yá está en uso, avisando y pidiendo los datos
+     * cuonta con un usuario que ya está en uso, avisando y pidiendo los datos
      * otra vez.
      *
      * @return
@@ -108,7 +108,7 @@ public class InitMenuView {
         Scanner scan = new Scanner(System.in);
 
         System.out.println("O nome introducido xa está en uso");
-        System.out.println("Introduce outre nome: ");
+        System.out.println("Introduce outro nome: ");
         String result = scan.next();
         return result;
     }

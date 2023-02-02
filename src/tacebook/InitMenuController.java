@@ -76,12 +76,12 @@ public class InitMenuController {
         profileController.openSession(profile);
     }
 
-/**
- * Este es el método main
- *
- * @param args the command line arguments
- */
-public static void main(String[] args) {
+    /**
+     * Este es el método main
+     *
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
         InitMenuController intiMenuController = new InitMenuController();
         intiMenuController.init();
     }

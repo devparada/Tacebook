@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Esta classe guardará todos los atributos y metodos que se relacionan con los
+ * Esta clase guardará todos los atributos y métodos que se relacionan con los
  * posts.
  *
  * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
@@ -47,7 +47,7 @@ public class Post {
     }
 
     /**
-     * getter de id
+     * Getter de id
      *
      * @return
      */
@@ -56,7 +56,7 @@ public class Post {
     }
 
     /**
-     * setter de id
+     * Setter de id
      *
      * @param id
      */
@@ -65,7 +65,7 @@ public class Post {
     }
 
     /**
-     * getter de date
+     * Getter de date
      *
      * @return
      */
@@ -74,7 +74,7 @@ public class Post {
     }
 
     /**
-     * setter de date
+     * Setter de date
      *
      * @param date
      */
@@ -83,7 +83,7 @@ public class Post {
     }
 
     /**
-     * getter de text
+     * Getter de text
      *
      * @return
      */
@@ -92,7 +92,7 @@ public class Post {
     }
 
     /**
-     * setter de text
+     * Setter de text
      *
      * @param text
      */
@@ -101,7 +101,7 @@ public class Post {
     }
 
     /**
-     * getter de ProfileLikes
+     * Getter de ProfileLikes
      *
      * @return
      */
@@ -119,7 +119,7 @@ public class Post {
     }
 
     /**
-     * array list profile que guarda los autores (perfiles que publicaron el
+     * Array list profile que guarda los autores (perfiles que publicaron el
      * post)
      *
      * @return author
@@ -129,7 +129,7 @@ public class Post {
     }
 
     /**
-     * setter de author
+     * Setter de author
      *
      * @param author
      */
@@ -138,7 +138,7 @@ public class Post {
     }
 
     /**
-     * array list profile que recibe el perfil de los autores.
+     * Array list profile que recibe el perfil de los autores.
      *
      * @return
      */
@@ -147,7 +147,7 @@ public class Post {
     }
 
     /**
-     * setter de profile
+     * Setter de profile
      *
      * @param profile
      */
@@ -156,7 +156,7 @@ public class Post {
     }
 
     /**
-     * getter de comments
+     * Getter de comments
      *
      * @return
      */
@@ -165,7 +165,7 @@ public class Post {
     }
 
     /**
-     * setter de coments
+     * Setter de coments
      *
      * @param comments
      */
