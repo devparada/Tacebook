@@ -87,6 +87,9 @@ public class InitMenuView {
             password = scan.nextLine();
             System.out.println("Confirmar Contrasinal");
             confirmPassword = scan.nextLine();
+            if (!password.equals(confirmPassword)) {
+                System.out.println("As contrasinais non coinciden");
+            }
         } while (!password.equals(confirmPassword));
         System.out.println("Estado:");
         String status = scan.nextLine();
@@ -104,16 +107,9 @@ public class InitMenuView {
     public String showNewNameMenu() {
         Scanner scan = new Scanner(System.in);
 
-        String result = "";
-
-        for (int i = 0; i < TacebookDB.getProfiles().size(); i++) {
-            if ("S".equals(TacebookDB.getProfiles().get(i).getName())) {
-                System.out.println("O nome introducido xa está en uso");
-                System.out.println("Introduce outre nome: ");
-                result = scan.next();
-                return result;
-            }
-        }
+        System.out.println("O nome introducido xa está en uso");
+        System.out.println("Introduce outre nome: ");
+        String result = scan.next();
         return result;
     }
 }
