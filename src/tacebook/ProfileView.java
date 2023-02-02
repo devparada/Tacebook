@@ -150,6 +150,7 @@ public class ProfileView {
     }
 
     private int selectElement(String text, int maxNumber, Scanner scanner) {
+        return 0;
     }
 
     private void writeNewPost(Scanner scanner, Profile profile) {
