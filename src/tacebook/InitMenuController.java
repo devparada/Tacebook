@@ -5,6 +5,9 @@
 package tacebook;
 
 /**
+ * Esta clase tendrá el método main para hacer la llamada al menú, cuidará de
+ * toda la parte de funcionabilidad, para que todos los botones con numeros y
+ * opciones funcionen como deben.
  *
  * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
  * Parada de la Fuente
@@ -13,14 +16,20 @@ public class InitMenuController {
 
     private InitMenuView initMenuView = new InitMenuView(this);
 
+    /**
+     * Este método inicia el programa llamando al metodo que saca el menu por
+     * pantalla
+     */
     private void init() {
         while (!initMenuView.showLoginMenu()) {
             initMenuView.showLoginMenu();
         }
     }
 
-    // !!
     /**
+     * Este método crea un objeto de la clase ProfileController y intentará
+     * iniciar sesión con usuário y contraseña y buscará si hay algun perfil
+     * registrado.
      *
      * @param name
      * @param password
@@ -38,13 +47,16 @@ public class InitMenuController {
     }
 
     /**
-     *
+     * Este método llama al modelo de vista para sacar por pantalla las opciones
+     * de registrar una nueva cuenta
      */
     public void register() {
         initMenuView.showRegisterMenu();
     }
 
     /**
+     * Este es el método que realizará en registro de un nuevo perfil en la
+     * aplicación
      *
      * @param name
      * @param password
@@ -62,6 +74,8 @@ public class InitMenuController {
     }
 
     /**
+     * Este es el método main
+     *
      * @param args the command line arguments
      */
     public static void main(String[] args) {
