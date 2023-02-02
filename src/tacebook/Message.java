@@ -7,6 +7,8 @@ package tacebook;
 import java.util.Date;
 
 /**
+ * Esta clase guardará todos los mensajes y metodos que se relacionen con las
+ * mensajes.
  *
  * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
  * Parada de la Fuente
@@ -19,6 +21,7 @@ public class Message {
     private boolean read;
 
     /**
+     * Este es el constructor de la clase Message
      *
      * @param id
      * @param text
@@ -33,6 +36,7 @@ public class Message {
     }
 
     /**
+     * getter de id
      *
      * @return
      */
@@ -41,6 +45,7 @@ public class Message {
     }
 
     /**
+     * setter de id
      *
      * @param id
      */
@@ -49,6 +54,7 @@ public class Message {
     }
 
     /**
+     * getter de text
      *
      * @return
      */
@@ -57,6 +63,7 @@ public class Message {
     }
 
     /**
+     * setter de text
      *
      * @param text
      */
@@ -65,6 +72,7 @@ public class Message {
     }
 
     /**
+     * getter de date
      *
      * @return
      */
@@ -73,6 +81,7 @@ public class Message {
     }
 
     /**
+     * setter de date
      *
      * @param date
      */
@@ -81,6 +90,7 @@ public class Message {
     }
 
     /**
+     * método booleano que comproueba si el usuario ha visto el post.
      *
      * @return
      */
@@ -89,6 +99,7 @@ public class Message {
     }
 
     /**
+     * setter del metodo read para definir si lo ha leído o no.
      *
      * @param read
      */
