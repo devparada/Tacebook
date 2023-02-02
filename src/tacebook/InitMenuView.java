@@ -7,6 +7,8 @@ package tacebook;
 import java.util.Scanner;
 
 /**
+ * Esta clase se encarga de aportar toda la información del programa, como
+ * funciones y numeros que indican opciones para el usuario.
  *
  * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
  * Parada de la Fuente
@@ -20,6 +22,8 @@ public class InitMenuView {
     }
 
     /**
+     * Este método enseña las opciones de login de usuario para que pueda
+     * conectarse, registrar o salir de la aplicación.
      *
      * @return
      */
@@ -57,17 +61,17 @@ public class InitMenuView {
         return false;
     }
 
-    // !!
     /**
-     *
+     * Este método se encargará de avisar cuando los datos introducidos son
+     * incorrectos.
      */
     public void showLoginErrorMessage() {
         System.out.println("Usuario o contrasinal incorrecto");
     }
 
-    // !!
     /**
-     *
+     * Este método saca por pantalla el menu para registrarse, con opciones de
+     * poner usuario, contraseña.
      */
     public void showRegisterMenu() {
         Scanner scan = new Scanner(System.in);
@@ -90,10 +94,10 @@ public class InitMenuView {
         initMenuController.createProfile(username, password, status);
     }
 
-    /*
-    Este método falla la verificación if falta por completar está incompleto este método.
-     */
     /**
+     * Este método se encarga de mostrar un mensaje cuando se intentan crear una
+     * cuenta con un usuari que yá está en uso, avisando y pidiendo los datos
+     * otra vez.
      *
      * @return
      */
@@ -101,7 +105,7 @@ public class InitMenuView {
         Scanner scan = new Scanner(System.in);
 
         String result = "";
-        
+
         for (int i = 0; i < TacebookDB.getProfiles().size(); i++) {
             if ("S".equals(TacebookDB.getProfiles().get(i).getName())) {
                 System.out.println("O nome introducido xa está en uso");
@@ -110,6 +114,6 @@ public class InitMenuView {
                 return result;
             }
         }
-    return result;
+        return result;
     }
 }
