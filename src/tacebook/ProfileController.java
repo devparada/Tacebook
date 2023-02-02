@@ -5,16 +5,29 @@
 package tacebook;
 
 /**
+ * Esta es la clase controladora que se junta al modelo de vista, está clase
+ * entrega funcionalidad a los métodos reloadProfile,
+ * getPostsShowed,openSession, updateProfileStatus.
  *
  * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
  * Parada de la Fuente
  */
 public class ProfileController {
 
-    private ProfileView profileView = new ProfileView(this);
+    private ProfileView profileView;
     private Profile sessionProfile;
 
+    /*
+    Este es el constructor de la clase, que inicializa el modelo de vista para 
+    que todos los metodos tengan usabilidad y conectividad
+     */
+    public ProfileController() {
+        profileView = new ProfileView(this);
+    }
+
     /**
+     * Este método te entrega la cantidad de posts que se van a mostrar al
+     * usuario
      *
      * @return
      */
@@ -23,7 +36,8 @@ public class ProfileController {
     }
 
     /**
-     *
+     * Este método obtiene un objeto del perfil que está conectado en la sesión,
+     * llama al menu y lo muestra por pantalla.
      */
     public void reloadProfile() {
         sessionProfile = ProfileDB.findByName(sessionProfile.getName(), getPostsShowed());
@@ -31,30 +45,31 @@ public class ProfileController {
     }
 
     /**
+     * Abre sesión con un perfil, guarda el objeto profile e llama al método de
+     * vista showProfileMenu.
      *
      * @param sessionProfile
      */
     public void openSession(Profile sessionProfile) {
+        this.sessionProfile = sessionProfile;
         profileView.showProfileMenu(sessionProfile);
     }
 
-    /*
-    Este método falla al actualizar el estado de un perfil debido a que el perfil es null en los parametros.
-     */
     /**
+     * Este método actualiza el atributo status del perfil, guardando los
+     * cambios en la clase ProfileDB y en seguida llamará al metodo
+     * reloadProfile para actualizar todo el perfil.
      *
      * @param newStatus
      */
     public void updateProfileStatus(String newStatus) {
-        //sessionProfile = new Profile(profileView.);
-        //sessionProfile = ProfileDB.findByName(sessionProfile.getName(), getPostsShowed());
         sessionProfile.setStatus(newStatus);
         ProfileDB.save(sessionProfile);
         reloadProfile();
     }
 
     /**
-     *
+     * Método getter de profile view
      * @return
      */
     public ProfileView getProfileView() {
@@ -62,7 +77,7 @@ public class ProfileController {
     }
 
     /**
-     *
+     * Método getter de sessionprofile
      * @return
      */
     public Profile getSessionProfile() {
