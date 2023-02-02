@@ -16,6 +16,7 @@ public class Profile {
     private String status;
 
     /**
+     * Constructor de la clase profile
      *
      * @param name
      * @param password
@@ -28,6 +29,7 @@ public class Profile {
     }
 
     /**
+     * Método getter de name
      *
      * @return
      */
@@ -36,6 +38,7 @@ public class Profile {
     }
 
     /**
+     * Setter de name
      *
      * @param name
      */
@@ -44,6 +47,7 @@ public class Profile {
     }
 
     /**
+     * getter de password
      *
      * @return
      */
@@ -52,6 +56,7 @@ public class Profile {
     }
 
     /**
+     * setter de pasword
      *
      * @param password
      */
@@ -60,6 +65,7 @@ public class Profile {
     }
 
     /**
+     * getter de status
      *
      * @return
      */
@@ -68,6 +74,7 @@ public class Profile {
     }
 
     /**
+     * setter de status
      *
      * @param status
      */
