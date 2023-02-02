@@ -14,7 +14,16 @@ package tacebook;
  */
 public class ProfileController {
 
+    private shownProfile ;
     private ProfileView profileView;
+    //AVISO
+    /*
+    Precisamente neste método "reloadProfile" cambiaremos o código para que en lugar de almacenar o perfil no atributo "sessionProfile" 
+    o garde no atributo "shownProfile", e sexa ese atributo o que se lle pase ao obxecto da vista. No método "openSession" faremos algo 
+    similar, xa que o obxecto perfil que recibamos como parámetro o almacenaremos tanto en "sessionProfile" como en "shownProfile" 
+    (xa que o perfil que se ve por defecto é o propio), e será o atributo "shownProfile" o que lle pasemos como parámetro ao obxecto 
+    da vista.
+     */
     private Profile sessionProfile;
 
     /*
@@ -70,6 +79,7 @@ public class ProfileController {
 
     /**
      * Método getter de profile view
+     *
      * @return
      */
     public ProfileView getProfileView() {
@@ -78,6 +88,7 @@ public class ProfileController {
 
     /**
      * Método getter de sessionprofile
+     *
      * @return
      */
     public Profile getSessionProfile() {
