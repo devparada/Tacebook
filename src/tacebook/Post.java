@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
+ * Esta classe guardará todos los atributos y metodos que se relacionan con los
+ * posts.
  *
  * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
  * Parada de la Fuente
@@ -24,6 +26,7 @@ public class Post {
     private ArrayList<Comment> comments;
 
     /**
+     * Este es el constructor de la clase Post
      *
      * @param id
      * @param date
@@ -44,6 +47,7 @@ public class Post {
     }
 
     /**
+     * getter de id
      *
      * @return
      */
@@ -52,6 +56,7 @@ public class Post {
     }
 
     /**
+     * setter de id
      *
      * @param id
      */
@@ -60,6 +65,7 @@ public class Post {
     }
 
     /**
+     * getter de date
      *
      * @return
      */
@@ -68,6 +74,7 @@ public class Post {
     }
 
     /**
+     * setter de date
      *
      * @param date
      */
@@ -76,6 +83,7 @@ public class Post {
     }
 
     /**
+     * getter de text
      *
      * @return
      */
@@ -84,6 +92,7 @@ public class Post {
     }
 
     /**
+     * setter de text
      *
      * @param text
      */
@@ -92,6 +101,7 @@ public class Post {
     }
 
     /**
+     * getter de ProfileLikes
      *
      * @return
      */
@@ -100,6 +110,7 @@ public class Post {
     }
 
     /**
+     * Setter de ProfileLikes
      *
      * @param profileLikes
      */
@@ -108,14 +119,17 @@ public class Post {
     }
 
     /**
+     * array list profile que guarda los autores (perfiles que publicaron el
+     * post)
      *
-     * @return
+     * @return author
      */
     public ArrayList<Profile> getAuthor() {
         return author;
     }
 
     /**
+     * setter de author
      *
      * @param author
      */
@@ -124,6 +138,7 @@ public class Post {
     }
 
     /**
+     * array list profile que recibe el perfil de los autores.
      *
      * @return
      */
@@ -132,6 +147,7 @@ public class Post {
     }
 
     /**
+     * setter de profile
      *
      * @param profile
      */
@@ -140,6 +156,7 @@ public class Post {
     }
 
     /**
+     * getter de comments
      *
      * @return
      */
@@ -148,6 +165,7 @@ public class Post {
     }
 
     /**
+     * setter de coments
      *
      * @param comments
      */
