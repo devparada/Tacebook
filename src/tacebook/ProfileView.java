@@ -17,7 +17,7 @@ import java.util.Scanner;
  * para que trabajen en conjunto con los controladores
  */
 public class ProfileView {
-
+    
     private SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'ás' HH:mm:ss");
     private int postsShowed = 10;
     private ProfileController profileController;
@@ -102,18 +102,18 @@ public class ProfileView {
      */
     public void showProfileMenu(Profile profile) {
         Scanner scan = new Scanner(System.in);
-
+        
         showProfileInfo(true, profile);
-
+        
         int select;
-
+        
         do {
             System.out.println("1. Cambiar estado");
             System.out.println("2. Pechar a sesion");
             select = scan.nextInt();
             scan.nextLine();
         } while (select > 2);
-
+        
         switch (select) {
             /*
             Si el usuario selecciona la opcion 1, que reciba un scanner para que
@@ -174,7 +174,9 @@ public class ProfileView {
      * @param profile
      */
     private void writeNewPost(Scanner scanner, Profile profile) {
-        System.out.println("Escribe o texto da publicacion");
+        System.out.println("Introduce o texto da publicacion");
+        String text = scanner.next();
+        profileController.newPost(text, profile);
     }
 
     /**
@@ -184,9 +186,11 @@ public class ProfileView {
      * @param profile
      */
     private void commentPost(Scanner scanner, Profile profile) {
-        System.out.println("Selecciona unha publicacion");
+        System.out.println("Introduce o numero da publicacion");
+        int number = scanner.nextInt();
+        System.out.println("Introduce un texto");
         String text = scanner.next();
-        profileController.newComment(null, text);
+        profileController.newComment(profile.getPosts().get(number), text);
     }
 
     /**
@@ -196,20 +200,27 @@ public class ProfileView {
      * @param profile
      */
     private void addLike(Scanner scanner, Profile profile) {
-        System.out.println("Selecciona unha publicacion");
+        System.out.println("Introduce o numero da publicacion");
         int number = scanner.nextInt();
         profileController.newLike(profile.getPosts().get(number));
     }
-
+    
     private void showBiography(boolean ownProfile, Scanner scanner, Profile profile) {
+        if (ownProfile) {
+            System.out.println("Introduzca o nome da sua amizade");
+            String text = scanner.next();
+            profileController.getProfileView();
+        } else {
+            profileController.setShownProfile(profile);
+        }
     }
-
+    
     private void sendFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile) {
         System.out.println("Introduzca o nome do perfil");
         String nameProfile = scanner.next();
         profileController.newFriendshipRequest(nameProfile);
     }
-
+    
     private void proccessFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile, boolean accept) {
         System.out.println("Introduzca o numero da solicitude de amizade");
         int number = scanner.nextInt();
@@ -219,7 +230,7 @@ public class ProfileView {
             profileController.rejectFriendshipRequest(profile);
         }
     }
-
+    
     private void sendPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
         if (ownProfile) {
             System.out.println("Introduce o nome do amigo");
@@ -232,7 +243,7 @@ public class ProfileView {
             String text = scanner.next();
         }
     }
-
+    
     private void readPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
     }
 
@@ -250,25 +261,29 @@ public class ProfileView {
             profileController.deleteMessage(profile.getMessages().get(number));
         }
     }
-
+    
     private void showOldPosts(Scanner scanner, Profile profile) {
+        System.out.println("Introduce o número de publicacions a visualizar");
+        int number = scanner.nextInt();
+        postsShowed = number;
+        profileController.reloadProfile();
     }
-
+    
     public void showProfileNotFoundMessage() {
     }
-
+    
     public void showCannotLikeOwnPostMessage() {
     }
-
+    
     public void showAlreadyLikedPostMessage() {
     }
-
+    
     public void showIsAlreadyFriendMessage(String profileName) {
     }
-
+    
     public void showExistsFrienshipRequestMessage(String profileName) {
     }
-
+    
     public void showDuplicateFrienshipRequestMessage(String profileName) {
         System.out.println("Xa tes unha peticion de amizade con ese perfil");
     }
