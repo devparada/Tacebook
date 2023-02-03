@@ -166,6 +166,7 @@ public class ProfileController {
         
         PostDB postDB = new PostDB();
         
+        // Si no es el autor del post, y no le ha dado like, se guarda un nuevo like en postDB.
         if(post.getAuthor()!=sessionProfile || !post.getProfileLikes().contains(sessionProfile)){
             postDB.saveLike(post, sessionProfile);
             reloadProfile();
