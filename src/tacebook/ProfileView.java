@@ -153,16 +153,38 @@ public class ProfileView {
         return 0;
     }
 
+    /**
+     * Este método pide o texto para crear una nueva publicacion
+     * 
+     * @param scanner
+     * @param profile 
+     */
     private void writeNewPost(Scanner scanner, Profile profile) {
+        System.out.println("Escribe o texto da publicacion");
     }
 
+    /**
+     * Este método introduce un comentario nun post
+     * 
+     * @param scanner
+     * @param profile 
+     */
     private void commentPost(Scanner scanner, Profile profile) {
+        System.out.println("Selecciona unha publicacion");
+        String text = scanner.next();
+        profileController.newComment(null , text);
     }
 
     private void addLike(Scanner scanner, Profile profile) {
+        System.out.println("Selecciona unha publicacion");
+        scanner.nextInt();
+        profileController.newLike(profile.getPosts().get(0));
     }
 
     private void showBiography(boolean ownProfile, Scanner scanner, Profile profile) {
+        if (ownProfile) {
+            
+        }
     }
 
     private void sendFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile) {

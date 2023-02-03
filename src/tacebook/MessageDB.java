@@ -11,14 +11,14 @@ package tacebook;
 public class MessageDB {
 
     public static void save(Message message) {
-
+        
     }
 
     public static void update(Message message) {
-
+        // De momento este método non fai nada
     }
 
     public static void remove(Message message) {
-
+        
     }
 }
