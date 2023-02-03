@@ -104,5 +104,55 @@ public class ProfileController {
     public Profile getSessionProfile() {
         return sessionProfile;
     }
-
+    
+    public void newPost(String text, Profile destProfile){
+        
+        reloadProfile();
+    }
+    
+    public void newComment(Post post, String commentText){
+        
+        reloadProfile();
+    }
+    
+    public void newLike(Post post){
+        
+        reloadProfile();
+    }
+    
+    public void newFriendshipRequest(String profileName){
+        
+        reloadProfile();
+    }
+    
+    public void acceptFriendshipRequest(Profile sourceProfile){
+        
+        reloadProfile();
+    }
+    
+    public void rejectFriendshipRequest(Profile sourceProfile){
+        
+        reloadProfile();
+    }
+    
+    public void newMessage(Profile destProfile, String text){
+        
+        reloadProfile();
+    }
+    
+    public void deleteMessage(Message message){
+        
+        reloadProfile();
+    }
+    
+    public void markMessageAsRead(Message message){
+        
+        reloadProfile();
+    }
+    
+    public void replyMessage(Message message, String text){
+        
+        reloadProfile();
+    }
+    
 }
