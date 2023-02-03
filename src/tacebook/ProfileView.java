@@ -205,9 +205,17 @@ public class ProfileView {
     }
 
     private void sendFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile) {
+        System.out.println("Introduzca o nome do perfil");
+        String nameProfile = scanner.next();
+        profileController.newFriendshipRequest(nameProfile);
     }
 
     private void proccessFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile, boolean accept) {
+        System.out.println("Introduzca o numero da solicitude de amizade");
+        int number = scanner.nextInt();
+        if (accept) {
+        profileController.acceptFriendshipRequest(profile);
+        }
     }
 
     private void sendPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
