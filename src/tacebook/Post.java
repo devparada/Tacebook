@@ -20,10 +20,10 @@ public class Post {
     private int id;
     private Date date;
     private String text;
-    private ArrayList<Profile> profileLikes;
-    private Profile author;
     private Profile profile;
-    private ArrayList<Comment> comments;
+    private Profile author;
+    private ArrayList<Profile> profileLikes = new ArrayList<>();
+    private ArrayList<Comment> comments = new ArrayList<>();
 
     /**
      * Este es el constructor de la clase Post
