@@ -4,6 +4,10 @@
  */
 package tacebook;
 
+import java.time.Instant;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Esta es la clase controladora que se junta al modelo de vista, está clase
  * entrega funcionalidad a los métodos reloadProfile,
@@ -17,10 +21,18 @@ public class ProfileController {
     private Profile shownProfile;
     private ProfileView profileView;
 
+    /**
+     *
+     * @return
+     */
     public Profile getShownProfile() {
         return shownProfile;
     }
 
+    /**
+     *
+     * @param shownProfile
+     */
     public void setShownProfile(Profile shownProfile) {
         this.shownProfile = shownProfile;
         reloadProfile();
@@ -39,6 +51,11 @@ public class ProfileController {
     Este es el constructor de la clase, que inicializa el modelo de vista para 
     que todos los metodos tengan usabilidad y conectividad
      */
+
+    /**
+     *
+     */
+
     public ProfileController() {
         profileView = new ProfileView(this);
     }
@@ -105,51 +122,107 @@ public class ProfileController {
         return sessionProfile;
     }
     
+    /**
+     * MÉTODO ROTO
+     * @param text
+     * @param destProfile
+     */
     public void newPost(String text, Profile destProfile){
         
-        reloadProfile();
-    }
-    
-    public void newComment(Post post, String commentText){
+        Date date = new Date(); // Objeto Date para usar en el constructor
+        
+        Post currentPost = new Post(0, date, text); 
         
         reloadProfile();
     }
     
+    /**
+     * MÉTODO ROTO
+     * @param post
+     * @param commentText
+     */
+    public void newComment(Post post, String commentText){
+        
+        Date date = new Date(); // Objeto Date para usar en el constructor
+        
+        Comment currentComment = new Comment(0, date, commentText);
+        
+        CommentDB commentDB = new CommentDB(); // Objeto CommentDB
+        
+        commentDB.save(currentComment); // Se guarda comentario en la base de datos
+        
+        reloadProfile(); // Reload
+    }
+    
+    /**
+     * 
+     * @param post
+     */
     public void newLike(Post post){
         
         reloadProfile();
     }
     
+    /**
+     *
+     * @param profileName
+     */
     public void newFriendshipRequest(String profileName){
         
         reloadProfile();
     }
     
+    /**
+     *
+     * @param sourceProfile
+     */
     public void acceptFriendshipRequest(Profile sourceProfile){
         
         reloadProfile();
     }
     
+    /**
+     *
+     * @param sourceProfile
+     */
     public void rejectFriendshipRequest(Profile sourceProfile){
         
         reloadProfile();
     }
     
+    /**
+     *
+     * @param destProfile
+     * @param text
+     */
     public void newMessage(Profile destProfile, String text){
         
         reloadProfile();
     }
     
+    /**
+     *
+     * @param message
+     */
     public void deleteMessage(Message message){
         
         reloadProfile();
     }
     
+    /**
+     *
+     * @param message
+     */
     public void markMessageAsRead(Message message){
         
         reloadProfile();
     }
     
+    /**
+     *
+     * @param message
+     * @param text
+     */
     public void replyMessage(Message message, String text){
         
         reloadProfile();

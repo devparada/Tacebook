@@ -83,19 +83,47 @@ public class ProfileDB {
     public static void update(Profile profile) {
     }
 
-    //sourceprofile = nuestro perfil
-    //destprofile = perfil destino (al que vamos enviar solicitud de amistad)
     /**
      * Este método accede la lista de solicitudes de amistad y guarda las nuevas
-     * solicitued utilizando ese acceso
+     * solicitudes utilizando ese acceso.
+     *
+     * @param destProfile perfil que tienes tu cuando inicias el programa
+     * @param sourceProfile perfil al que hacemos solicitud de amistad
      */
     public static void saveFrienshipRequest(Profile destProfile, Profile sourceProfile) {
         destProfile.getFriendshipRequests().add(sourceProfile);
     }
 
+    /**
+     * Este método accede la lista de solicitudes de amistad y elimina un pedido
+     * de amistad
+     *
+     * @param destProfile perfil que tienes tu cuando inicias el programa
+     * @param sourceProfile perfil al que hacemos solicitud de amistad
+     */
     public static void removeFrienshipRequest(Profile destProfile, Profile sourceProfile) {
+        destProfile.getFriendshipRequests().remove(sourceProfile);
     }
 
+    /**
+     * Este método coge un perfil1, accede la lista de amigos de perfil 1 y
+     * añade el perfil2. Lo mismo pasará al perfil 2. TODO LO QUE DIGO ABAJO ES
+     * LO QUE PENSÉ YO.. (lo que explicaré a seguir es lo que creo yo, así que
+     * no lo tengas en cuentas porque puede que me fumé un porrazo de los
+     * gordos..) Me explico: Yo creo que profile1 añade a profile 2 a su lista y
+     * luego esto se repite pero con profile 2 porque, segun mi lógica ese
+     * proceso es lo que pasa cuando tu agregas alguien a tu lista de amigos, es
+     * decir: Yo en el facebook, puedo tener a raul en la lista de amigos, etc..
+     * Pero, para que yo lo tenga en mi lista de amigos o, para que el me tenga
+     * a mi en su lista de aigos, tiene que ser MUTUO, por eso tenemos en este
+     * metodo 2 perfiles, para que ese cambio realmente se realize (PERDONA EL
+     * TEXTO GIGANTE PERO CREO QUE SERIA DE GRAN AYUDA EXPLICAR ESTO)
+     *
+     * @param profile1
+     * @param profile2
+     */
     public static void saveFriendship(Profile profile1, Profile profile2) {
+        profile1.getFriends().add(profile2);
+        profile2.getFriends().add(profile1);
     }
 }
