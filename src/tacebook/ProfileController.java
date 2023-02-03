@@ -14,8 +14,17 @@ package tacebook;
  */
 public class ProfileController {
 
-    private Profile shownProfile ;
+    private Profile shownProfile;
     private ProfileView profileView;
+
+    public Profile getShownProfile() {
+        return shownProfile;
+    }
+
+    public void setShownProfile(Profile shownProfile) {
+        this.shownProfile = shownProfile;
+        reloadProfile();
+    }
     //AVISO
     /*
     Precisamente neste método "reloadProfile" cambiaremos o código para que en lugar de almacenar o perfil no atributo "sessionProfile" 
@@ -49,8 +58,8 @@ public class ProfileController {
      * llama al menu y lo muestra por pantalla.
      */
     public void reloadProfile() {
-        sessionProfile = ProfileDB.findByName(sessionProfile.getName(), getPostsShowed());
-        profileView.showProfileMenu(sessionProfile);
+        shownProfile = ProfileDB.findByName(shownProfile.getName(), getPostsShowed());
+        profileView.showProfileMenu(shownProfile);
     }
 
     /**
@@ -61,7 +70,8 @@ public class ProfileController {
      */
     public void openSession(Profile sessionProfile) {
         this.sessionProfile = sessionProfile;
-        profileView.showProfileMenu(sessionProfile);
+        shownProfile = sessionProfile;
+        profileView.showProfileMenu(shownProfile);
     }
 
     /**
