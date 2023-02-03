@@ -214,11 +214,23 @@ public class ProfileView {
         System.out.println("Introduzca o numero da solicitude de amizade");
         int number = scanner.nextInt();
         if (accept) {
-        profileController.acceptFriendshipRequest(profile);
+            profileController.acceptFriendshipRequest(profile);
+        } else {
+            profileController.rejectFriendshipRequest(profile);
         }
     }
 
     private void sendPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
+        if (ownProfile) {
+            System.out.println("Introduce o nome do amigo");
+            String nameFriend = scanner.next();
+            System.out.println("Introduce o texto da mensaxe");
+            String text = scanner.next();
+            profileController.newMessage(profile, text);
+        } else {
+            System.out.println("Introduce o texto para enviarlle un mensaxe a este perfil");
+            String text = scanner.next();
+        }
     }
 
     private void readPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
