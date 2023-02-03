@@ -4,6 +4,8 @@
  */
 package tacebook;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
@@ -14,6 +16,10 @@ public class Profile {
     private String name;
     private String password;
     private String status;
+    private ArrayList<Post> posts = new ArrayList<>();
+    private ArrayList<Message> messages = new ArrayList<>();
+    private ArrayList<Profile> friends = new ArrayList<>();
+    private ArrayList<Profile> friendshipRequests = new ArrayList<>();
 
     /**
      * Constructor de la clase profile
@@ -80,6 +86,38 @@ public class Profile {
      */
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public ArrayList<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(ArrayList<Post> posts) {
+        this.posts = posts;
+    }
+
+    public ArrayList<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(ArrayList<Message> messages) {
+        this.messages = messages;
+    }
+
+    public ArrayList<Profile> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(ArrayList<Profile> friends) {
+        this.friends = friends;
+    }
+
+    public ArrayList<Profile> getFriendshipRequests() {
+        return friendshipRequests;
+    }
+
+    public void setFriendshipRequests(ArrayList<Profile> friendshipRequests) {
+        this.friendshipRequests = friendshipRequests;
     }
 
 }

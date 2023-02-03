@@ -81,7 +81,21 @@ public class ProfileDB {
      * @param profile
      */
     public static void update(Profile profile) {
-
     }
 
+    //sourceprofile = nuestro perfil
+    //destprofile = perfil destino (al que vamos enviar solicitud de amistad)
+    /**
+     * Este método accede la lista de solicitudes de amistad y guarda las nuevas
+     * solicitued utilizando ese acceso
+     */
+    public static void saveFrienshipRequest(Profile destProfile, Profile sourceProfile) {
+        destProfile.getFriendshipRequests().add(sourceProfile);
+    }
+
+    public static void removeFrienshipRequest(Profile destProfile, Profile sourceProfile) {
+    }
+
+    public static void saveFriendship(Profile profile1, Profile profile2) {
+    }
 }
