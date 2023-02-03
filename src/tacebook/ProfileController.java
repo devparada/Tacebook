@@ -123,7 +123,7 @@ public class ProfileController {
     }
     
     /**
-     * 
+     * Método que crea un novo post
      * @param text
      * @param destProfile
      */
@@ -141,7 +141,7 @@ public class ProfileController {
     }
     
     /**
-     * 
+     * Método que agrega un novo comentario nun post
      * @param post
      * @param commentText
      */
@@ -159,7 +159,7 @@ public class ProfileController {
     }
     
     /**
-     * 
+     * Método que fai un like
      * @param post
      */
     public void newLike(Post post){
@@ -175,28 +175,44 @@ public class ProfileController {
     }
     
     /**
-     *
+     * Método que crea unha nova solicitude de amizade.
+     * MÉTODO INCOMPLETO, FALTA COMPROBACIONES PREVIAS
      * @param profileName
      */
     public void newFriendshipRequest(String profileName){
         
-        reloadProfile();
-    }
-    
-    /**
-     *
-     * @param sourceProfile
-     */
-    public void acceptFriendshipRequest(Profile sourceProfile){
+        ProfileDB profileDB = new ProfileDB();
+        
+        profileDB.saveFrienshipRequest(shownProfile,sessionProfile);
         
         reloadProfile();
     }
     
     /**
-     *
+     * Método que elimina a solicitude de amizade, e garda a
+     * amizade entre os dous usuarios.
+     * @param sourceProfile
+     */
+    public void acceptFriendshipRequest(Profile sourceProfile){
+        
+        ProfileDB profileDB = new ProfileDB();
+        
+        profileDB.removeFrienshipRequest(shownProfile, sourceProfile);
+        
+        profileDB.saveFriendship(sourceProfile,sessionProfile);
+        
+        reloadProfile();
+    }
+    
+    /**
+     * Método que simplemente elimina a solicitude.
      * @param sourceProfile
      */
     public void rejectFriendshipRequest(Profile sourceProfile){
+        
+        ProfileDB profileDB = new ProfileDB();
+        
+        profileDB.removeFrienshipRequest(shownProfile, sourceProfile);
         
         reloadProfile();
     }
