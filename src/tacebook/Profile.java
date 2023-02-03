@@ -88,34 +88,66 @@ public class Profile {
         this.status = status;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Post> getPosts() {
         return posts;
     }
 
+    /**
+     *
+     * @param posts
+     */
     public void setPosts(ArrayList<Post> posts) {
         this.posts = posts;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Message> getMessages() {
         return messages;
     }
 
+    /**
+     *
+     * @param messages
+     */
     public void setMessages(ArrayList<Message> messages) {
         this.messages = messages;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Profile> getFriends() {
         return friends;
     }
 
+    /**
+     *
+     * @param friends
+     */
     public void setFriends(ArrayList<Profile> friends) {
         this.friends = friends;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Profile> getFriendshipRequests() {
         return friendshipRequests;
     }
 
+    /**
+     *
+     * @param friendshipRequests
+     */
     public void setFriendshipRequests(ArrayList<Profile> friendshipRequests) {
         this.friendshipRequests = friendshipRequests;
     }

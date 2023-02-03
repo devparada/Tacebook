@@ -11,6 +11,10 @@ package tacebook;
  */
 public class CommentDB {
     
+    /**
+     *
+     * @param comment
+     */
     public static void save(Comment comment){
         
         comment.setPost(comment.getPost()); // esto ta mal

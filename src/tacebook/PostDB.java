@@ -10,10 +10,20 @@ package tacebook;
  */
 public class PostDB {
 
+    /**
+     *
+     * @param post
+     */
     public static void save(Post post) {
-        post.getProfile().getPosts().add(0, post);
+       post.getProfile().getPosts().add(0, post);
+        
     }
 
+    /**
+     *
+     * @param post
+     * @param profile
+     */
     public static void saveLike(Post post, Profile profile) {
 
     }

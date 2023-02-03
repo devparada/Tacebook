@@ -17,6 +17,10 @@ public class InitMenuView {
 
     private InitMenuController initMenuController;
 
+    /**
+     *
+     * @param initMenuController
+     */
     public InitMenuView(InitMenuController initMenuController) {
         this.initMenuController = initMenuController;
     }

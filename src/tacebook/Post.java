@@ -21,8 +21,8 @@ public class Post {
     private Date date;
     private String text;
     private ArrayList<Profile> profileLikes;
-    private ArrayList<Profile> author;
-    private ArrayList<Profile> profile;
+    private Profile author;
+    private Profile profile;
     private ArrayList<Comment> comments;
 
     /**
@@ -116,7 +116,7 @@ public class Post {
      *
      * @return author
      */
-    public ArrayList<Profile> getAuthor() {
+    public Profile getAuthor() {
         return author;
     }
 
@@ -125,7 +125,7 @@ public class Post {
      *
      * @param author
      */
-    public void setAuthor(ArrayList<Profile> author) {
+    public void setAuthor(Profile author) {
         this.author = author;
     }
 
@@ -134,7 +134,7 @@ public class Post {
      *
      * @return
      */
-    public ArrayList<Profile> getProfile() {
+    public Profile getProfile() {
         return profile;
     }
 
@@ -143,7 +143,7 @@ public class Post {
      *
      * @param profile
      */
-    public void setProfile(ArrayList<Profile> profile) {
+    public void setProfile(Profile profile) {
         this.profile = profile;
     }
 
