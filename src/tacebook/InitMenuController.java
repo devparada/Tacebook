@@ -63,16 +63,17 @@ public class InitMenuController {
      * @param status
      */
     public void createProfile(String name, String password, String status) {
+        // Comprobamos que o nome non estea repetido
+        while (ProfileDB.findByName(name, 0) != null) {
+            name = initMenuView.showNewNameMenu();
+        }
+        
+        // Creamos o perfil e gardamos
         Profile profile = new Profile(name, password, status);
         ProfileDB.save(profile);
+        
+        // Abrimos a sesion do usuario
         ProfileController profileController = new ProfileController();
-        profileController.openSession(profile);
-        while (ProfileDB.findByName(name, 0) == null) {
-            name = initMenuView.showNewNameMenu();
-            profile.setName(name);
-        }
-
-        ProfileDB.save(profile);
         profileController.openSession(profile);
     }
 
