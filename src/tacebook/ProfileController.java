@@ -123,7 +123,7 @@ public class ProfileController {
     }
     
     /**
-     * MÉTODO ROTO
+     * 
      * @param text
      * @param destProfile
      */
@@ -133,11 +133,15 @@ public class ProfileController {
         
         Post currentPost = new Post(0, date, text); 
         
+        PostDB postDB = new PostDB();
+        
+        postDB.save(currentPost); // Se guarda post en la base de datos
+        
         reloadProfile();
     }
     
     /**
-     * MÉTODO ROTO
+     * 
      * @param post
      * @param commentText
      */
@@ -160,7 +164,13 @@ public class ProfileController {
      */
     public void newLike(Post post){
         
-        reloadProfile();
+        PostDB postDB = new PostDB();
+        
+        if(post.getAuthor()!=sessionProfile || !post.getProfileLikes().contains(sessionProfile)){
+            postDB.saveLike(post, sessionProfile);
+            reloadProfile();
+        }
+        
     }
     
     /**
