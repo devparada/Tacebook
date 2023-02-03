@@ -31,19 +31,11 @@ public class Post {
      * @param id
      * @param date
      * @param text
-     * @param profileLikes
-     * @param author
-     * @param profile
-     * @param comments
      */
-    public Post(int id, Date date, String text, ArrayList<Profile> profileLikes, ArrayList<Profile> author, ArrayList<Profile> profile, ArrayList<Comment> comments) {
+    public Post(int id, Date date, String text) {
         this.id = id;
         this.date = date;
         this.text = text;
-        this.profileLikes = profileLikes;
-        this.author = author;
-        this.profile = profile;
-        this.comments = comments;
     }
 
     /**
