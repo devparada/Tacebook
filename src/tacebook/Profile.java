@@ -4,6 +4,8 @@
  */
 package tacebook;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
@@ -14,6 +16,10 @@ public class Profile {
     private String name;
     private String password;
     private String status;
+    private ArrayList<Post> posts = new ArrayList<>();
+    private ArrayList<Message> messages = new ArrayList<>();
+    private ArrayList<Profile> friends = new ArrayList<>();
+    private ArrayList<Profile> friendshipRequests = new ArrayList<>();
 
     /**
      * Constructor de la clase profile
