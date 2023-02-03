@@ -25,17 +25,12 @@ public class Post {
     private ArrayList<Profile> profileLikes = new ArrayList<>();
     private ArrayList<Comment> comments = new ArrayList<>();
 
-    /**
-     * Este es el constructor de la clase Post
-     *
-     * @param id
-     * @param date
-     * @param text
-     */
-    public Post(int id, Date date, String text) {
+    public Post(int id, Date date, String text, Profile profile, Profile author) {
         this.id = id;
         this.date = date;
         this.text = text;
+        this.profile = profile;
+        this.author = author;
     }
 
     /**
