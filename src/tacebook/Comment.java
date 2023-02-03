@@ -19,8 +19,8 @@ public class Comment {
     private int id;
     private Date date;
     private String text;
-    private ArrayList<Profile> sourceProfile;
-    private ArrayList<Post> post;
+    private ArrayList<Profile> sourceProfile = new ArrayList<>();
+    private ArrayList<Post> post = new ArrayList<>();
 
     /**
      * Este es el constructor de la clase Comment
