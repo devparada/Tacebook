@@ -23,20 +23,16 @@ public class Comment {
     private ArrayList<Post> post;
 
     /**
-     * Este es el constructor de la clase comment.
+     * Este es el constructor de la clase Comment
      *
      * @param id
      * @param date
      * @param text
-     * @param sourceProfile
-     * @param post
      */
-    public Comment(int id, Date date, String text, ArrayList<Profile> sourceProfile, ArrayList<Post> post) {
+    public Comment(int id, Date date, String text) {
         this.id = id;
         this.date = date;
         this.text = text;
-        this.sourceProfile = sourceProfile;
-        this.post = post;
     }
 
     /**
