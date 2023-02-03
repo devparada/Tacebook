@@ -149,15 +149,29 @@ public class ProfileView {
         this.postsShowed = postsShowed;
     }
 
+    /**
+     *
+     * Este método pide al usuario un numero y lo devuelve
+     *
+     * @param text
+     * @param maxNumber
+     * @param scanner
+     * @return Devuelve un número introducido por el usuario
+     */
     private int selectElement(String text, int maxNumber, Scanner scanner) {
-        return 0;
+        int number;
+        do {
+            System.out.println("Introduce un numero para seleccionar" + text);
+            number = scanner.nextInt();
+        } while (number > 0 && number < maxNumber - 1);
+        return number;
     }
 
     /**
-     * Este método pide o texto para crear una nueva publicacion
-     * 
+     * Este método pide el texto para crear una nueva publicacion
+     *
      * @param scanner
-     * @param profile 
+     * @param profile
      */
     private void writeNewPost(Scanner scanner, Profile profile) {
         System.out.println("Escribe o texto da publicacion");
@@ -165,26 +179,29 @@ public class ProfileView {
 
     /**
      * Este método introduce un comentario nun post
-     * 
+     *
      * @param scanner
-     * @param profile 
+     * @param profile
      */
     private void commentPost(Scanner scanner, Profile profile) {
         System.out.println("Selecciona unha publicacion");
         String text = scanner.next();
-        profileController.newComment(null , text);
+        profileController.newComment(null, text);
     }
 
+    /**
+     * Este método hace que a una publicición un usuario le de like
+     *
+     * @param scanner
+     * @param profile
+     */
     private void addLike(Scanner scanner, Profile profile) {
         System.out.println("Selecciona unha publicacion");
-        scanner.nextInt();
-        profileController.newLike(profile.getPosts().get(0));
+        int number = scanner.nextInt();
+        profileController.newLike(profile.getPosts().get(number));
     }
 
     private void showBiography(boolean ownProfile, Scanner scanner, Profile profile) {
-        if (ownProfile) {
-            
-        }
     }
 
     private void sendFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile) {
@@ -199,7 +216,19 @@ public class ProfileView {
     private void readPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
     }
 
+    /**
+     * Este método permite borrar un mensaje
+     *
+     * @param ownProfile
+     * @param scanner
+     * @param profile
+     */
     private void deletePrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
+        if (ownProfile) {
+            System.out.println("Selecciona un mensaxe");
+            int number = scanner.nextInt();
+            profileController.deleteMessage(profile.getMessages().get(number));
+        }
     }
 
     private void showOldPosts(Scanner scanner, Profile profile) {
@@ -221,5 +250,6 @@ public class ProfileView {
     }
 
     public void showDuplicateFrienshipRequestMessage(String profileName) {
+        System.out.println("Xa tes unha peticion de amizade con ese perfil");
     }
 }
