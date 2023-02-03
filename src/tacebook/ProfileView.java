@@ -17,7 +17,7 @@ import java.util.Scanner;
  * para que trabajen en conjunto con los controladores
  */
 public class ProfileView {
-    
+
     private SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'ás' HH:mm:ss");
     private int postsShowed = 10;
     private ProfileController profileController;
@@ -102,18 +102,18 @@ public class ProfileView {
      */
     public void showProfileMenu(Profile profile) {
         Scanner scan = new Scanner(System.in);
-        
+
         showProfileInfo(true, profile);
-        
+
         int select;
-        
+
         do {
             System.out.println("1. Cambiar estado");
             System.out.println("2. Pechar a sesion");
             select = scan.nextInt();
             scan.nextLine();
         } while (select > 2);
-        
+
         switch (select) {
             /*
             Si el usuario selecciona la opcion 1, que reciba un scanner para que
@@ -204,7 +204,7 @@ public class ProfileView {
         int number = scanner.nextInt();
         profileController.newLike(profile.getPosts().get(number));
     }
-    
+
     private void showBiography(boolean ownProfile, Scanner scanner, Profile profile) {
         if (ownProfile) {
             System.out.println("Introduzca o nome da sua amizade");
@@ -214,13 +214,13 @@ public class ProfileView {
             profileController.setShownProfile(profile);
         }
     }
-    
+
     private void sendFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile) {
         System.out.println("Introduzca o nome do perfil");
         String nameProfile = scanner.next();
         profileController.newFriendshipRequest(nameProfile);
     }
-    
+
     private void proccessFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile, boolean accept) {
         System.out.println("Introduzca o numero da solicitude de amizade");
         int number = scanner.nextInt();
@@ -230,7 +230,7 @@ public class ProfileView {
             profileController.rejectFriendshipRequest(profile);
         }
     }
-    
+
     private void sendPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
         if (ownProfile) {
             System.out.println("Introduce o nome do amigo");
@@ -243,7 +243,7 @@ public class ProfileView {
             String text = scanner.next();
         }
     }
-    
+
     private void readPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
     }
 
@@ -261,29 +261,34 @@ public class ProfileView {
             profileController.deleteMessage(profile.getMessages().get(number));
         }
     }
-    
+
     private void showOldPosts(Scanner scanner, Profile profile) {
         System.out.println("Introduce o número de publicacions a visualizar");
         int number = scanner.nextInt();
         postsShowed = number;
         profileController.reloadProfile();
     }
-    
+
     public void showProfileNotFoundMessage() {
+        System.out.println("El perfil que estas intentando buscar no existe.");
     }
-    
+
     public void showCannotLikeOwnPostMessage() {
+        System.out.println("No puedes dar like a tu propia publicación.");
     }
-    
+
     public void showAlreadyLikedPostMessage() {
+        System.out.println("No es posible dar like a una publicacion que ya diste like.");
     }
-    
+
     public void showIsAlreadyFriendMessage(String profileName) {
+        System.out.println("Ya eres amigo de este perfil.");
     }
-    
+
     public void showExistsFrienshipRequestMessage(String profileName) {
+        System.out.println("Ya tienes una solicitud de amistad enviada a este perfil.");
     }
-    
+
     public void showDuplicateFrienshipRequestMessage(String profileName) {
         System.out.println("Xa tes unha peticion de amizade con ese perfil");
     }
