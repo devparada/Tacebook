@@ -6,7 +6,8 @@ package tacebook;
 
 /**
  *
- * @author Raúl Parada de la Fuente
+ * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
+ * Parada de la Fuente
  */
 public class MessageDB {
 
@@ -15,7 +16,7 @@ public class MessageDB {
      * @param message
      */
     public static void save(Message message) {
-        
+
     }
 
     /**
@@ -31,6 +32,6 @@ public class MessageDB {
      * @param message
      */
     public static void remove(Message message) {
-        
+
     }
 }

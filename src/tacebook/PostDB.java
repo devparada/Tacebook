@@ -7,7 +7,8 @@ package tacebook;
 /**
  * Esta clase guardará toda la persistencia de datos de las publicaciones
  *
- * @author Bilo Alejandro Martins Gonzalez
+ * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
+ * Parada de la Fuente
  */
 public class PostDB {
 
