@@ -207,7 +207,7 @@ public class ProfileView {
 
     private void showBiography(boolean ownProfile, Scanner scanner, Profile profile) {
         if (ownProfile) {
-            System.out.println("Introduzca o nome da sua amizade");
+            System.out.println("Introduce o nome da sua amizade");
             String text = scanner.next();
             profileController.getProfileView();
         } else {
@@ -216,13 +216,13 @@ public class ProfileView {
     }
 
     private void sendFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile) {
-        System.out.println("Introduzca o nome do perfil");
+        System.out.println("Introduce o nome do perfil");
         String nameProfile = scanner.next();
         profileController.newFriendshipRequest(nameProfile);
     }
 
     private void proccessFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile, boolean accept) {
-        System.out.println("Introduzca o numero da solicitude de amizade");
+        System.out.println("Introduce o numero da solicitude de amizade");
         int number = scanner.nextInt();
         if (accept) {
             profileController.acceptFriendshipRequest(profile);
@@ -263,30 +263,30 @@ public class ProfileView {
     }
 
     private void showOldPosts(Scanner scanner, Profile profile) {
-        System.out.println("Introduce o número de publicacions a visualizar");
+        System.out.println("Introduce o numero de publicacions a visualizar");
         int number = scanner.nextInt();
         postsShowed = number;
         profileController.reloadProfile();
     }
 
     public void showProfileNotFoundMessage() {
-        System.out.println("El perfil que estas intentando buscar no existe.");
+        System.out.println("O perfil que estas intentando buscar non existe");
     }
 
     public void showCannotLikeOwnPostMessage() {
-        System.out.println("No puedes dar like a tu propia publicación.");
+        System.out.println("Non podes dar like a tua propia publicacion");
     }
 
     public void showAlreadyLikedPostMessage() {
-        System.out.println("No es posible dar like a una publicacion que ya diste like.");
+        System.out.println("Non e posible dar like a unha publicacion que xa diste like");
     }
 
     public void showIsAlreadyFriendMessage(String profileName) {
-        System.out.println("Ya eres amigo de este perfil.");
+        System.out.println("Xa eres amigo deste perfil.");
     }
 
     public void showExistsFrienshipRequestMessage(String profileName) {
-        System.out.println("Ya tienes una solicitud de amistad enviada a este perfil.");
+        System.out.println("Xa tes unha solicitude de amizade enviada a este perfil");
     }
 
     public void showDuplicateFrienshipRequestMessage(String profileName) {
