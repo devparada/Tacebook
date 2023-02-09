@@ -61,7 +61,6 @@ public class InitMenuView {
             case 3:
                 return true;
         }
-
         return false;
     }
 

@@ -21,9 +21,9 @@ public class InitMenuController {
      * pantalla
      */
     private void init() {
-        while (!initMenuView.showLoginMenu()) {
+        do {
             initMenuView.showLoginMenu();
-        }
+        } while (!initMenuView.showLoginMenu());
     }
 
     /**
@@ -41,7 +41,7 @@ public class InitMenuController {
         if (profile == null) {
             initMenuView.showLoginErrorMessage();
         } else {
-            System.out.println("Bienvenido una vez más a Tacebook!");
+            System.out.println("Benvido unha vez mais a Tacebook!");
             profileController.openSession(profile);
         }
     }
@@ -67,11 +67,11 @@ public class InitMenuController {
         while (ProfileDB.findByName(name, 0) != null) {
             name = initMenuView.showNewNameMenu();
         }
-        
+
         // Creamos o perfil e gardamos
         Profile profile = new Profile(name, password, status);
         ProfileDB.save(profile);
-        
+
         // Abrimos a sesion do usuario
         ProfileController profileController = new ProfileController();
         profileController.openSession(profile);
