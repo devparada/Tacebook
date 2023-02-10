@@ -34,6 +34,24 @@ public class ProfileView {
     }
 
     /**
+     * Método getter del atributo postsShowed.
+     *
+     * @return postsShowed
+     */
+    public int getPostsShowed() {
+        return postsShowed;
+    }
+
+    /**
+     * Método setter del atributo postsShowed
+     *
+     * @param postsShowed cantidad de posts a mostrar.
+     */
+    public void setPostsShowed(int postsShowed) {
+        this.postsShowed = postsShowed;
+    }
+
+    /**
      * Este método hace con que el usuario vea el perfil de algun usuario o, su
      * propio perfil, sacando mensajes por pantalla.
      */
@@ -169,25 +187,6 @@ public class ProfileView {
     }
 
     /**
-     * Método getter del atributo postsShowed.
-     *
-     * @return postsShowed
-     */
-    public int getPostsShowed() {
-        return postsShowed;
-    }
-
-    /**
-     * Método setter del atributo postsShowed
-     *
-     * @param postsShowed cantidad de posts a mostrar.
-     */
-    public void setPostsShowed(int postsShowed) {
-        this.postsShowed = postsShowed;
-    }
-
-    /**
-     *
      * Este método pide al usuario un numero y lo devuelve
      *
      * @param text
