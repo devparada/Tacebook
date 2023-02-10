@@ -88,8 +88,8 @@ public class ProfileView {
     }
 
     /**
-     * Este método llama al método showProfileInfo y entrega opciones al
-     * usuario. Las opciones serán cambiar de estado o cerrar sessión.
+     * [INCOMPLETO] Este método llama al método showProfileInfo y entrega
+     * opciones al usuario
      *
      * @param profile
      */
@@ -108,25 +108,62 @@ public class ProfileView {
         int select;
 
         do {
-            System.out.println("1. Cambiar estado");
-            System.out.println("2. Pechar a sesion");
+            System.out.println("Selecciona unha opcion:");
+            System.out.println("1. Escribir unha nova publicacion");
+            System.out.println("2. Comentar unha publicacion");
+            System.out.println("3. Facer me gusta sobre unha publicacion");
+            System.out.println("4. Ver a biografia dun amigo");
+            System.out.println("5. Enviar unha solicitude de amizade");
+            System.out.println("6. Aceptar unha solicitude de amizade");
+            System.out.println("7. Rexeitar unha solicitude de amizade");
+            System.out.println("8. Enviar unha mensaxe privada a un amigo");
+            System.out.println("9. Ler unha mensaxe privada");
+            System.out.println("10. Eliminar unha mensaxe privada");
+            System.out.println("11. Ver publicacions anteriores");
+            System.out.println("12. Cambiar o estado");
+            System.out.println("13. Pechar a sesion");
             select = scan.nextInt();
             scan.nextLine();
-        } while (select > 2);
+        } while (select > 13);
 
+        /*
+        FALTA MODIFICAR LOS NUEVOS CASE PARA QUE LLAMEN A LOS METODOS (DE MOMENTO NO HACEN NADA)
+         */
         switch (select) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+            case 9:
+                break;
+            case 10:
+                break;
+            case 11:
+                break;
             /*
-            Si el usuario selecciona la opcion 1, que reciba un scanner para que
+            Si el usuario selecciona la opcion 12, que reciba un scanner para que
             pueda cambiar su estado.
              */
-            case 1:
+            case 12:
                 changeStatus(true, scan, profile);
                 break;
             /*
-            Si el usuario selecciona la opcion 2, que simplemente cierre la 
+            Si el usuario selecciona la opcion 13, que simplemente cierre la 
             sesión y que salga del bucle.
              */
-            case 2:
+            case 13:
                 break;
         }
     }
