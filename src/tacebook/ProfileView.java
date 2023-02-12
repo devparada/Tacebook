@@ -8,17 +8,22 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 /**
- *
- * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
- * Parada de la Fuente
- *
  * Esta clase es el modelo de vista de nuestro programa, es la parte "visual"
  * frente al cliente, aqui se implementa todo tipo de menu, mensaje y metodos
  * para que trabajen en conjunto con los controladores
+ *
+ * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
+ * Parada de la Fuente
  */
 public class ProfileView {
 
+    /**
+     * El formato de la fecha
+     */
     private SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'ás' HH:mm:ss");
+    /**
+     * Los posts a visualizar
+     */
     private int postsShowed = 10;
     private ProfileController profileController;
 
@@ -77,6 +82,31 @@ public class ProfileView {
              */
             System.out.println("Estás vendo o perfil de " + profile.getName());
         }
+        /*
+        ESTE BUCLE FOR PARECE QUE FUNCIONA (REVISAR)
+         */
+        for (int i = 0; i < profile.getPosts().size() && i < postsShowed; i++) {
+            System.out.println("-> Post " + i);
+            System.out.println("Depuracion: " + profile.getPosts().get(i).getComments().size());
+            /*
+            Bucle for para los comentarios del post
+             */
+            for (int j = 0; j < profile.getPosts().get(i).getComments().size(); j++) {
+                System.out.println("Comentarios " + profile.getPosts().get(i).getComments().get(j).getText());
+            }
+            /*
+            Bucle for para los likes del post
+             */
+            for (int j = 0; j < profile.getPosts().get(i).getProfileLikes().size(); j++) {
+                System.out.println("Likes: " + profile.getPosts().get(i).getProfileLikes().get(j).getName());
+            }
+            System.out.println("Autor " + profile.getPosts().get(i).getAuthor().getName());
+            /*
+            Fecha del post con un formato determinado (formatter)
+             */
+            System.out.println("Data: " + formatter.format(profile.getPosts().get(i).getDate()));
+            System.out.println("Texto " + profile.getPosts().get(i).getText());
+        }
         System.out.println("Tu usuario: " + profile.getName());
         System.out.println("Tu estado: " + profile.getStatus());
     }
@@ -106,8 +136,7 @@ public class ProfileView {
     }
 
     /**
-     * [INCOMPLETO] Este método llama al método showProfileInfo y entrega
-     * opciones al usuario
+     * Este método llama al método showProfileInfo y entrega opciones al usuario
      *
      * @param profile
      */
@@ -144,31 +173,39 @@ public class ProfileView {
             scan.nextLine();
         } while (select > 13);
 
-        /*
-        FALTA MODIFICAR LOS NUEVOS CASE PARA QUE LLAMEN A LOS METODOS (DE MOMENTO NO HACEN NADA)
-         */
         switch (select) {
             case 1:
+                writeNewPost(scan, profile);
                 break;
             case 2:
+                commentPost(scan, profile);
                 break;
             case 3:
+                addLike(scan, profile);
                 break;
             case 4:
+                showBiography(true, scan, profile);
                 break;
             case 5:
+                sendFriendshipRequest(true, scan, profile);
                 break;
             case 6:
+                profileController.acceptFriendshipRequest(profile);
                 break;
             case 7:
+                profileController.acceptFriendshipRequest(profile);
                 break;
             case 8:
+                sendPrivateMessage(true, scan, profile);
                 break;
             case 9:
+                readPrivateMessage(true, scan, profile);
                 break;
             case 10:
+                deletePrivateMessage(true, scan, profile);
                 break;
             case 11:
+                showOldPosts(scan, profile);
                 break;
             /*
             Si el usuario selecciona la opcion 12, que reciba un scanner para que
@@ -197,7 +234,7 @@ public class ProfileView {
     private int selectElement(String text, int maxNumber, Scanner scanner) {
         int number;
         do {
-            System.out.println("Introduce un numero para seleccionar" + text);
+            System.out.println(text);
             number = scanner.nextInt();
         } while (number > 0 && number < maxNumber - 1);
         return number;
@@ -211,22 +248,21 @@ public class ProfileView {
      */
     private void writeNewPost(Scanner scanner, Profile profile) {
         System.out.println("Introduce o texto da publicacion");
-        String text = scanner.next();
+        String text = scanner.nextLine();
         profileController.newPost(text, profile);
     }
 
     /**
-     * Este método introduce un comentario nun post
+     * Este método introduce un comentario en un post
      *
      * @param scanner
      * @param profile
      */
     private void commentPost(Scanner scanner, Profile profile) {
-        System.out.println("Introduce o numero da publicacion");
-        int number = scanner.nextInt();
+        int position = selectElement("Introduce o numero da publicacion", profile.getPosts().size(), scanner);
         System.out.println("Introduce un texto");
-        String text = scanner.next();
-        profileController.newComment(profile.getPosts().get(number), text);
+        String text = scanner.nextLine();
+        profileController.newComment(profile.getPosts().get(position), text);
     }
 
     /**
@@ -236,50 +272,65 @@ public class ProfileView {
      * @param profile
      */
     private void addLike(Scanner scanner, Profile profile) {
-        System.out.println("Introduce o numero da publicacion");
-        int number = scanner.nextInt();
-        profileController.newLike(profile.getPosts().get(number));
+        int position = selectElement("Introduce o numero da publicacion", profile.getPosts().size(), scanner);
+        profileController.newLike(profile.getPosts().get(position));
     }
 
+    /*
+    ESTA INCOMPLETO (EN DESARROLLO)
+     */
     private void showBiography(boolean ownProfile, Scanner scanner, Profile profile) {
         if (ownProfile) {
             System.out.println("Introduce o nome da sua amizade");
-            String text = scanner.next();
-            profileController.getProfileView();
+            String text = scanner.nextLine();
+            profileController.setShownProfile(profile);
         } else {
             profileController.setShownProfile(profile);
         }
     }
 
+    /*
+    PUEDE QUE ESTÉ INCOMPLETO
+     */
     private void sendFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile) {
         System.out.println("Introduce o nome do perfil");
-        String nameProfile = scanner.next();
+        String nameProfile = scanner.nextLine();
         profileController.newFriendshipRequest(nameProfile);
     }
 
+    /*
+    PUEDE QUE ESTÉ INCOMPLETO
+     */
     private void proccessFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile, boolean accept) {
-        System.out.println("Introduce o numero da solicitude de amizade");
-        int number = scanner.nextInt();
+        int position = selectElement("Introduce o numero da solicitude de amizade", profile.getFriendshipRequests().size(), scanner);
         if (accept) {
-            profileController.acceptFriendshipRequest(profile);
+            profileController.acceptFriendshipRequest(profile.getFriendshipRequests().get(position));
         } else {
-            profileController.rejectFriendshipRequest(profile);
+            profileController.rejectFriendshipRequest(profile.getFriendshipRequests().get(position));
         }
     }
 
+    /*
+    PUEDE QUE ESTÉ INCOMPLETO
+     */
     private void sendPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
         if (ownProfile) {
             System.out.println("Introduce o nome do amigo");
-            String nameFriend = scanner.next();
+            String nameFriend = scanner.nextLine();
+            int position = selectElement(nameFriend, profile.getFriends().size(), scanner);
             System.out.println("Introduce o texto da mensaxe");
-            String text = scanner.next();
-            profileController.newMessage(profile, text);
+            String text = scanner.nextLine();
+            profileController.newMessage(profile.getFriends().get(position), text);
         } else {
             System.out.println("Introduce o texto para enviarlle un mensaxe a este perfil");
-            String text = scanner.next();
+            String text = scanner.nextLine();
+            profileController.newMessage(profile, text);
         }
     }
 
+    /*
+    ESTA INCOMPLETO (POR HACER)
+     */
     private void readPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
     }
 
@@ -291,13 +342,17 @@ public class ProfileView {
      * @param profile
      */
     private void deletePrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
-        if (ownProfile) {
-            System.out.println("Selecciona un mensaxe");
-            int number = scanner.nextInt();
-            profileController.deleteMessage(profile.getMessages().get(number));
-        }
+        int position = selectElement("Selecciona un mensaxe", profile.getMessages().size(), scanner);
+        profileController.deleteMessage(profile.getMessages().get(position));
     }
 
+    /**
+     * Este método pregunta al usuario el número de posts a visualizar y recarga
+     * el perfil
+     *
+     * @param scanner
+     * @param profile
+     */
     private void showOldPosts(Scanner scanner, Profile profile) {
         System.out.println("Introduce o numero de publicacions a visualizar");
         int number = scanner.nextInt();
@@ -305,27 +360,57 @@ public class ProfileView {
         profileController.reloadProfile();
     }
 
+    /**
+     * Este método muestra un mensaje al usuario sobre que no se encontro un
+     * perfil
+     */
     public void showProfileNotFoundMessage() {
         System.out.println("O perfil que estas intentando buscar non existe");
     }
 
+    /**
+     * Este método muestra un mensaje al usuario sobre que no puedes dar like a
+     * tu proia publicación
+     */
     public void showCannotLikeOwnPostMessage() {
         System.out.println("Non podes dar like a tua propia publicacion");
     }
 
+    /**
+     * Este método muestra un mensaje al usuario sobre que no es posible dar
+     * like a una publicación que ya distes
+     */
     public void showAlreadyLikedPostMessage() {
         System.out.println("Non e posible dar like a unha publicacion que xa diste like");
     }
 
+    /**
+     * Este método muestra un mensaje al usuario sobre que ya eres amigo de
+     * profileName
+     *
+     * @param profileName nombre de la persona
+     */
     public void showIsAlreadyFriendMessage(String profileName) {
-        System.out.println("Xa eres amigo deste perfil.");
+        System.out.println("Xa eres amigo de " + profileName);
     }
 
+    /**
+     * Este método muestra un mensaje al usuario sobre que ya tienes enviada una
+     * solicitud de amistad a profileName
+     *
+     * @param profileName nombre de la persona
+     */
     public void showExistsFrienshipRequestMessage(String profileName) {
-        System.out.println("Xa tes unha solicitude de amizade enviada a este perfil");
+        System.out.println("Xa tes unha solicitude de amizade enviada a " + profileName);
     }
 
+    /**
+     * Este método muestra un mensaje al usuario sobre que ya tienes una
+     * solicitud de amistad con profileName
+     *
+     * @param profileName nombre de la persona
+     */
     public void showDuplicateFrienshipRequestMessage(String profileName) {
-        System.out.println("Xa tes unha peticion de amizade con ese perfil");
+        System.out.println("Xa tes unha peticion de amizade con " + profileName);
     }
 }
