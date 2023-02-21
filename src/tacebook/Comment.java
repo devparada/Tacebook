@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Esta es la clase comment, que guardará todos los datos relacionados a
+ * Esta es la clase Comment, que guardará todos los datos relacionados a
  * comentarios.
  *
  * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
@@ -36,7 +36,7 @@ public class Comment {
     }
 
     /**
-     * getter de id
+     * Getter de id
      *
      * @return
      */
@@ -45,7 +45,7 @@ public class Comment {
     }
 
     /**
-     * setter de id
+     * Setter de id
      *
      * @param id
      */
@@ -54,7 +54,7 @@ public class Comment {
     }
 
     /**
-     * getter de date
+     * Getter de date
      *
      * @return
      */
@@ -63,7 +63,7 @@ public class Comment {
     }
 
     /**
-     * setter de date
+     * Setter de date
      *
      * @param date
      */
@@ -72,7 +72,7 @@ public class Comment {
     }
 
     /**
-     * getter de date
+     * Getter de text
      *
      * @return
      */
@@ -81,7 +81,7 @@ public class Comment {
     }
 
     /**
-     * setter de text
+     * Setter de text
      *
      * @param text
      */
@@ -90,7 +90,7 @@ public class Comment {
     }
 
     /**
-     * getter de getsourceprofile
+     * Getter de sourceProfile
      *
      * @return
      */
@@ -99,7 +99,7 @@ public class Comment {
     }
 
     /**
-     * setter de sourceprofile
+     * Setter de sourceProfile
      *
      * @param sourceProfile
      */
@@ -108,7 +108,7 @@ public class Comment {
     }
 
     /**
-     * getter del arrayList Post
+     * Getter de post
      *
      * @return
      */
@@ -117,7 +117,7 @@ public class Comment {
     }
 
     /**
-     * setter del arrayList Post
+     * Setter de post
      *
      * @param post
      */
