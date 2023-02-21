@@ -235,9 +235,9 @@ public class ProfileView {
     /**
      * Este método pide al usuario un numero y lo devuelve
      *
-     * @param text
-     * @param maxNumber
-     * @param scanner
+     * @param text el texto que se muestra
+     * @param maxNumber el numero máximo para localizar
+     * @param scanner un scanner
      * @return Devuelve un número introducido por el usuario
      */
     private int selectElement(String text, int maxNumber, Scanner scanner) {
@@ -252,8 +252,8 @@ public class ProfileView {
     /**
      * Este método pide el texto para crear una nueva publicacion
      *
-     * @param scanner
-     * @param profile
+     * @param scanner un scanner
+     * @param profile el perfil que escribe el post
      */
     private void writeNewPost(Scanner scanner, Profile profile) {
         System.out.println("Introduce o texto da publicacion");
@@ -264,8 +264,8 @@ public class ProfileView {
     /**
      * Este método introduce un comentario en un post
      *
-     * @param scanner
-     * @param profile
+     * @param scanner un scanner
+     * @param profile el perfil que escribe el comentario
      */
     private void commentPost(Scanner scanner, Profile profile) {
         int position = selectElement("Introduce o numero da publicacion", profile.getPosts().size(), scanner);
@@ -277,8 +277,8 @@ public class ProfileView {
     /**
      * Este método hace que a una publicición un usuario le de like
      *
-     * @param scanner
-     * @param profile
+     * @param scanner un scanner
+     * @param profile el perfil que da like
      */
     private void addLike(Scanner scanner, Profile profile) {
         int position = selectElement("Introduce o numero da publicacion", profile.getPosts().size(), scanner);
@@ -338,14 +338,14 @@ public class ProfileView {
     }
 
     /*
-    PUEDE QUE ESTE INCOMPLETO
+    FALLA REALIZA UNA SALIDA DE LA SESION EXISTENTE
      */
     private void readPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
         int position = selectElement("Introduce o numero da mensaxe", profile.getMessages().size(), scanner);
         int select;
 
-        System.out.println("Sele");
         do {
+            System.out.println("Selecciona unha opcion:");
             System.out.println("1. Responder a mensaxe");
             System.out.println("2. Eliminar a mensaxe");
             System.out.println("3. Marcar a mensaxe como lida e volve a biografia");
@@ -372,9 +372,9 @@ public class ProfileView {
     /**
      * Este método permite borrar un mensaje
      *
-     * @param ownProfile
-     * @param scanner
-     * @param profile
+     * @param ownProfile si está en su perfil o no
+     * @param scanner un scanner
+     * @param profile el perfil que borra el mensaje
      */
     private void deletePrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
         int position = selectElement("Selecciona un mensaxe", profile.getMessages().size(), scanner);
@@ -385,8 +385,8 @@ public class ProfileView {
      * Este método pregunta al usuario el número de posts a visualizar y recarga
      * el perfil
      *
-     * @param scanner
-     * @param profile
+     * @param scanner un scanner
+     * @param profile el perfil que modifica el número de posts
      */
     private void showOldPosts(Scanner scanner, Profile profile) {
         System.out.println("Introduce o numero de publicacions a visualizar");
