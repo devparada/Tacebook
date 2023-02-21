@@ -82,6 +82,14 @@ public class ProfileView {
              */
             System.out.println("Estás vendo o perfil de " + profile.getName());
         }
+        // Puede fallar
+        for (int i = 0; i < profile.getMessages().size(); i++) {
+            System.out.println(profile.getMessages().get(i).getId() + " " + profile.getMessages().get(i).getText());
+        }
+        // Puede fallar
+        for (int i = 0; i < profile.getFriendshipRequests().size(); i++) {
+            System.out.println(i + " " + profile.getFriendshipRequests().get(i).getName());
+        }
         /*
         ESTE BUCLE FOR PARECE QUE FUNCIONA (REVISAR)
          */
@@ -92,7 +100,8 @@ public class ProfileView {
             Bucle for para los comentarios del post
              */
             for (int j = 0; j < profile.getPosts().get(i).getComments().size(); j++) {
-                System.out.println("Comentarios " + profile.getPosts().get(i).getComments().get(j).getText());
+                System.out.println("-> Comentarios: " + i);
+                System.out.println(profile.getPosts().get(i).getComments().get(j).getId() + " " + profile.getPosts().get(i).getComments().get(j).getText());
             }
             /*
             Bucle for para los likes del post
@@ -329,9 +338,35 @@ public class ProfileView {
     }
 
     /*
-    ESTA INCOMPLETO (POR HACER)
+    PUEDE QUE ESTE INCOMPLETO
      */
     private void readPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
+        int position = selectElement("Introduce o numero da mensaxe", profile.getMessages().size(), scanner);
+        int select;
+
+        System.out.println("Sele");
+        do {
+            System.out.println("1. Responder a mensaxe");
+            System.out.println("2. Eliminar a mensaxe");
+            System.out.println("3. Marcar a mensaxe como lida e volve a biografia");
+            select = scanner.nextInt();
+        } while (select > 3);
+
+        switch (select) {
+            case 1:
+                System.out.println("Introduce a resposta a mensaxe");
+                String texto = scanner.nextLine();
+                profileController.replyMessage(profile.getMessages().get(position), texto);
+                break;
+            case 2:
+                System.out.println("Eliminado a mensaxe");
+                profileController.deleteMessage(profile.getMessages().get(position));
+                break;
+            case 3:
+                System.out.println("Marcado como lida a mensaxe");
+                profileController.markMessageAsRead(profile.getMessages().get(position));
+                break;
+        }
     }
 
     /**
