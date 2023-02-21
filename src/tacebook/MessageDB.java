@@ -5,8 +5,8 @@
 package tacebook;
 
 /**
- * Esta clase almacena y elimina un mensaje da lista de mensajes del perfil de
- * destino
+ * Esta clase almacena y elimina un mensaje de la lista de mensajes del perfil
+ * de destino
  *
  * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
  * Parada de la Fuente
@@ -14,8 +14,8 @@ package tacebook;
 public class MessageDB {
 
     /**
-     * Este método añade del perfil destino al array list, y lo pone el primera
-     * posicion de modo que se vea primero los mensajes mas recientes
+     * Este método añade al perfil destino el ArrayList, y pone el message en
+     * primera posición de modo que se vea primero los mensajes más recientes
      *
      * @param message el mensaje que se almacena
      */
