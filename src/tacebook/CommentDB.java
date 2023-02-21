@@ -15,10 +15,8 @@ public class CommentDB {
      * @param comment
      */
     public static void save(Comment comment){
-        
-        comment.setPost(comment.getPost()); // esto ta mal
-        
-        //no se hacerlo ajaja
+        //Seguramente esto necesite un cambio/mejora, tener esto en cuenta!!
+        comment.getPost().get(0).getComments().add(0, comment);
     }
     
 }
