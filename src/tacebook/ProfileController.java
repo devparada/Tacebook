@@ -131,7 +131,8 @@ public class ProfileController {
         
         Date date = new Date(); // Objeto Date para usar en el constructor
         
-        Post currentPost = new Post(0, date, text); 
+        // Parche al crear el objeto currentPost (Revisar)
+        Post currentPost = new Post(0, date, text, destProfile, destProfile);
         
         PostDB postDB = new PostDB();
         
