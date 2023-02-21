@@ -19,6 +19,8 @@ public class Message {
     private String text;
     private Date date;
     private boolean read;
+    private Profile sourceProfile;
+    private Profile destProfile;
 
     /**
      * Este es el constructor de la clase Message
@@ -105,6 +107,22 @@ public class Message {
      */
     public void setRead(boolean read) {
         this.read = read;
+    }
+
+    public Profile getSourceProfile() {
+        return sourceProfile;
+    }
+
+    public void setSourceProfile(Profile sourceProfile) {
+        this.sourceProfile = sourceProfile;
+    }
+
+    public Profile getDestProfile() {
+        return destProfile;
+    }
+
+    public void setDestProfile(Profile destProfile) {
+        this.destProfile = destProfile;
     }
 
 }
