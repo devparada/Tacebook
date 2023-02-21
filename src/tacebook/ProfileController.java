@@ -21,7 +21,7 @@ public class ProfileController {
 
     /**
      * Getter de shownProfile
-     * 
+     *
      * @return
      */
     public Profile getShownProfile() {
@@ -30,14 +30,14 @@ public class ProfileController {
 
     /**
      * Setter de shownProfile
-     * 
+     *
      * @param shownProfile
      */
     public void setShownProfile(Profile shownProfile) {
         this.shownProfile = shownProfile;
         reloadProfile();
     }
-    
+
     //AVISO
     /*
     Precisamente neste método "reloadProfile" cambiaremos o código para que en lugar de almacenar o perfil no atributo "sessionProfile" 
@@ -196,13 +196,8 @@ public class ProfileController {
      * @param sourceProfile
      */
     public void acceptFriendshipRequest(Profile sourceProfile) {
-
-        ProfileDB profileDB = new ProfileDB();
-
-        profileDB.removeFrienshipRequest(shownProfile, sourceProfile);
-
-        profileDB.saveFriendship(sourceProfile, sessionProfile);
-
+        ProfileDB.removeFrienshipRequest(this.sessionProfile, sourceProfile);
+        ProfileDB.saveFriendship(this.sessionProfile, sourceProfile);
         reloadProfile();
     }
 
@@ -212,11 +207,7 @@ public class ProfileController {
      * @param sourceProfile
      */
     public void rejectFriendshipRequest(Profile sourceProfile) {
-
-        ProfileDB profileDB = new ProfileDB();
-
-        profileDB.removeFrienshipRequest(shownProfile, sourceProfile);
-
+        ProfileDB.removeFrienshipRequest(this.sessionProfile, sourceProfile);
         reloadProfile();
     }
 
@@ -225,7 +216,10 @@ public class ProfileController {
      * @param destProfile
      * @param text
      */
+    //!!!! No estoy seguro con este método, puede que no esté 100% bien.
     public void newMessage(Profile destProfile, String text) {
+        Message message = new Message(0, text, new Date(), false);
+        MessageDB.save(message);
         reloadProfile();
     }
 
@@ -234,6 +228,7 @@ public class ProfileController {
      * @param message
      */
     public void deleteMessage(Message message) {
+        MessageDB.remove(message);
         reloadProfile();
     }
 
@@ -242,6 +237,8 @@ public class ProfileController {
      * @param message
      */
     public void markMessageAsRead(Message message) {
+        message.setRead(true);
+        MessageDB.update(message);
         reloadProfile();
     }
 
@@ -251,7 +248,9 @@ public class ProfileController {
      * @param text
      */
     public void replyMessage(Message message, String text) {
-        reloadProfile();
+        message.setRead(true);
+        MessageDB.update(message);
+        newMessage(message.getSourceProfile(), text);
     }
 
 }
