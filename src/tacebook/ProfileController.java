@@ -4,14 +4,12 @@
  */
 package tacebook;
 
-import java.time.Instant;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
  * Esta es la clase controladora que se junta al modelo de vista, está clase
- * entrega funcionalidad a los métodos reloadProfile,
- * getPostsShowed,openSession, updateProfileStatus.
+ * entrega funcionalidad a los métodos reloadProfile, getPostsShowed,
+ * openSession, updateProfileStatus.
  *
  * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
  * Parada de la Fuente
@@ -22,7 +20,8 @@ public class ProfileController {
     private ProfileView profileView;
 
     /**
-     *
+     * Getter de shownProfile
+     * 
      * @return
      */
     public Profile getShownProfile() {
@@ -30,13 +29,15 @@ public class ProfileController {
     }
 
     /**
-     *
+     * Setter de shownProfile
+     * 
      * @param shownProfile
      */
     public void setShownProfile(Profile shownProfile) {
         this.shownProfile = shownProfile;
         reloadProfile();
     }
+    
     //AVISO
     /*
     Precisamente neste método "reloadProfile" cambiaremos o código para que en lugar de almacenar o perfil no atributo "sessionProfile" 
@@ -47,15 +48,10 @@ public class ProfileController {
      */
     private Profile sessionProfile;
 
-    /*
-    Este es el constructor de la clase, que inicializa el modelo de vista para 
-    que todos los metodos tengan usabilidad y conectividad
-     */
-
     /**
-     *
+     * Este es el constructor de la clase, que inicializa el modelo de vista
+     * para que todos los métodos tengan usabilidad y conectividad
      */
-
     public ProfileController() {
         profileView = new ProfileView(this);
     }
@@ -64,7 +60,7 @@ public class ProfileController {
      * Este método te entrega la cantidad de posts que se van a mostrar al
      * usuario
      *
-     * @return
+     * @return Devuelve el número de posts
      */
     public int getPostsShowed() {
         return profileView.getPostsShowed();
@@ -121,139 +117,141 @@ public class ProfileController {
     public Profile getSessionProfile() {
         return sessionProfile;
     }
-    
+
     /**
      * Método que crea un novo post
+     *
      * @param text
      * @param destProfile
      */
-    public void newPost(String text, Profile destProfile){
-        
+    public void newPost(String text, Profile destProfile) {
+
         Date date = new Date(); // Objeto Date para usar en el constructor
-        
+
         // Parche al crear el objeto currentPost (Revisar)
         Post currentPost = new Post(0, date, text, destProfile, destProfile);
-        
+
         PostDB postDB = new PostDB();
-        
+
         postDB.save(currentPost); // Se guarda post en la base de datos
-        
+
         reloadProfile();
     }
-    
+
     /**
      * Método que agrega un novo comentario nun post
+     *
      * @param post
      * @param commentText
      */
-    public void newComment(Post post, String commentText){
-        
+    public void newComment(Post post, String commentText) {
+
         Date date = new Date(); // Objeto Date para usar en el constructor
-        
+
         Comment currentComment = new Comment(0, date, commentText);
-        
+
         CommentDB commentDB = new CommentDB(); // Objeto CommentDB
-        
+
         commentDB.save(currentComment); // Se guarda comentario en la base de datos
-        
+
         reloadProfile(); // Reload
     }
-    
+
     /**
      * Método que fai un like
+     *
      * @param post
      */
-    public void newLike(Post post){
-        
+    public void newLike(Post post) {
+
         PostDB postDB = new PostDB();
-        
+
         // Si no es el autor del post, y no le ha dado like, se guarda un nuevo like en postDB.
-        if(post.getAuthor()!=sessionProfile || !post.getProfileLikes().contains(sessionProfile)){
+        if (post.getAuthor() != sessionProfile || !post.getProfileLikes().contains(sessionProfile)) {
             postDB.saveLike(post, sessionProfile);
             reloadProfile();
         }
-        
+
     }
-    
+
     /**
-     * Método que crea unha nova solicitude de amizade.
-     * MÉTODO INCOMPLETO, FALTA COMPROBACIONES PREVIAS
+     * Método que crea unha nova solicitude de amizade. MÉTODO INCOMPLETO, FALTA
+     * COMPROBACIONES PREVIAS
+     *
      * @param profileName
      */
-    public void newFriendshipRequest(String profileName){
-        
+    public void newFriendshipRequest(String profileName) {
+
         ProfileDB profileDB = new ProfileDB();
-        
-        profileDB.saveFrienshipRequest(shownProfile,sessionProfile);
-        
+
+        profileDB.saveFrienshipRequest(shownProfile, sessionProfile);
+
         reloadProfile();
     }
-    
+
     /**
-     * Método que elimina a solicitude de amizade, e garda a
-     * amizade entre os dous usuarios.
+     * Método que elimina a solicitude de amizade, e garda a amizade entre os
+     * dous usuarios.
+     *
      * @param sourceProfile
      */
-    public void acceptFriendshipRequest(Profile sourceProfile){
-        
+    public void acceptFriendshipRequest(Profile sourceProfile) {
+
         ProfileDB profileDB = new ProfileDB();
-        
+
         profileDB.removeFrienshipRequest(shownProfile, sourceProfile);
-        
-        profileDB.saveFriendship(sourceProfile,sessionProfile);
-        
+
+        profileDB.saveFriendship(sourceProfile, sessionProfile);
+
         reloadProfile();
     }
-    
+
     /**
      * Método que simplemente elimina a solicitude.
+     *
      * @param sourceProfile
      */
-    public void rejectFriendshipRequest(Profile sourceProfile){
-        
+    public void rejectFriendshipRequest(Profile sourceProfile) {
+
         ProfileDB profileDB = new ProfileDB();
-        
+
         profileDB.removeFrienshipRequest(shownProfile, sourceProfile);
-        
+
         reloadProfile();
     }
-    
+
     /**
      *
      * @param destProfile
      * @param text
      */
-    public void newMessage(Profile destProfile, String text){
-        
+    public void newMessage(Profile destProfile, String text) {
         reloadProfile();
     }
-    
+
     /**
      *
      * @param message
      */
-    public void deleteMessage(Message message){
-        
+    public void deleteMessage(Message message) {
         reloadProfile();
     }
-    
+
     /**
      *
      * @param message
      */
-    public void markMessageAsRead(Message message){
-        
+    public void markMessageAsRead(Message message) {
         reloadProfile();
     }
-    
+
     /**
      *
      * @param message
      * @param text
      */
-    public void replyMessage(Message message, String text){
-        
+    public void replyMessage(Message message, String text) {
         reloadProfile();
     }
-    
+
 }
