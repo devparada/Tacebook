@@ -25,6 +25,15 @@ public class Post {
     private ArrayList<Profile> profileLikes = new ArrayList<>();
     private ArrayList<Comment> comments = new ArrayList<>();
 
+    /**
+     * Este es el constructor de la clase Post
+     *
+     * @param id
+     * @param date
+     * @param text
+     * @param profile
+     * @param author
+     */
     public Post(int id, Date date, String text, Profile profile, Profile author) {
         this.id = id;
         this.date = date;
@@ -88,7 +97,7 @@ public class Post {
     }
 
     /**
-     * Getter de ProfileLikes
+     * Getter de profileLikes
      *
      * @return
      */
@@ -97,7 +106,7 @@ public class Post {
     }
 
     /**
-     * Setter de ProfileLikes
+     * Setter de profileLikes
      *
      * @param profileLikes
      */
@@ -109,7 +118,7 @@ public class Post {
      * Array list profile que guarda los autores (perfiles que publicaron el
      * post)
      *
-     * @return author
+     * @return
      */
     public Profile getAuthor() {
         return author;
@@ -152,7 +161,7 @@ public class Post {
     }
 
     /**
-     * Setter de coments
+     * Setter de comments
      *
      * @param comments
      */
