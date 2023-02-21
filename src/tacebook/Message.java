@@ -38,7 +38,7 @@ public class Message {
     }
 
     /**
-     * getter de id
+     * Getter de id
      *
      * @return
      */
@@ -47,7 +47,7 @@ public class Message {
     }
 
     /**
-     * setter de id
+     * Setter de id
      *
      * @param id
      */
@@ -56,7 +56,7 @@ public class Message {
     }
 
     /**
-     * getter de text
+     * Getter de text
      *
      * @return
      */
@@ -65,7 +65,7 @@ public class Message {
     }
 
     /**
-     * setter de text
+     * Setter de text
      *
      * @param text
      */
@@ -74,7 +74,7 @@ public class Message {
     }
 
     /**
-     * getter de date
+     * Getter de date
      *
      * @return
      */
@@ -83,7 +83,7 @@ public class Message {
     }
 
     /**
-     * setter de date
+     * Setter de date
      *
      * @param date
      */
@@ -92,7 +92,7 @@ public class Message {
     }
 
     /**
-     * método booleano que comproueba si el usuario ha visto el post.
+     * Getter del booleano read que comprueba si el usuario ha visto el post
      *
      * @return
      */
@@ -101,7 +101,7 @@ public class Message {
     }
 
     /**
-     * setter del metodo read para definir si lo ha leído o no.
+     * Setter del booleano read para definir si lo ha leído o no
      *
      * @param read
      */
@@ -109,18 +109,38 @@ public class Message {
         this.read = read;
     }
 
+    /**
+     * Getter de date
+     *
+     * @return
+     */
     public Profile getSourceProfile() {
         return sourceProfile;
     }
 
+    /**
+     * Setter de sourceProfile
+     *
+     * @param sourceProfile
+     */
     public void setSourceProfile(Profile sourceProfile) {
         this.sourceProfile = sourceProfile;
     }
 
+    /**
+     * Getter de date
+     *
+     * @return
+     */
     public Profile getDestProfile() {
         return destProfile;
     }
 
+    /**
+     * Setter de destProfile
+     *
+     * @param destProfile
+     */
     public void setDestProfile(Profile destProfile) {
         this.destProfile = destProfile;
     }
