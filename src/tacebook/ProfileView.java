@@ -307,15 +307,23 @@ public class ProfileView {
         profileController.newFriendshipRequest(nameProfile);
     }
 
-    /*
-    PUEDE QUE ESTÉ INCOMPLETO
-     */
     private void proccessFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile, boolean accept) {
-        int position = selectElement("Introduce o numero da solicitude de amizade", profile.getFriendshipRequests().size(), scanner);
-        if (accept) {
-            profileController.acceptFriendshipRequest(profile.getFriendshipRequests().get(position));
+        int pedidoAmistadNum;
+        if (ownProfile) {
+            if (profile.getFriendshipRequests().isEmpty()) {
+                System.out.println("No tienes ninguna solicitud de amistad pendiente.");
+                showProfileMenu(profile);
+            } else {
+                pedidoAmistadNum = selectElement("Introduce el numero de la solicitud que quieres selecionar", profile.getFriendshipRequests().size(), scanner);
+                if (accept) {
+                    this.profileController.acceptFriendshipRequest(profile.getFriendshipRequests().get(pedidoAmistadNum));
+                } else {
+                    this.profileController.rejectFriendshipRequest(profile.getFriendshipRequests().get(pedidoAmistadNum));
+                }
+            }
         } else {
-            profileController.rejectFriendshipRequest(profile.getFriendshipRequests().get(position));
+            System.out.println("Solo puedes modificar tu própio perfil.");
+            showProfileMenu(profile);
         }
     }
 
@@ -323,17 +331,18 @@ public class ProfileView {
     PUEDE QUE ESTÉ INCOMPLETO
      */
     private void sendPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
+        Profile destProfile;
+        int numAmg;//amg de amigo, no de mercedes a45
         if (ownProfile) {
-            System.out.println("Introduce o nome do amigo");
-            String nameFriend = scanner.nextLine();
-            int position = selectElement(nameFriend, profile.getFriends().size(), scanner);
-            System.out.println("Introduce o texto da mensaxe");
-            String text = scanner.nextLine();
-            profileController.newMessage(profile.getFriends().get(position), text);
+            if (profile.getFriends().isEmpty()) {
+                System.out.println("Tu lista de amigos está vacia.");
+                showProfileMenu(profile);
+                return;
+            }
+            numAmg = selectElement("Indica el amigo(a) que desear enviar un mensaje", profile.getFriends().size(), scanner);
+            destProfile = profile.getFriends().get(numAmg);
         } else {
-            System.out.println("Introduce o texto para enviarlle un mensaxe a este perfil");
-            String text = scanner.nextLine();
-            profileController.newMessage(profile, text);
+            destProfile = profile;
         }
     }
 
@@ -343,29 +352,33 @@ public class ProfileView {
     private void readPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
         int position = selectElement("Introduce o numero da mensaxe", profile.getMessages().size(), scanner);
         int select;
+        //Faltó hacer esa comprobación de own profile jejejeje
+        if (ownProfile) {
+            do {
+                System.out.println("Selecciona unha opcion:");
+                System.out.println("1. Responder a mensaxe");
+                System.out.println("2. Eliminar a mensaxe");
+                System.out.println("3. Marcar a mensaxe como lida e volve a biografia");
+                select = scanner.nextInt();
+            } while (select > 3);
 
-        do {
-            System.out.println("Selecciona unha opcion:");
-            System.out.println("1. Responder a mensaxe");
-            System.out.println("2. Eliminar a mensaxe");
-            System.out.println("3. Marcar a mensaxe como lida e volve a biografia");
-            select = scanner.nextInt();
-        } while (select > 3);
-
-        switch (select) {
-            case 1:
-                System.out.println("Introduce a resposta a mensaxe");
-                String texto = scanner.nextLine();
-                profileController.replyMessage(profile.getMessages().get(position), texto);
-                break;
-            case 2:
-                System.out.println("Eliminado a mensaxe");
-                profileController.deleteMessage(profile.getMessages().get(position));
-                break;
-            case 3:
-                System.out.println("Marcado como lida a mensaxe");
-                profileController.markMessageAsRead(profile.getMessages().get(position));
-                break;
+            switch (select) {
+                case 1:
+                    System.out.println("Introduce a resposta a mensaxe");
+                    String texto = scanner.nextLine();
+                    profileController.replyMessage(profile.getMessages().get(position), texto);
+                    break;
+                case 2:
+                    System.out.println("Eliminado a mensaxe");
+                    profileController.deleteMessage(profile.getMessages().get(position));
+                    break;
+                case 3:
+                    System.out.println("Marcado como lida a mensaxe");
+                    profileController.markMessageAsRead(profile.getMessages().get(position));
+                    break;
+            }
+        } else {
+            System.out.println("Solo puedes modificar tu propia biografia.");
         }
     }
 
@@ -377,8 +390,18 @@ public class ProfileView {
      * @param profile el perfil que borra el mensaje
      */
     private void deletePrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
-        int position = selectElement("Selecciona un mensaxe", profile.getMessages().size(), scanner);
-        profileController.deleteMessage(profile.getMessages().get(position));
+        int msgSelect;
+        if (ownProfile) {
+            if (profile.getMessages().isEmpty()) {
+                System.out.println("No tienes mensajes");
+                showProfileMenu(profile);
+            } else {
+                msgSelect = selectElement("indica el mensaje que desea eliminar", profile.getMessages().size(), scanner);
+            }
+        } else {
+            System.out.println("Solo puedes configurar tu pŕopio perfil");
+            showProfileMenu(profile);
+        }
     }
 
     /**
