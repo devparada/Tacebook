@@ -385,7 +385,6 @@ private void sendFriendshipRequest(boolean ownProfile, Scanner scanner, Profile 
 
 /***/
     private void sendPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
-        // -> destProfile no es llamado por nada? COMPROBAR
         Profile destProfile = null;
         int numAmg;//amg de amigo, no de mercedes a45
         if (ownProfile) {
