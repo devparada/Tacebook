@@ -422,38 +422,44 @@ public class ProfileView {
                 String msgTxt;
                 int msgNum = selectElement("Selecciona el numero del mensaje que quieres leer", profile.getMessages().size(), scanner);
                 Message msg = profile.getMessages().get(msgNum);
+
+                System.out.println("---");
+                System.out.println("Mensaje privado");
+                System.out.println("De: " + msg.getSourceProfile().getName());
+                System.out.println("Fecha:" + this.formatter.format(msg.getDate()));
+                System.out.println("Texto: ");
+                System.out.println(msg.getText());
+                System.out.println();
+                System.out.println("Elige una opción:");
+                System.out.println("1. Contestar el mensaje");
+                System.out.println("2. Eliminar el mensaje");
+                System.out.println("3. Volver a la biografia");
+                int option = scanner.nextInt();
+                scanner.nextLine();
+                switch (option) {
+
+                    case 1:
+                        System.out.println("Escribe el mensaje:");
+                        msgTxt = scanner.nextLine();
+                        this.profileController.replyMessage(msg, msgTxt);
+                        return;
+
+                    case 2:
+                        this.profileController.deleteMessage(msg);
+                        return;
+
+                    case 3:
+                        this.profileController.markMessageAsRead(msg);
+                        return;
+                }
+
+                System.out.println("Introduce un numero de 1 a 3");
+                showProfileMenu(profile);
             }
+        } else {
+            System.out.println("Solo puedes utilizar esta opción en tu biografia");
+            showProfileMenu(profile);
         }
-//        int position = selectElement("Introduce o numero da mensaxe", profile.getMessages().size(), scanner);
-//        int select;
-//        //Faltó hacer esa comprobación de own profile jejejeje
-//        if (ownProfile) {
-//            do {
-//                System.out.println("Selecciona unha opcion:");
-//                System.out.println("1. Responder a mensaxe");
-//                System.out.println("2. Eliminar a mensaxe");
-//                System.out.println("3. Marcar a mensaxe como lida e volve a biografia");
-//                select = scanner.nextInt();
-//            } while (select > 3);
-//
-//            switch (select) {
-//                case 1:
-//                    System.out.println("Introduce a resposta a mensaxe");
-//                    String texto = scanner.nextLine();
-//                    profileController.replyMessage(profile.getMessages().get(position), texto);
-//                    break;
-//                case 2:
-//                    System.out.println("Eliminado a mensaxe");
-//                    profileController.deleteMessage(profile.getMessages().get(position));
-//                    break;
-//                case 3:
-//                    System.out.println("Marcado como lida a mensaxe");
-//                    profileController.markMessageAsRead(profile.getMessages().get(position));
-//                    break;
-//            }
-//        } else {
-//            System.out.println("So podes modificar a tua propia biografia");
-//        }
     }
 
     /**
