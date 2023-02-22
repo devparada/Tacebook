@@ -59,7 +59,7 @@ public class ProfileView {
     public void setPostsShowed(int postsShowed) {
         this.postsShowed = postsShowed;
     }
-    
+
     /**
      * Este método hace con que el usuario vea el perfil de algun usuario o, su
      * propio perfil, sacando mensajes por pantalla.
@@ -104,11 +104,11 @@ public class ProfileView {
 
         /*
         Condición if si hay solicitudes de amistad
-        */
+         */
         if (!profile.getFriendshipRequests().isEmpty()) {
             System.out.println("Hai peticions de amizade recibidas");
         }
-                /*
+        /*
         Bucle for para las solicitudes de amistad recibidas
          */
         for (int i = 0; i < profile.getFriendshipRequests().size(); i++) {
@@ -303,15 +303,26 @@ public class ProfileView {
      * @param profile el perfil que escribe el comentario
      */
     private void commentPost(Scanner scanner, Profile profile) {
-        // Si no hay posts para comentar para que no falle el programa
         if (profile.getPosts().isEmpty()) {
-            System.out.println("Non hai posts para comentar");
+            System.out.println("Non hai publicacions");
+            showProfileMenu(profile);
         } else {
-            int position = selectElement("Introduce o numero da publicacion", profile.getPosts().size(), scanner);
-            System.out.println("Introduce un texto");
-            String text = scanner.nextLine();
-            profileController.newComment(profile.getPosts().get(position), text);
+        int postNum = selectElement("Indica el numero del post que quieres comentar.", Math.min(profile.getPosts().size(), this.postsShowed), scanner);
+        Post postCommented = profile.getPosts().get(postNum);
+            System.out.println("Escribe el comentario que deseas");
+            String commentText = scanner.nextLine();
+            this.profileController.newComment(postCommented, commentText);
         }
+        
+//        // Si no hay posts para comentar para que no falle el programa
+//        if (profile.getPosts().isEmpty()) {
+//            System.out.println("Non hai posts para comentar");
+//        } else {
+//            int position = selectElement("Introduce o numero da publicacion", profile.getPosts().size(), scanner);
+//            System.out.println("Introduce un texto");
+//            String text = scanner.nextLine();
+//            profileController.newComment(profile.getPosts().get(position), text);
+//        }
     }
 
     /**
@@ -351,19 +362,19 @@ public class ProfileView {
     PUEDE QUE FUNCIONE
      */
     private void proccessFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile, boolean accept) {
-        int pedidoAmistadNum;
+
         if (ownProfile) {
             if (profile.getFriendshipRequests().isEmpty()) {
                 System.out.println("Non tes ningunha solicitude de amizade pendente");
                 showProfileMenu(profile);
             } else {
-                pedidoAmistadNum = selectElement("Introduce o numero da solicitude que queres selecionar", profile.getFriendshipRequests().size(), scanner);
+                int pedidoAmistadNumber = selectElement("Introduce o numero da solicitude que queres selecionar", profile.getFriendshipRequests().size(), scanner);
                 if (accept) {
-                    this.profileController.acceptFriendshipRequest(profile.getFriendshipRequests().get(pedidoAmistadNum));
                     System.out.println("Has aceptado a solicitude de amizade");
+                    this.profileController.acceptFriendshipRequest(profile.getFriendshipRequests().get(pedidoAmistadNumber));
                 } else {
-                    this.profileController.rejectFriendshipRequest(profile.getFriendshipRequests().get(pedidoAmistadNum));
                     System.out.println("Has rechazado a solicitude de amizade");
+                    this.profileController.rejectFriendshipRequest(profile.getFriendshipRequests().get(pedidoAmistadNumber));
                 }
             }
         } else {
