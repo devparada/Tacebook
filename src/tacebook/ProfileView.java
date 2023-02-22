@@ -383,12 +383,10 @@ private void sendFriendshipRequest(boolean ownProfile, Scanner scanner, Profile 
         }
     }
 
-    /*
-    PUEDE QUE ESTÉ INCOMPLETO
-     */
+/***/
     private void sendPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
         // -> destProfile no es llamado por nada? COMPROBAR
-        Profile destProfile;
+        Profile destProfile = null;
         int numAmg;//amg de amigo, no de mercedes a45
         if (ownProfile) {
             if (profile.getFriends().isEmpty()) {
@@ -398,9 +396,10 @@ private void sendFriendshipRequest(boolean ownProfile, Scanner scanner, Profile 
             }
             numAmg = selectElement("Indica o amigo(a) que desear enviar un mensaxe", profile.getFriends().size(), scanner);
             destProfile = profile.getFriends().get(numAmg);
-        } else {
-            destProfile = profile;
         }
+        System.out.println("Introduce o texto da mensaxe:");
+        String msgTxt = scanner.nextLine();
+        this.profileController.newMessage(destProfile, msgTxt);
     }
 
     /*
