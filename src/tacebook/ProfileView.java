@@ -99,7 +99,7 @@ public class ProfileView {
             System.out.println("Para: " + profile.getMessages().get(i).getDestProfile());
             System.out.println(profile.getMessages().get(i).getId() + " " + profile.getMessages().get(i).getText());
             System.out.println("-------------------------------------------------------------------");
-            
+
         }
 
         /*
@@ -137,9 +137,9 @@ public class ProfileView {
                 System.out.println("-> Comentarios: " + i);
                 System.out.println(profile.getPosts().get(i).getComments().get(j).getId() + " " + profile.getPosts().get(i).getComments().get(j).getText());
                 System.out.println("-------------------------------------------------------------------");
-                
+
             }
-            
+
         }
         System.out.println("Tu usuario: " + profile.getName());
         System.out.println("Tu estado: " + profile.getStatus());
@@ -188,11 +188,11 @@ public class ProfileView {
      */
     public void showProfileMenu(Profile profile) {
         Scanner scan = new Scanner(System.in);
-        
+
         showProfileInfo(true, profile);
-        
+
         int select;
-        
+
         do {
             System.out.println("Selecciona unha opcion:");
             System.out.println("1. Escribir unha nova publicacion");
@@ -211,7 +211,7 @@ public class ProfileView {
             select = scan.nextInt();
             scan.nextLine();
         } while (select > 13);
-        
+
         switch (select) {
             case 1:
                 writeNewPost(scan, profile);
@@ -278,12 +278,11 @@ public class ProfileView {
             System.out.println(text);
             index = scanner.nextInt();
             scanner.nextLine();
-            if (index >= 0 && index < maxNumber) {
-                continue;
+            if (index < 0 || index > maxNumber - 1) {
+                System.out.println("Debes introducir un numero entre 0 e " + (maxNumber - 1));
             }
-            System.out.println("Debes introducir un número entre 0 e " + (maxNumber - 1) + ".");
-        } while (index < 0 || index >= maxNumber);
-        
+        } while (index < 0 || index > maxNumber - 1);
+
         return index;
     }
 
@@ -329,7 +328,9 @@ public class ProfileView {
         profileController.newLike(profile.getPosts().get(position));
     }
 
-/***/
+    /**
+     * COMENTAR LUEGO
+     */
     private void showBiography(boolean ownProfile, Scanner scanner, Profile profile) {
         if (ownProfile) {
             if (profile.getFriends().isEmpty()) {
@@ -344,13 +345,19 @@ public class ProfileView {
         }
     }
 
-/**
- * Este método permite enviar una solicitud de amistad.
- */
-private void sendFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile) {
+    /**
+     * Este método permite enviar una solicitud de amistad
+     *
+     * @param ownProfile si está en su perfil o no
+     * @param scanner el scanner que se utiliza
+     * @param profile el perfil que se utiliza
+     *
+     */
+    private void sendFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile) {
         if (ownProfile) {
             System.out.println("Introduce el nombre del perfil que quieres enviar pedido de amistad");
             String profileUser = scanner.nextLine();
+            System.out.println("---> Has enviado unha solicitude de amizade a" + profileUser);
             this.profileController.newFriendshipRequest(profileUser);
         } else {
             System.out.println("Esta opcion solo se puede utilizar en tu biografia");
@@ -358,8 +365,8 @@ private void sendFriendshipRequest(boolean ownProfile, Scanner scanner, Profile 
         }
     }
 
-    /*
-    PUEDE QUE FUNCIONE
+    /**
+     * COMENTAR LUEGO
      */
     private void proccessFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile, boolean accept) {
 
@@ -383,7 +390,9 @@ private void sendFriendshipRequest(boolean ownProfile, Scanner scanner, Profile 
         }
     }
 
-/***/
+    /**
+     * COMENTAR LUEGO
+     */
     private void sendPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
         Profile destProfile = null;
         int numAmg;//amg de amigo, no de mercedes a45
