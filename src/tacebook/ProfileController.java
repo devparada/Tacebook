@@ -25,7 +25,6 @@ public class ProfileController {
      * Mantiene la referencia al objecto vista (ProfileView)
      */
     private ProfileView profileView;
-
     //AVISO
     /*
     Precisamente neste método "reloadProfile" cambiaremos o código para que en lugar de almacenar o perfil no atributo "sessionProfile" 
@@ -197,7 +196,7 @@ public class ProfileController {
                 if (friend.getName().equals(this.sessionProfile.getName())) {
                     this.profileView.showIsAlreadyFriendMessage(profileName);
                     reloadProfile();
-                    //no estoy seguro pero a lo mejor falta un return; aqui
+                    return;
                 }
             }
             /*
@@ -209,7 +208,7 @@ public class ProfileController {
                 if (friendshipRequest.getName().equals(this.sessionProfile.getName())) {
                     this.profileView.showDuplicateFrienshipRequestMessage(profileName);
                     reloadProfile();
-                    //no estoy seguro pero a lo mejor falta un return; aqui
+                    return;
                 }
             }
             /*
@@ -221,7 +220,7 @@ public class ProfileController {
                 if (friendshipRequest.getName().equals(profileName)) {
                     this.profileView.showExistsFrienshipRequestMessage(profileName);
                     reloadProfile();
-                    //no estoy seguro pero a lo mejor falta un return; aqui
+                    return;
                 }
             }
             ProfileDB.saveFrienshipRequest(destProfile, this.sessionProfile);
@@ -252,11 +251,11 @@ public class ProfileController {
     }
 
     /**
+     * Este método guarda un mensaje en clase de persistencia
      *
      * @param destProfile
      * @param text
      */
-    //!!!! No estoy seguro con este método, puede que no esté 100% bien.
     public void newMessage(Profile destProfile, String text) {
         Message message = new Message(0, text, new Date(), false);
         MessageDB.save(message);
@@ -264,6 +263,7 @@ public class ProfileController {
     }
 
     /**
+     * Este metodo elimina un mensaje de la clase de persistencia.
      *
      * @param message
      */
@@ -273,6 +273,8 @@ public class ProfileController {
     }
 
     /**
+     * Este método actualiza el estado del mensaje, marcandolo como leído y
+     * actualiza la clase de persistencia
      *
      * @param message
      */
@@ -283,6 +285,8 @@ public class ProfileController {
     }
 
     /**
+     * Este método marca el estado como leído y en seguida abre un scanner para
+     * contestar el mensaje
      *
      * @param message
      * @param text
