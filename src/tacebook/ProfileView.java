@@ -101,11 +101,19 @@ public class ProfileView {
             System.out.println("-------------------------------------------------------------------");
 
         }
+
         /*
+        Condición if si hay solicitudes de amistad
+        */
+        if (!profile.getFriendshipRequests().isEmpty()) {
+            System.out.println("Hai peticions de amizade recibidas");
+        }
+                /*
         Bucle for para las solicitudes de amistad recibidas
          */
         for (int i = 0; i < profile.getFriendshipRequests().size(); i++) {
-            System.out.println(i + " " + profile.getFriendshipRequests().get(i).getName());
+            System.out.println("ID: " + i);
+            System.out.println("Nome: " + profile.getFriendshipRequests().get(i).getName());
             System.out.println("-------------------------------------------------------------------");
         }
         /*
