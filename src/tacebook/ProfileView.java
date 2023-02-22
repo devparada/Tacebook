@@ -90,54 +90,104 @@ public class ProfileView {
              */
             System.out.println("Estás vendo o perfil de " + profile.getName());
         }
+
+        /*
+        Condición if si hay mensajes
+         */
+        if (!profile.getMessages().isEmpty()) {
+            System.out.println("---> Hai mensaxes recibidas");
+            System.out.println("");
+            System.out.println("---> Mensaxes:");
+        }
+
         /*
         Bucle for para los mensajes
          */
         for (int i = 0; i < profile.getMessages().size(); i++) {
+            System.out.println("");
             System.out.println("Fecha:" + profile.getMessages().get(i).getDate());
             System.out.println("De: " + profile.getMessages().get(i).getSourceProfile());
             System.out.println("Para: " + profile.getMessages().get(i).getDestProfile());
             System.out.println(profile.getMessages().get(i).getId() + " " + profile.getMessages().get(i).getText());
             System.out.println("-------------------------------------------------------------------");
-
         }
 
         /*
         Condición if si hay solicitudes de amistad
          */
         if (!profile.getFriendshipRequests().isEmpty()) {
-            System.out.println("Hai peticions de amizade recibidas");
+            System.out.println("---> Hai peticions de amizade recibidas");
+            System.out.println("");
+            System.out.println("---> Peticions de amizade");
         }
         /*
         Bucle for para las solicitudes de amistad recibidas
          */
         for (int i = 0; i < profile.getFriendshipRequests().size(); i++) {
+            System.out.println("");
             System.out.println("ID: " + i);
             System.out.println("Nome: " + profile.getFriendshipRequests().get(i).getName());
             System.out.println("-------------------------------------------------------------------");
         }
+
         /*
-        Bucle for para los posts
+        Condición if si hay amigos
+         */
+        if (!profile.getFriends().isEmpty()) {
+            System.out.println("---> Este perfil ten amigos");
+            System.out.println("");
+            System.out.println("---> Amigos");
+        }
+
+        /*
+        Bucle for para los amigos
+         */
+        for (int i = 0; i < profile.getFriends().size(); i++) {
+            System.out.println("");
+            System.out.println("ID: " + i);
+            System.out.println("Nome: " + profile.getFriends().get(i).getName());
+            System.out.println("-------------------------------------------------------------------");
+        }
+
+        /*
+        Condición if si hay publicaciones
+         */
+        if (!profile.getPosts().isEmpty()) {
+            System.out.println("---> Este perfil ten publicacions");
+            System.out.println("");
+            System.out.println("---> Publicacions");
+        }
+
+        /*
+        Bucle for para las publicaciones
          */
         for (int i = 0; i < profile.getPosts().size() && i < postsShowed; i++) {
+            System.out.println("");
             System.out.println("ID: " + profile.getPosts().get(i).getId());
             System.out.println("Autor: " + profile.getPosts().get(i).getAuthor().getName());
-            /*
-            Fecha del post con un formato determinado (formatter)
-             */
+            //Fecha del post con un formato determinado (formatter)
             System.out.println("Data: " + formatter.format(profile.getPosts().get(i).getDate()));
             System.out.println("Texto: " + profile.getPosts().get(i).getText());
             System.out.println("Likes: " + profile.getPosts().get(i).getProfileLikes().size());
             System.out.println("-------------------------------------------------------------------");
 
             /*
+        Condición if si hay comentarios en una publicacion
+             */
+            if (!profile.getPosts().get(i).getComments().isEmpty()) {
+                System.out.println("---> Esta publicacion ten comentarios");
+                System.out.println("");
+                System.out.println("---> Comentarios");
+            }
+
+            /*
             Bucle for para los comentarios del post
              */
             for (int j = 0; j < profile.getPosts().get(i).getComments().size(); j++) {
+                System.out.println("");
                 System.out.println("-> Comentarios: " + i);
                 System.out.println(profile.getPosts().get(i).getComments().get(j).getId() + " " + profile.getPosts().get(i).getComments().get(j).getText());
                 System.out.println("-------------------------------------------------------------------");
-
             }
 
         }
@@ -268,7 +318,7 @@ public class ProfileView {
      * Este método pide al usuario un numero y lo devuelve
      *
      * @param text el texto que se muestra
-     * @param maxNumber el numero máximo para localizar
+     * @param maxNumber el número máximo para localizar
      * @param scanner el scanner que se utiliza
      * @return Devuelve un número introducido por el usuario
      */
@@ -306,12 +356,12 @@ public class ProfileView {
      */
     private void commentPost(Scanner scanner, Profile profile) {
         if (profile.getPosts().isEmpty()) {
-            System.out.println("Non hai publicacions");
+            System.out.println("---> Non hai publicacions");
             showProfileMenu(profile);
         } else {
-            int postNum = selectElement("Indica el numero del post que quieres comentar.", Math.min(profile.getPosts().size(), this.postsShowed), scanner);
+            int postNum = selectElement("Indica o numero do post que queres comentar", Math.min(profile.getPosts().size(), this.postsShowed), scanner);
             Post postCommented = profile.getPosts().get(postNum);
-            System.out.println("Escribe el comentario que deseas");
+            System.out.println("Escribe o comentario que desexas");
             String commentText = scanner.nextLine();
             this.profileController.newComment(postCommented, commentText);
         }
@@ -329,15 +379,20 @@ public class ProfileView {
     }
 
     /**
-     * COMENTAR LUEGO
+     * Este método muestra el perfil de una amistad del perfil si está viendo su
+     * porpio perfil o muestra el perfil que está viendo
+     *
+     * @param ownProfile si está en su perfil o no
+     * @param scanner el scanner que se utiliza
+     * @param profile el perfil que muestra la biografía
      */
     private void showBiography(boolean ownProfile, Scanner scanner, Profile profile) {
         if (ownProfile) {
             if (profile.getFriends().isEmpty()) {
-                System.out.println("Todavia no tienes ningun amigo añadido :(");
+                System.out.println("Todavia non tes ningun amigo engadido :(");
                 showProfileMenu(profile);
             } else {
-                int friendNum = selectElement("Introduce la amistad a la que quieres ver la biografia", profile.getFriends().size(), scanner);
+                int friendNum = selectElement("Introduce a amistade a que queres ver a biografia", profile.getFriends().size(), scanner);
                 this.profileController.setShownProfile(profile.getFriends().get(friendNum));
             }
         } else {
@@ -350,23 +405,29 @@ public class ProfileView {
      *
      * @param ownProfile si está en su perfil o no
      * @param scanner el scanner que se utiliza
-     * @param profile el perfil que se utiliza
+     * @param profile el perfil que muestra la biografía
      *
      */
     private void sendFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile) {
         if (ownProfile) {
-            System.out.println("Introduce el nombre del perfil que quieres enviar pedido de amistad");
+            System.out.println("Introduce o nome do perfil que queres enviar pedido de amistade");
             String profileUser = scanner.nextLine();
-            System.out.println("---> Has enviado unha solicitude de amizade a" + profileUser);
+            System.out.println("---> Has enviado unha solicitude de amizade a " + profileUser);
             this.profileController.newFriendshipRequest(profileUser);
         } else {
-            System.out.println("Esta opcion solo se puede utilizar en tu biografia");
+            System.out.println("Esta opcion so se pode utilizar na tua biografia");
             showProfileMenu(profile);
         }
     }
 
     /**
-     * COMENTAR LUEGO
+     * Este método pide el número de la solicitud de amistad para aceptarla o
+     * rechazarla
+     *
+     * @param ownProfile si está en su perfil o no
+     * @param scanner el scanner que se utiliza
+     * @param profile el perfil que recibe la solicitud de amistad
+     * @param accept true para aceptar la solicitud o false para rechazarla
      */
     private void proccessFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile, boolean accept) {
 
@@ -377,28 +438,32 @@ public class ProfileView {
             } else {
                 int pedidoAmistadNumber = selectElement("Introduce o numero da solicitude que queres selecionar", profile.getFriendshipRequests().size(), scanner);
                 if (accept) {
-                    System.out.println("Has aceptado a solicitude de amizade");
+                    System.out.println("---> Has aceptado a solicitude de amizade");
                     this.profileController.acceptFriendshipRequest(profile.getFriendshipRequests().get(pedidoAmistadNumber));
                 } else {
-                    System.out.println("Has rechazado a solicitude de amizade");
+                    System.out.println("---> Has rechazado a solicitude de amizade");
                     this.profileController.rejectFriendshipRequest(profile.getFriendshipRequests().get(pedidoAmistadNumber));
                 }
             }
         } else {
-            System.out.println("So podes modificar o teu propio perfil.");
+            System.out.println("So podes modificar o teu propio perfil");
             showProfileMenu(profile);
         }
     }
 
     /**
-     * COMENTAR LUEGO
+     * Este método envia un mensaje privado a una amistad
+     *
+     * @param ownProfile si está en su perfil o no
+     * @param scanner el scanner que se utiliza
+     * @param profile el perfil que envia el mensaje
      */
     private void sendPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
         Profile destProfile = null;
         int numAmg;//amg de amigo, no de mercedes a45
         if (ownProfile) {
             if (profile.getFriends().isEmpty()) {
-                System.out.println("A tua lista de amigos esta vacia");
+                System.out.println("A tua lista de amigos esta vacia :(");
                 showProfileMenu(profile);
                 return;
             }
@@ -416,30 +481,31 @@ public class ProfileView {
     private void readPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
         if (ownProfile) {
             if (profile.getMessages().isEmpty()) {
-                System.out.println("No tienes ningun mensaje :(");
+                System.out.println("Non tes ningun mensaxe :(");
                 showProfileMenu(profile);
             } else {
                 String msgTxt;
-                int msgNum = selectElement("Selecciona el numero del mensaje que quieres leer", profile.getMessages().size(), scanner);
+                int msgNum = selectElement("Selecciona o numero do mensaxe que queres ler", profile.getMessages().size(), scanner);
                 Message msg = profile.getMessages().get(msgNum);
 
-                System.out.println("---");
-                System.out.println("Mensaje privado");
+                // Muestra el mensaje seleccionado
+                System.out.println("---------------");
+                System.out.println("Mensaxe privado");
                 System.out.println("De: " + msg.getSourceProfile().getName());
-                System.out.println("Fecha:" + this.formatter.format(msg.getDate()));
+                System.out.println("Data:" + this.formatter.format(msg.getDate()));
                 System.out.println("Texto: ");
                 System.out.println(msg.getText());
                 System.out.println();
-                System.out.println("Elige una opción:");
-                System.out.println("1. Contestar el mensaje");
-                System.out.println("2. Eliminar el mensaje");
-                System.out.println("3. Volver a la biografia");
+                System.out.println("Elixe unha opcion:");
+                System.out.println("1. Contestar o mensaxe");
+                System.out.println("2. Eliminar o mensaxe");
+                System.out.println("3. Marcar como lida a mensaxe e volver a biografia");
                 int option = scanner.nextInt();
                 scanner.nextLine();
-                switch (option) {
 
+                switch (option) {
                     case 1:
-                        System.out.println("Escribe el mensaje:");
+                        System.out.println("Escribe o mensaxe:");
                         msgTxt = scanner.nextLine();
                         this.profileController.replyMessage(msg, msgTxt);
                         return;
@@ -457,7 +523,7 @@ public class ProfileView {
                 showProfileMenu(profile);
             }
         } else {
-            System.out.println("Solo puedes utilizar esta opción en tu biografia");
+            System.out.println("So podes utilizar esta opcion na tua biografia");
             showProfileMenu(profile);
         }
     }
@@ -473,7 +539,7 @@ public class ProfileView {
         int msgSelect;
         if (ownProfile) {
             if (profile.getMessages().isEmpty()) {
-                System.out.println("Non tes mensaxes");
+                System.out.println("Non tes mensaxes :(");
                 showProfileMenu(profile);
             } else {
                 msgSelect = selectElement("indica o mensaxe que desexas eliminar", profile.getMessages().size(), scanner);
