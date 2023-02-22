@@ -84,7 +84,7 @@ public class ProfileController {
     public void openSession(Profile sessionProfile) {
         this.sessionProfile = sessionProfile;
         shownProfile = sessionProfile;
-        profileView.showProfileMenu(shownProfile);
+        this.profileView.showProfileMenu(this.shownProfile);
     }
 
     /**
@@ -96,7 +96,7 @@ public class ProfileController {
      */
     public void updateProfileStatus(String newStatus) {
         sessionProfile.setStatus(newStatus);
-        ProfileDB.save(sessionProfile);
+        ProfileDB.update(this.sessionProfile);
         reloadProfile();
     }
 
@@ -125,16 +125,8 @@ public class ProfileController {
      * @param destProfile
      */
     public void newPost(String text, Profile destProfile) {
-
-        Date date = new Date(); // Objeto Date para usar en el constructor
-
-        // Parche al crear el objeto currentPost (Revisar)
-        Post currentPost = new Post(0, date, text, destProfile, destProfile);
-
-        PostDB postDB = new PostDB();
-
-        postDB.save(currentPost); // Se guarda post en la base de datos
-
+        Post post = new Post(0, new Date(), text, destProfile, destProfile);
+        PostDB.save(post);
         reloadProfile();
     }
 
@@ -145,7 +137,11 @@ public class ProfileController {
      * @param commentText
      */
     public void newComment(Post post, String commentText) {
-       
+        //Creamos date ya pasando como parametro en creacion del objeto comment,
+        //aun que puede ser que falten cositas aqui
+        Comment comment = new Comment(0, new Date(), commentText);
+        CommentDB.save(comment);
+        reloadProfile();
     }
 
     /**
@@ -159,7 +155,7 @@ public class ProfileController {
         //publicacion
         if (post.getAuthor().getName().equals(this.sessionProfile.getName())) {
             this.profileView.showCannotLikeOwnPostMessage();
-        } else{
+        } else {
             //ahora hacemos comprobación para ver que el perfil no esta dando 
             //like más de una vez en cualquier otro post
             for (Profile profileLike : post.getProfileLikes()) {
