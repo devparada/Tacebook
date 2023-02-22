@@ -405,36 +405,46 @@ private void sendFriendshipRequest(boolean ownProfile, Scanner scanner, Profile 
     FALLA Y REALIZA UNA SALIDA DE LA SESION EXISTENTE
      */
     private void readPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
-        int position = selectElement("Introduce o numero da mensaxe", profile.getMessages().size(), scanner);
-        int select;
-        //Faltó hacer esa comprobación de own profile jejejeje
         if (ownProfile) {
-            do {
-                System.out.println("Selecciona unha opcion:");
-                System.out.println("1. Responder a mensaxe");
-                System.out.println("2. Eliminar a mensaxe");
-                System.out.println("3. Marcar a mensaxe como lida e volve a biografia");
-                select = scanner.nextInt();
-            } while (select > 3);
-
-            switch (select) {
-                case 1:
-                    System.out.println("Introduce a resposta a mensaxe");
-                    String texto = scanner.nextLine();
-                    profileController.replyMessage(profile.getMessages().get(position), texto);
-                    break;
-                case 2:
-                    System.out.println("Eliminado a mensaxe");
-                    profileController.deleteMessage(profile.getMessages().get(position));
-                    break;
-                case 3:
-                    System.out.println("Marcado como lida a mensaxe");
-                    profileController.markMessageAsRead(profile.getMessages().get(position));
-                    break;
+            if (profile.getMessages().isEmpty()) {
+                System.out.println("No tienes ningun mensaje :(");
+                showProfileMenu(profile);
+            } else {
+                String msgTxt;
+                int msgNum = selectElement("Selecciona el numero del mensaje que quieres leer", profile.getMessages().size(), scanner);
+                Message msg = profile.getMessages().get(msgNum);
             }
-        } else {
-            System.out.println("So podes modificar a tua propia biografia");
         }
+//        int position = selectElement("Introduce o numero da mensaxe", profile.getMessages().size(), scanner);
+//        int select;
+//        //Faltó hacer esa comprobación de own profile jejejeje
+//        if (ownProfile) {
+//            do {
+//                System.out.println("Selecciona unha opcion:");
+//                System.out.println("1. Responder a mensaxe");
+//                System.out.println("2. Eliminar a mensaxe");
+//                System.out.println("3. Marcar a mensaxe como lida e volve a biografia");
+//                select = scanner.nextInt();
+//            } while (select > 3);
+//
+//            switch (select) {
+//                case 1:
+//                    System.out.println("Introduce a resposta a mensaxe");
+//                    String texto = scanner.nextLine();
+//                    profileController.replyMessage(profile.getMessages().get(position), texto);
+//                    break;
+//                case 2:
+//                    System.out.println("Eliminado a mensaxe");
+//                    profileController.deleteMessage(profile.getMessages().get(position));
+//                    break;
+//                case 3:
+//                    System.out.println("Marcado como lida a mensaxe");
+//                    profileController.markMessageAsRead(profile.getMessages().get(position));
+//                    break;
+//            }
+//        } else {
+//            System.out.println("So podes modificar a tua propia biografia");
+//        }
     }
 
     /**
