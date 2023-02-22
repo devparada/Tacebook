@@ -25,6 +25,9 @@ public class ProfileView {
      * Los posts a visualizar
      */
     private int postsShowed = 10;
+    /**
+     * Mantiene la referencia al objecto controlador (ProfileController)
+     */
     private ProfileController profileController;
 
     /**
@@ -32,14 +35,15 @@ public class ProfileView {
      * controler" para que la interfaz tenga interacción y comunicación con las
      * demas clases
      *
-     * @param profileController
+     * @param profileController mantiene la referencia al objecto controlador
+     * (ProfileController)
      */
     public ProfileView(ProfileController profileController) {
         this.profileController = profileController;
     }
 
     /**
-     * Método getter del atributo postsShowed.
+     * Getter del atributo postsShowed
      *
      * @return postsShowed
      */
@@ -48,19 +52,23 @@ public class ProfileView {
     }
 
     /**
-     * Método setter del atributo postsShowed
+     * Setter del atributo postsShowed
      *
-     * @param postsShowed cantidad de posts a mostrar.
+     * @param postsShowed cantidad de posts a mostrar
      */
     public void setPostsShowed(int postsShowed) {
         this.postsShowed = postsShowed;
     }
-
+    
     /**
      * Este método hace con que el usuario vea el perfil de algun usuario o, su
      * propio perfil, sacando mensajes por pantalla.
+     *
+     * @param ownProfile si está en su perfil o no
+     * @param profile el perfil que muesta la información
+     *
      */
-    // AVISO    
+    // AVISO
     /*
     Modificaremos tamén os métodos "showProfileInfo" para que mostre a información completa do perfil 
     (incluíndo publicacións, comentarios, solicitudes de amizade, amizades e mensaxes) e "showProfileMenu" 
@@ -82,47 +90,61 @@ public class ProfileView {
              */
             System.out.println("Estás vendo o perfil de " + profile.getName());
         }
-        // Puede fallar
+        /*
+        Bucle for para los mensajes
+         */
         for (int i = 0; i < profile.getMessages().size(); i++) {
+            System.out.println("Fecha:" + profile.getMessages().get(i).getDate());
+            System.out.println("De: " + profile.getMessages().get(i).getSourceProfile());
+            System.out.println("Para: " + profile.getMessages().get(i).getDestProfile());
             System.out.println(profile.getMessages().get(i).getId() + " " + profile.getMessages().get(i).getText());
-        }
-        // Puede fallar
-        for (int i = 0; i < profile.getFriendshipRequests().size(); i++) {
-            System.out.println(i + " " + profile.getFriendshipRequests().get(i).getName());
+            System.out.println("-------------------------------------------------------------------");
+
         }
         /*
-        ESTE BUCLE FOR PARECE QUE FUNCIONA (REVISAR)
+        Bucle for para las solicitudes de amistad recibidas
+         */
+        for (int i = 0; i < profile.getFriendshipRequests().size(); i++) {
+            System.out.println(i + " " + profile.getFriendshipRequests().get(i).getName());
+            System.out.println("-------------------------------------------------------------------");
+        }
+        /*
+        Bucle for para los posts
          */
         for (int i = 0; i < profile.getPosts().size() && i < postsShowed; i++) {
-            System.out.println("-> Post " + i);
-            System.out.println("Depuracion: " + profile.getPosts().get(i).getComments().size());
+            System.out.println("ID: " + profile.getPosts().get(i).getId());
+            System.out.println("Autor: " + profile.getPosts().get(i).getAuthor().getName());
+            /*
+            Fecha del post con un formato determinado (formatter)
+             */
+            System.out.println("Data: " + formatter.format(profile.getPosts().get(i).getDate()));
+            System.out.println("Texto: " + profile.getPosts().get(i).getText());
+            System.out.println("Likes: " + profile.getPosts().get(i).getProfileLikes().size());
+            System.out.println("-------------------------------------------------------------------");
+
             /*
             Bucle for para los comentarios del post
              */
             for (int j = 0; j < profile.getPosts().get(i).getComments().size(); j++) {
                 System.out.println("-> Comentarios: " + i);
                 System.out.println(profile.getPosts().get(i).getComments().get(j).getId() + " " + profile.getPosts().get(i).getComments().get(j).getText());
+                System.out.println("-------------------------------------------------------------------");
+
             }
-            /*
-            Bucle for para los likes del post
-             */
-            for (int j = 0; j < profile.getPosts().get(i).getProfileLikes().size(); j++) {
-                System.out.println("Likes: " + profile.getPosts().get(i).getProfileLikes().get(j).getName());
-            }
-            System.out.println("Autor " + profile.getPosts().get(i).getAuthor().getName());
-            /*
-            Fecha del post con un formato determinado (formatter)
-             */
-            System.out.println("Data: " + formatter.format(profile.getPosts().get(i).getDate()));
-            System.out.println("Texto " + profile.getPosts().get(i).getText());
+
         }
         System.out.println("Tu usuario: " + profile.getName());
         System.out.println("Tu estado: " + profile.getStatus());
+        System.out.println("Mostrando " + postsShowed + " últimos posts");
     }
 
     /**
      * Este método permite que el usuario cambie de estado. Si own profile es
      * false, avisará que el estado solo se puede cambiar en su propia biografia
+     *
+     * @param ownProfile si está en su perfil o no
+     * @param scanner el scanner que se utiliza
+     * @param profile el perfil que cambia el estado
      */
     private void changeStatus(boolean ownProfile, Scanner scanner, Profile profile) {
         /*
@@ -139,7 +161,7 @@ public class ProfileView {
             Si own profile es false, avisará que el estado solo se puede cambiar
             en su propia biografia.
              */
-            System.out.println("Esta opción solo se pode utilizar no teu propio perfil");
+            System.out.println("Esta opcion so se pode utilizar no teu propio perfil");
             showProfileMenu(profile);
         }
     }
@@ -147,7 +169,7 @@ public class ProfileView {
     /**
      * Este método llama al método showProfileInfo y entrega opciones al usuario
      *
-     * @param profile
+     * @param profile el perfil al que se entrega las opciones
      */
     // AVISO    
     /*
@@ -199,10 +221,12 @@ public class ProfileView {
                 sendFriendshipRequest(true, scan, profile);
                 break;
             case 6:
-                profileController.acceptFriendshipRequest(profile);
+                // Si acepta la solicitud es true el valor de la variable accept
+                proccessFriendshipRequest(true, scan, profile, true);
                 break;
             case 7:
-                profileController.acceptFriendshipRequest(profile);
+                // Si rechaza la solicitud es false el valor de la variable accept
+                proccessFriendshipRequest(true, scan, profile, false);
                 break;
             case 8:
                 sendPrivateMessage(true, scan, profile);
@@ -237,7 +261,7 @@ public class ProfileView {
      *
      * @param text el texto que se muestra
      * @param maxNumber el numero máximo para localizar
-     * @param scanner un scanner
+     * @param scanner el scanner que se utiliza
      * @return Devuelve un número introducido por el usuario
      */
     private int selectElement(String text, int maxNumber, Scanner scanner) {
@@ -252,7 +276,7 @@ public class ProfileView {
     /**
      * Este método pide el texto para crear una nueva publicacion
      *
-     * @param scanner un scanner
+     * @param scanner el scanner que se utiliza
      * @param profile el perfil que escribe el post
      */
     private void writeNewPost(Scanner scanner, Profile profile) {
@@ -262,22 +286,30 @@ public class ProfileView {
     }
 
     /**
+     * ESTA INCOMPLETO LE FALTA ALGO
+     */
+    /**
      * Este método introduce un comentario en un post
      *
-     * @param scanner un scanner
+     * @param scanner el scanner que se utiliza
      * @param profile el perfil que escribe el comentario
      */
     private void commentPost(Scanner scanner, Profile profile) {
-        int position = selectElement("Introduce o numero da publicacion", profile.getPosts().size(), scanner);
-        System.out.println("Introduce un texto");
-        String text = scanner.nextLine();
-        profileController.newComment(profile.getPosts().get(position), text);
+        // Si no hay posts para comentar para que no falle el programa
+        if (profile.getPosts().isEmpty()) {
+            System.out.println("Non hai posts para comentar");
+        } else {
+            int position = selectElement("Introduce o numero da publicacion", profile.getPosts().size(), scanner);
+            System.out.println("Introduce un texto");
+            String text = scanner.nextLine();
+            profileController.newComment(profile.getPosts().get(position), text);
+        }
     }
 
     /**
      * Este método hace que a una publicición un usuario le de like
      *
-     * @param scanner un scanner
+     * @param scanner el scanner que se utiliza
      * @param profile el perfil que da like
      */
     private void addLike(Scanner scanner, Profile profile) {
@@ -307,22 +339,27 @@ public class ProfileView {
         profileController.newFriendshipRequest(nameProfile);
     }
 
+    /*
+    PUEDE QUE FUNCIONE
+     */
     private void proccessFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile, boolean accept) {
         int pedidoAmistadNum;
         if (ownProfile) {
             if (profile.getFriendshipRequests().isEmpty()) {
-                System.out.println("No tienes ninguna solicitud de amistad pendiente.");
+                System.out.println("Non tes ningunha solicitude de amizade pendente");
                 showProfileMenu(profile);
             } else {
-                pedidoAmistadNum = selectElement("Introduce el numero de la solicitud que quieres selecionar", profile.getFriendshipRequests().size(), scanner);
+                pedidoAmistadNum = selectElement("Introduce o numero da solicitude que queres selecionar", profile.getFriendshipRequests().size(), scanner);
                 if (accept) {
                     this.profileController.acceptFriendshipRequest(profile.getFriendshipRequests().get(pedidoAmistadNum));
+                    System.out.println("Has aceptado a solicitude de amizade");
                 } else {
                     this.profileController.rejectFriendshipRequest(profile.getFriendshipRequests().get(pedidoAmistadNum));
+                    System.out.println("Has rechazado a solicitude de amizade");
                 }
             }
         } else {
-            System.out.println("Solo puedes modificar tu própio perfil.");
+            System.out.println("So podes modificar o teu propio perfil.");
             showProfileMenu(profile);
         }
     }
@@ -331,15 +368,16 @@ public class ProfileView {
     PUEDE QUE ESTÉ INCOMPLETO
      */
     private void sendPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
+        // -> destProfile no es llamado por nada? COMPROBAR
         Profile destProfile;
         int numAmg;//amg de amigo, no de mercedes a45
         if (ownProfile) {
             if (profile.getFriends().isEmpty()) {
-                System.out.println("Tu lista de amigos está vacia.");
+                System.out.println("A tua lista de amigos esta vacia");
                 showProfileMenu(profile);
                 return;
             }
-            numAmg = selectElement("Indica el amigo(a) que desear enviar un mensaje", profile.getFriends().size(), scanner);
+            numAmg = selectElement("Indica o amigo(a) que desear enviar un mensaxe", profile.getFriends().size(), scanner);
             destProfile = profile.getFriends().get(numAmg);
         } else {
             destProfile = profile;
@@ -347,7 +385,7 @@ public class ProfileView {
     }
 
     /*
-    FALLA REALIZA UNA SALIDA DE LA SESION EXISTENTE
+    FALLA Y REALIZA UNA SALIDA DE LA SESION EXISTENTE
      */
     private void readPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
         int position = selectElement("Introduce o numero da mensaxe", profile.getMessages().size(), scanner);
@@ -378,7 +416,7 @@ public class ProfileView {
                     break;
             }
         } else {
-            System.out.println("Solo puedes modificar tu propia biografia.");
+            System.out.println("So podes modificar a tua propia biografia");
         }
     }
 
@@ -386,20 +424,21 @@ public class ProfileView {
      * Este método permite borrar un mensaje
      *
      * @param ownProfile si está en su perfil o no
-     * @param scanner un scanner
+     * @param scanner el scanner que se utiliza
      * @param profile el perfil que borra el mensaje
      */
     private void deletePrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
         int msgSelect;
         if (ownProfile) {
             if (profile.getMessages().isEmpty()) {
-                System.out.println("No tienes mensajes");
+                System.out.println("Non tes mensaxes");
                 showProfileMenu(profile);
             } else {
-                msgSelect = selectElement("indica el mensaje que desea eliminar", profile.getMessages().size(), scanner);
+                msgSelect = selectElement("indica o mensaxe que desexas eliminar", profile.getMessages().size(), scanner);
+                profileController.deleteMessage(profile.getMessages().get(msgSelect));
             }
         } else {
-            System.out.println("Solo puedes configurar tu pŕopio perfil");
+            System.out.println("So podes configurar o teu propio perfil");
             showProfileMenu(profile);
         }
     }
@@ -408,7 +447,7 @@ public class ProfileView {
      * Este método pregunta al usuario el número de posts a visualizar y recarga
      * el perfil
      *
-     * @param scanner un scanner
+     * @param scanner el scanner que se utiliza
      * @param profile el perfil que modifica el número de posts
      */
     private void showOldPosts(Scanner scanner, Profile profile) {
