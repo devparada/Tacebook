@@ -16,8 +16,33 @@ import java.util.Date;
  */
 public class ProfileController {
 
+    /**
+     * El perfil que se está visualizando (puede coincidir o no con el perfil
+     * que ha iniciado sesión)
+     */
     private Profile shownProfile;
+    /**
+     * Mantiene la referencia al objecto vista (ProfileView)
+     */
     private ProfileView profileView;
+
+    //AVISO
+    /*
+    Precisamente neste método "reloadProfile" cambiaremos o código para que en lugar de almacenar o perfil no atributo "sessionProfile" 
+    o garde no atributo "shownProfile", e sexa ese atributo o que se lle pase ao obxecto da vista. No método "openSession" faremos algo 
+    similar, xa que o obxecto perfil que recibamos como parámetro o almacenaremos tanto en "sessionProfile" como en "shownProfile" 
+    (xa que o perfil que se ve por defecto é o propio), e será o atributo "shownProfile" o que lle pasemos como parámetro ao obxecto 
+    da vista.
+     */
+    private Profile sessionProfile;
+
+    /**
+     * Este es el constructor de la clase, que inicializa el modelo de vista
+     * para que todos los métodos tengan usabilidad y conectividad
+     */
+    public ProfileController() {
+        profileView = new ProfileView(this);
+    }
 
     /**
      * Getter de shownProfile
@@ -38,22 +63,22 @@ public class ProfileController {
         reloadProfile();
     }
 
-    //AVISO
-    /*
-    Precisamente neste método "reloadProfile" cambiaremos o código para que en lugar de almacenar o perfil no atributo "sessionProfile" 
-    o garde no atributo "shownProfile", e sexa ese atributo o que se lle pase ao obxecto da vista. No método "openSession" faremos algo 
-    similar, xa que o obxecto perfil que recibamos como parámetro o almacenaremos tanto en "sessionProfile" como en "shownProfile" 
-    (xa que o perfil que se ve por defecto é o propio), e será o atributo "shownProfile" o que lle pasemos como parámetro ao obxecto 
-    da vista.
+    /**
+     * Getter de profileView
+     *
+     * @return
      */
-    private Profile sessionProfile;
+    public ProfileView getProfileView() {
+        return profileView;
+    }
 
     /**
-     * Este es el constructor de la clase, que inicializa el modelo de vista
-     * para que todos los métodos tengan usabilidad y conectividad
+     * Getter de sessionProfile
+     *
+     * @return
      */
-    public ProfileController() {
-        profileView = new ProfileView(this);
+    public Profile getSessionProfile() {
+        return sessionProfile;
     }
 
     /**
@@ -101,25 +126,7 @@ public class ProfileController {
     }
 
     /**
-     * Método getter de profile view
-     *
-     * @return
-     */
-    public ProfileView getProfileView() {
-        return profileView;
-    }
-
-    /**
-     * Método getter de sessionprofile
-     *
-     * @return
-     */
-    public Profile getSessionProfile() {
-        return sessionProfile;
-    }
-
-    /**
-     * Método que crea un novo post
+     * Método que crea un nuevo post
      *
      * @param text
      * @param destProfile
@@ -131,7 +138,7 @@ public class ProfileController {
     }
 
     /**
-     * Método que agrega un novo comentario nun post
+     * Método que agrega un nuevo comentario en un post
      *
      * @param post
      * @param commentText
@@ -170,7 +177,7 @@ public class ProfileController {
     }
 
     /**
-     * Método que crea unha nova solicitude de amizade. MÉTODO INCOMPLETO, FALTA
+     * Método que crea una nueva solicitud de amistad. MÉTODO INCOMPLETO, FALTA
      * COMPROBACIONES PREVIAS
      *
      * @param profileName
@@ -207,7 +214,7 @@ public class ProfileController {
             }
             /*
             Este bucle hace exactamente lo mismo que el de arriba, pero con 
-            solicitudes de amistad, comprueba que YA ENVIASTE un pedido de 
+            solicitudes de amistad, comprueba que YA ENVIASTE una solicitud de 
             amistad.
              */
             for (Profile friendshipRequest : this.sessionProfile.getFriendshipRequests()) {
@@ -223,8 +230,8 @@ public class ProfileController {
     }
 
     /**
-     * Método que elimina a solicitude de amizade, e garda a amizade entre os
-     * dous usuarios.
+     * Método que elimina la solicitud de amistad, y guarda la amistad entre los
+     * dos usuarios
      *
      * @param sourceProfile
      */
@@ -235,7 +242,7 @@ public class ProfileController {
     }
 
     /**
-     * Método que simplemente elimina a solicitude.
+     * Método que simplemente elimina la solicitud
      *
      * @param sourceProfile
      */
