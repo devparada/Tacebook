@@ -145,16 +145,7 @@ public class ProfileController {
      * @param commentText
      */
     public void newComment(Post post, String commentText) {
-
-        Date date = new Date(); // Objeto Date para usar en el constructor
-
-        Comment currentComment = new Comment(0, date, commentText);
-
-        CommentDB commentDB = new CommentDB(); // Objeto CommentDB
-
-        commentDB.save(currentComment); // Se guarda comentario en la base de datos
-
-        reloadProfile(); // Reload
+       
     }
 
     /**
@@ -162,16 +153,24 @@ public class ProfileController {
      *
      * @param post
      */
+    //!!!! Puede que necesite revision este método, en principio pinta guay
     public void newLike(Post post) {
-
-        PostDB postDB = new PostDB();
-
-        // Si no es el autor del post, y no le ha dado like, se guarda un nuevo like en postDB.
-        if (post.getAuthor() != sessionProfile || !post.getProfileLikes().contains(sessionProfile)) {
-            postDB.saveLike(post, sessionProfile);
-            reloadProfile();
+        //condicion if para avisar que no podemos dar like a nuestra propia 
+        //publicacion
+        if (post.getAuthor().getName().equals(this.sessionProfile.getName())) {
+            this.profileView.showCannotLikeOwnPostMessage();
+        } else{
+            //ahora hacemos comprobación para ver que el perfil no esta dando 
+            //like más de una vez en cualquier otro post
+            for (Profile profileLike : post.getProfileLikes()) {
+                if (profileLike.getName().equals(this.sessionProfile.getName())) {
+                } else {
+                    this.profileView.showAlreadyLikedPostMessage();
+                    return;
+                }
+            }
         }
-
+        reloadProfile();
     }
 
     /**
@@ -181,11 +180,49 @@ public class ProfileController {
      * @param profileName
      */
     public void newFriendshipRequest(String profileName) {
-
-        ProfileDB profileDB = new ProfileDB();
-
-        profileDB.saveFrienshipRequest(shownProfile, sessionProfile);
-
+        Profile destProfile = ProfileDB.findByName(profileName, 0);
+        if (destProfile == null) {
+            this.profileView.showProfileNotFoundMessage();
+        } else {
+            /*
+            aqui se comprueba si el perfil destino ya nos tiene en la lista
+            de amigos. Apuntamos el perfil destino en un bucle forE y miramos 
+            toda la lista de amigos, en seguida con un IF hacemos verificación
+            para la posible situacion
+             */
+            for (Profile friend : destProfile.getFriends()) {
+                if (friend.getName().equals(this.sessionProfile.getName())) {
+                    this.profileView.showIsAlreadyFriendMessage(profileName);
+                    reloadProfile();
+                    //no estoy seguro pero a lo mejor falta un return; aqui
+                }
+            }
+            /*
+            Este bucle hace una comprobacion para ver si el perfil destino y 
+            nuestro perfil ya son amigls, si lo son, llama al metodo 
+            showduplicatemiverga, para decir que ya sois amigos
+             */
+            for (Profile friendshipRequest : destProfile.getFriendshipRequests()) {
+                if (friendshipRequest.getName().equals(this.sessionProfile.getName())) {
+                    this.profileView.showDuplicateFrienshipRequestMessage(profileName);
+                    reloadProfile();
+                    //no estoy seguro pero a lo mejor falta un return; aqui
+                }
+            }
+            /*
+            Este bucle hace exactamente lo mismo que el de arriba, pero con 
+            solicitudes de amistad, comprueba que YA ENVIASTE un pedido de 
+            amistad.
+             */
+            for (Profile friendshipRequest : this.sessionProfile.getFriendshipRequests()) {
+                if (friendshipRequest.getName().equals(profileName)) {
+                    this.profileView.showExistsFrienshipRequestMessage(profileName);
+                    reloadProfile();
+                    //no estoy seguro pero a lo mejor falta un return; aqui
+                }
+            }
+            ProfileDB.saveFrienshipRequest(destProfile, this.sessionProfile);
+        }
         reloadProfile();
     }
 
