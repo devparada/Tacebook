@@ -294,9 +294,6 @@ public class ProfileView {
     }
 
     /**
-     * ESTA INCOMPLETO LE FALTA ALGO
-     */
-    /**
      * Este método introduce un comentario en un post
      *
      * @param scanner el scanner que se utiliza
@@ -307,22 +304,12 @@ public class ProfileView {
             System.out.println("Non hai publicacions");
             showProfileMenu(profile);
         } else {
-        int postNum = selectElement("Indica el numero del post que quieres comentar.", Math.min(profile.getPosts().size(), this.postsShowed), scanner);
-        Post postCommented = profile.getPosts().get(postNum);
+            int postNum = selectElement("Indica el numero del post que quieres comentar.", Math.min(profile.getPosts().size(), this.postsShowed), scanner);
+            Post postCommented = profile.getPosts().get(postNum);
             System.out.println("Escribe el comentario que deseas");
             String commentText = scanner.nextLine();
             this.profileController.newComment(postCommented, commentText);
         }
-        
-//        // Si no hay posts para comentar para que no falle el programa
-//        if (profile.getPosts().isEmpty()) {
-//            System.out.println("Non hai posts para comentar");
-//        } else {
-//            int position = selectElement("Introduce o numero da publicacion", profile.getPosts().size(), scanner);
-//            System.out.println("Introduce un texto");
-//            String text = scanner.nextLine();
-//            profileController.newComment(profile.getPosts().get(position), text);
-//        }
     }
 
     /**
@@ -349,13 +336,18 @@ public class ProfileView {
         }
     }
 
-    /*
-    PUEDE QUE ESTÉ INCOMPLETO
+    /**
+     * Este método permite enviar una solicitud de amistad.
      */
     private void sendFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile) {
-        System.out.println("Introduce o nome do perfil");
-        String nameProfile = scanner.nextLine();
-        profileController.newFriendshipRequest(nameProfile);
+        if (ownProfile) {
+            System.out.println("Introduce el nombre del perfil que quieres enviar pedido de amistad");
+            String profileUser = scanner.nextLine();
+            this.profileController.newFriendshipRequest(profileUser);
+        } else {
+            System.out.println("Esta opcion solo se puede utilizar en tu biografia");
+            showProfileMenu(profile);
+        }
     }
 
     /*
