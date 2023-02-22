@@ -99,7 +99,7 @@ public class ProfileView {
             System.out.println("Para: " + profile.getMessages().get(i).getDestProfile());
             System.out.println(profile.getMessages().get(i).getId() + " " + profile.getMessages().get(i).getText());
             System.out.println("-------------------------------------------------------------------");
-            
+
         }
 
         /*
@@ -137,9 +137,9 @@ public class ProfileView {
                 System.out.println("-> Comentarios: " + i);
                 System.out.println(profile.getPosts().get(i).getComments().get(j).getId() + " " + profile.getPosts().get(i).getComments().get(j).getText());
                 System.out.println("-------------------------------------------------------------------");
-                
+
             }
-            
+
         }
         System.out.println("Tu usuario: " + profile.getName());
         System.out.println("Tu estado: " + profile.getStatus());
@@ -188,11 +188,11 @@ public class ProfileView {
      */
     public void showProfileMenu(Profile profile) {
         Scanner scan = new Scanner(System.in);
-        
+
         showProfileInfo(true, profile);
-        
+
         int select;
-        
+
         do {
             System.out.println("Selecciona unha opcion:");
             System.out.println("1. Escribir unha nova publicacion");
@@ -211,7 +211,7 @@ public class ProfileView {
             select = scan.nextInt();
             scan.nextLine();
         } while (select > 13);
-        
+
         switch (select) {
             case 1:
                 writeNewPost(scan, profile);
@@ -279,9 +279,11 @@ public class ProfileView {
             index = scanner.nextInt();
             scanner.nextLine();
             if (index >= 0 && index < maxNumber) {
-                System.out.println("Tienes que introducir un numero entre 0 y " + (maxNumber - 1) + ".");
+                continue;
             }
-        } while(index < 0 || index >= maxNumber -1);
+            System.out.println("Debes introducir un número entre 0 e " + (maxNumber - 1) + ".");
+        } while (index < 0 || index >= maxNumber);
+
         return index;
     }
 
@@ -334,7 +336,11 @@ public class ProfileView {
         if (ownProfile) {
             System.out.println("Introduce o nome da sua amizade");
             String text = scanner.nextLine();
-            profileController.setShownProfile(profile);
+            for (int i = 0; i < profile.getFriends().size(); i++) {
+                if (profile.getFriends().get(i).getName().equals(text)) {
+                    profileController.setShownProfile(profile.getFriends().get(i));
+                }
+            }
         } else {
             profileController.setShownProfile(profile);
         }
@@ -358,7 +364,7 @@ public class ProfileView {
     PUEDE QUE FUNCIONE
      */
     private void proccessFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile, boolean accept) {
-        
+
         if (ownProfile) {
             if (profile.getFriendshipRequests().isEmpty()) {
                 System.out.println("Non tes ningunha solicitude de amizade pendente");
@@ -414,7 +420,7 @@ public class ProfileView {
                 System.out.println("3. Marcar a mensaxe como lida e volve a biografia");
                 select = scanner.nextInt();
             } while (select > 3);
-            
+
             switch (select) {
                 case 1:
                     System.out.println("Introduce a resposta a mensaxe");
