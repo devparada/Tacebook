@@ -131,7 +131,7 @@ public class ProfileController {
      * @param destProfile
      */
     public void newPost(String text, Profile destProfile) {
-        Post post = new Post(0, new Date(), text, destProfile, destProfile);
+        Post post = new Post(destProfile.getPosts().size(), new Date(), text, destProfile, destProfile);
         PostDB.save(post);
         reloadProfile();
     }
