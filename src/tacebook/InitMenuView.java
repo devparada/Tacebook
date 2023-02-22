@@ -15,11 +15,17 @@ import java.util.Scanner;
  */
 public class InitMenuView {
 
+    /**
+     * Mantiene la referencia al objecto controlador (InitMenuController)
+     */
     private InitMenuController initMenuController;
 
     /**
      *
-     * @param initMenuController
+     * Este es el constructor de la clase InitMenuView
+     *
+     * @param initMenuController mantiene la referencia al objecto controlador
+     * (InitMenuController)
      */
     public InitMenuView(InitMenuController initMenuController) {
         this.initMenuController = initMenuController;
@@ -34,12 +40,15 @@ public class InitMenuView {
     public boolean showLoginMenu() {
         Scanner scan = new Scanner(System.in);
 
+        System.out.println("Bienvenido al Tacebook");
+
         String username;
         String password;
 
         int select;
 
         do {
+            System.out.println("Menu principal");
             System.out.println("1. Iniciar sesion");
             System.out.println("2. Registrarse");
             System.out.println("3. Sair da aplicacion");
@@ -73,7 +82,7 @@ public class InitMenuView {
     }
 
     /**
-     * Este método saca por pantalla el menu para registrarse, con opciones de
+     * Este método saca por pantalla el menú para registrarse, con opciones de
      * poner usuario, contraseña.
      */
     public void showRegisterMenu() {
@@ -105,7 +114,7 @@ public class InitMenuView {
      * cuonta con un usuario que ya está en uso, avisando y pidiendo los datos
      * otra vez.
      *
-     * @return
+     * @return Devuelve el nombre introducido por el usuario
      */
     public String showNewNameMenu() {
         Scanner scan = new Scanner(System.in);
