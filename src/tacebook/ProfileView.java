@@ -99,7 +99,7 @@ public class ProfileView {
             System.out.println("Para: " + profile.getMessages().get(i).getDestProfile());
             System.out.println(profile.getMessages().get(i).getId() + " " + profile.getMessages().get(i).getText());
             System.out.println("-------------------------------------------------------------------");
-
+            
         }
 
         /*
@@ -137,9 +137,9 @@ public class ProfileView {
                 System.out.println("-> Comentarios: " + i);
                 System.out.println(profile.getPosts().get(i).getComments().get(j).getId() + " " + profile.getPosts().get(i).getComments().get(j).getText());
                 System.out.println("-------------------------------------------------------------------");
-
+                
             }
-
+            
         }
         System.out.println("Tu usuario: " + profile.getName());
         System.out.println("Tu estado: " + profile.getStatus());
@@ -188,11 +188,11 @@ public class ProfileView {
      */
     public void showProfileMenu(Profile profile) {
         Scanner scan = new Scanner(System.in);
-
+        
         showProfileInfo(true, profile);
-
+        
         int select;
-
+        
         do {
             System.out.println("Selecciona unha opcion:");
             System.out.println("1. Escribir unha nova publicacion");
@@ -211,7 +211,7 @@ public class ProfileView {
             select = scan.nextInt();
             scan.nextLine();
         } while (select > 13);
-
+        
         switch (select) {
             case 1:
                 writeNewPost(scan, profile);
@@ -273,12 +273,16 @@ public class ProfileView {
      * @return Devuelve un número introducido por el usuario
      */
     private int selectElement(String text, int maxNumber, Scanner scanner) {
-        int number;
+        int index;
         do {
             System.out.println(text);
-            number = scanner.nextInt();
-        } while (number > 0 && number < maxNumber - 1);
-        return number;
+            index = scanner.nextInt();
+            scanner.nextLine();
+            if (index >= 0 && index < maxNumber) {
+                System.out.println("Tienes que introducir un numero entre 0 y " + (maxNumber - 1) + ".");
+            }
+        } while(index < 0 || index >= maxNumber -1);
+        return index;
     }
 
     /**
@@ -354,7 +358,7 @@ public class ProfileView {
     PUEDE QUE FUNCIONE
      */
     private void proccessFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile, boolean accept) {
-
+        
         if (ownProfile) {
             if (profile.getFriendshipRequests().isEmpty()) {
                 System.out.println("Non tes ningunha solicitude de amizade pendente");
@@ -410,7 +414,7 @@ public class ProfileView {
                 System.out.println("3. Marcar a mensaxe como lida e volve a biografia");
                 select = scanner.nextInt();
             } while (select > 3);
-
+            
             switch (select) {
                 case 1:
                     System.out.println("Introduce a resposta a mensaxe");
