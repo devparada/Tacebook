@@ -99,7 +99,7 @@ public class ProfileView {
             System.out.println("Para: " + profile.getMessages().get(i).getDestProfile());
             System.out.println(profile.getMessages().get(i).getId() + " " + profile.getMessages().get(i).getText());
             System.out.println("-------------------------------------------------------------------");
-
+            
         }
 
         /*
@@ -137,9 +137,9 @@ public class ProfileView {
                 System.out.println("-> Comentarios: " + i);
                 System.out.println(profile.getPosts().get(i).getComments().get(j).getId() + " " + profile.getPosts().get(i).getComments().get(j).getText());
                 System.out.println("-------------------------------------------------------------------");
-
+                
             }
-
+            
         }
         System.out.println("Tu usuario: " + profile.getName());
         System.out.println("Tu estado: " + profile.getStatus());
@@ -188,11 +188,11 @@ public class ProfileView {
      */
     public void showProfileMenu(Profile profile) {
         Scanner scan = new Scanner(System.in);
-
+        
         showProfileInfo(true, profile);
-
+        
         int select;
-
+        
         do {
             System.out.println("Selecciona unha opcion:");
             System.out.println("1. Escribir unha nova publicacion");
@@ -211,7 +211,7 @@ public class ProfileView {
             select = scan.nextInt();
             scan.nextLine();
         } while (select > 13);
-
+        
         switch (select) {
             case 1:
                 writeNewPost(scan, profile);
@@ -283,7 +283,7 @@ public class ProfileView {
             }
             System.out.println("Debes introducir un número entre 0 e " + (maxNumber - 1) + ".");
         } while (index < 0 || index >= maxNumber);
-
+        
         return index;
     }
 
@@ -329,27 +329,25 @@ public class ProfileView {
         profileController.newLike(profile.getPosts().get(position));
     }
 
-    /*
-    ESTA INCOMPLETO (EN DESARROLLO)
-     */
+/***/
     private void showBiography(boolean ownProfile, Scanner scanner, Profile profile) {
         if (ownProfile) {
-            System.out.println("Introduce o nome da sua amizade");
-            String text = scanner.nextLine();
-            for (int i = 0; i < profile.getFriends().size(); i++) {
-                if (profile.getFriends().get(i).getName().equals(text)) {
-                    profileController.setShownProfile(profile.getFriends().get(i));
-                }
+            if (profile.getFriends().isEmpty()) {
+                System.out.println("Todavia no tienes ningun amigo añadido :(");
+                showProfileMenu(profile);
+            } else {
+                int friendNum = selectElement("Introduce la amistad a la que quieres ver la biografia", profile.getFriends().size(), scanner);
+                this.profileController.setShownProfile(profile.getFriends().get(friendNum));
             }
         } else {
-            profileController.setShownProfile(profile);
+            this.profileController.setShownProfile(this.profileController.getSessionProfile());
         }
     }
 
-    /**
-     * Este método permite enviar una solicitud de amistad.
-     */
-    private void sendFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile) {
+/**
+ * Este método permite enviar una solicitud de amistad.
+ */
+private void sendFriendshipRequest(boolean ownProfile, Scanner scanner, Profile profile) {
         if (ownProfile) {
             System.out.println("Introduce el nombre del perfil que quieres enviar pedido de amistad");
             String profileUser = scanner.nextLine();
