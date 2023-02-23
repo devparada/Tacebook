@@ -155,7 +155,6 @@ public class ProfileController {
      *
      * @param post
      */
-    //!!!! Puede que necesite revision este método, en principio pinta guay
     public void newLike(Post post) {
         boolean saveLike = true;
         if (!sessionProfile.getName().equals(post.getAuthor().getName())) {
