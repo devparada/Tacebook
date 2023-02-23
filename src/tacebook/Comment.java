@@ -4,7 +4,6 @@
  */
 package tacebook;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -19,8 +18,16 @@ public class Comment {
     private int id;
     private Date date;
     private String text;
-    private ArrayList<Profile> sourceProfile;
-    private ArrayList<Post> post;
+    private Profile sourceProfile;
+    private Post post;
+
+    public Comment(int id, Date date, String text, Profile sourceProfile, Post post) {
+        this.id = id;
+        this.date = date;
+        this.text = text;
+        this.sourceProfile = sourceProfile;
+        this.post = post;
+    }
 
     /**
      * Este es el constructor de la clase Comment
@@ -29,13 +36,13 @@ public class Comment {
      * @param date
      * @param text
      */
-    public Comment(int id, Date date, String text) {
-        this.id = id;
-        this.date = date;
-        this.text = text;
-        sourceProfile = new ArrayList<>();
-        post = new ArrayList<>();
-    }
+//    public Comment(int id, Date date, String text) {
+//        this.id = id;
+//        this.date = date;
+//        this.text = text;
+//        sourceProfile = new ArrayList<>();
+//        post = new ArrayList<>();
+//    }
 
     /**
      * Getter de id
@@ -91,40 +98,57 @@ public class Comment {
         this.text = text;
     }
 
+    public Profile getSourceProfile() {
+        return sourceProfile;
+    }
+
+    public void setSourceProfile(Profile sourceProfile) {
+        this.sourceProfile = sourceProfile;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
     /**
      * Getter de sourceProfile
      *
      * @return
      */
-    public ArrayList<Profile> getSourceProfile() {
-        return sourceProfile;
-    }
+//    public ArrayList<Profile> getSourceProfile() {
+//        return sourceProfile;
+//    }
 
     /**
      * Setter de sourceProfile
      *
      * @param sourceProfile
      */
-    public void setSourceProfile(ArrayList<Profile> sourceProfile) {
-        this.sourceProfile = sourceProfile;
-    }
+//    public void setSourceProfile(ArrayList<Profile> sourceProfile) {
+//        this.sourceProfile = sourceProfile;
+//    }
 
     /**
      * Getter de post
      *
      * @return
      */
-    public ArrayList<Post> getPost() {
-        return post;
-    }
+//    public ArrayList<Post> getPost() {
+//        return post;
+//    }
 
     /**
      * Setter de post
      *
      * @param post
      */
-    public void setPost(ArrayList<Post> post) {
-        this.post = post;
-    }
+//    public void setPost(ArrayList<Post> post) {
+//        this.post = post;
+//    }
 
+    
 }

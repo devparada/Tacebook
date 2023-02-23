@@ -18,7 +18,6 @@ public class CommentDB {
      * @param comment
      */
     public static void save(Comment comment) {
-        comment.getPost().get(0).getComments().add(0, comment);
-    }
-
-}
+    comment.getPost().getComments().add(0, comment); 
+  }
+ }
