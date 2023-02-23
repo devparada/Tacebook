@@ -76,115 +76,65 @@ public class ProfileView {
     engadiranse os seguintes métodos:
      */
     private void showProfileInfo(boolean ownProfile, Profile profile) {
-        /*
-        Si está mirando su proprio perfil, entonces le damos una condicion 
-        verdadera, que será llamada de ownprofile
-         */
-        if (ownProfile) {
-            //aquí avisará que está mirando su propio perfil
-            System.out.println("Estás vendo o teu propio perfil");
-        } else {
-            /*
-            Pero si ownprofile es false, significa que esta mirando un perfil 
-            por lo cual indicamos ese perfil llamando a getname y getstatus
-             */
-            System.out.println("Estás vendo o perfil de " + profile.getName());
-        }
+        System.out.println("");
+        System.out.println("Bienvenido ao Tacebook!" + profile.getName());
+        System.out.println("Estado actual: " + profile.getStatus());
 
-        /*
-        Condición if si hay mensajes
-         */
-        if (!profile.getMessages().isEmpty()) {
-            System.out.println("---> Mensaxes:");
-        }
+        System.out.println("[Tu biografia]");
+        System.out.println("[" + this.postsShowed + " publicaciones recentes]");
+        for (int i = 0; i < this.postsShowed && i < profile.getPosts().size(); i++) {
+            Post post = profile.getPosts().get(i);
+            System.out.println("   " + i + "[ .0 " + this.formatter.format(post.getDate()) + "]");
+            if (post.getAuthor().getName().equals(this.profileController.getSessionProfile().getName())) {
+                System.out.println("Esto es un test, si ves este mensaje, adecualo a lo que tenga que printear por pantalla!!!");
+            } else {
+                System.out.println(" " + post.getAuthor().getName() + " escribió");
+            }
+            System.out.println("" + post.getProfileLikes().size() + " me gusta");
+            System.out.println("-----" + post.getText());
 
-        /*
-        Bucle for para los mensajes
-         */
-        for (int i = 0; i < profile.getMessages().size(); i++) {
-            System.out.println("ID do mensaxe: " + profile.getMessages().get(i).getId());
-            System.out.println("Data: " + profile.getMessages().get(i).getDate());
-            System.out.println("De: " + profile.getMessages().get(i).getSourceProfile().getName());
-            System.out.println("Para: " + profile.getMessages().get(i).getDestProfile().getName());
-            System.out.println("Texto: " + profile.getMessages().get(i).getText());
-            System.out.println("-------------------------------------------------------------------");
+            for (Comment comment : post.getComments()) {
+                System.out.println("  [" + comment.getText() + " - " + comment.getSourceProfile().getName() + " - " + this.formatter.format(comment.getDate()));
+            }
         }
-
-        /*
-        Condición if si hay solicitudes de amistad
-         */
-        if (!profile.getFriendshipRequests().isEmpty()) {
-            System.out.println("---> Peticions de amizade");
-        }
-        /*
-        Bucle for para las solicitudes de amistad recibidas
-         */
-        for (int i = 0; i < profile.getFriendshipRequests().size(); i++) {
-            System.out.println("");
-            System.out.println("ID da peticion de amistade: " + i);
-            System.out.println("Nome: " + profile.getFriendshipRequests().get(i).getName());
-            System.out.println("-------------------------------------------------------------------");
-        }
-
-        /*
-        Condición if si hay amigos
-         */
-        if (!profile.getFriends().isEmpty()) {
-            System.out.println("---> Amigos");
-        }
-
-        /*
-        Bucle for para los amigos
-         */
+        System.out.println("Amigos añadidos:");
         for (int i = 0; i < profile.getFriends().size(); i++) {
-            System.out.println("");
-            System.out.println("ID da amistade: " + i);
-            System.out.println("Nome: " + profile.getFriends().get(i).getName());
-            System.out.println("-------------------------------------------------------------------");
+            System.out.println("" + i + ". " + i);
+            System.out.println(" - " + ((Profile) profile.getFriends().get(i)).getStatus());
         }
+        if (ownProfile) {
 
-        /*
-        Condición if si hay publicaciones
-         */
-        if (!profile.getPosts().isEmpty()) {
-            System.out.println("---> Publicacions");
-        }
+            if (!profile.getMessages().isEmpty()) {
+                System.out.println("[Mensajes privados]");
+                int msgNoLeidos = 0;
+                for (Message message : profile.getMessages()) {
+                    if (!message.isRead()) {
+                        msgNoLeidos++;
+                    }
+                }
+                if (msgNoLeidos > 0) {
+                    System.out.println("Tienes " + msgNoLeidos + " mensajes sin leer");
+                }
+                for (int i = 0; i < profile.getMessages().size(); i++) {
+                    Message message = profile.getMessages().get(i);
+                    if (!message.isRead()) {
+                        System.out.println("[!]");
+                    }
+                    System.out.println("" + i + ". De " + i);
+                    System.out.println("[" + this.formatter.format(message.getDate()) + "]");
 
-        /*
-        Bucle for para las publicaciones
-         */
-        for (int i = 0; i < profile.getPosts().size() && i < postsShowed; i++) {
-            System.out.println("");
-            System.out.println("ID da publicacion: " + profile.getPosts().get(i).getId());
-            System.out.println("Autor: " + profile.getPosts().get(i).getAuthor().getName());
-            //Fecha del post con un formato determinado (formatter)
-            System.out.println("Data: " + formatter.format(profile.getPosts().get(i).getDate()));
-            System.out.println("Texto: " + profile.getPosts().get(i).getText());
-            System.out.println("Likes: " + profile.getPosts().get(i).getProfileLikes().size());
-            System.out.println("-------------------------------------------------------------------");
-
-            /*
-        Condición if si hay comentarios en una publicacion
-             */
-            if (!profile.getPosts().get(i).getComments().isEmpty()) {
-                System.out.println("---> Comentarios");
+                    System.out.println(message.getText().substring(0, Math.min(10, message.getText().length() - 1)) + "...");
+                }
             }
 
-            /*
-            Bucle for para los comentarios del post
-             */
-            for (int j = 0; j < profile.getPosts().get(i).getComments().size(); j++) {
-                System.out.println("");
-                System.out.println("ID do comantario: " + profile.getPosts().get(i).getComments().get(j).getId());
-                System.out.println("Data: " + formatter.format(profile.getPosts().get(i).getComments().get(j).getDate()));
-                System.out.println("Texto: " + profile.getPosts().get(i).getComments().get(j).getText());
-                System.out.println("-------------------------------------------------------------------");
+            if (!profile.getFriendshipRequests().isEmpty()) {
+                System.out.println("Tienes los siguientes pedidos de amistad:");
+                for (int i = 0; i < profile.getFriendshipRequests().size(); i++) {
+                    System.out.println("" + i + ". " + i);
+                    System.out.println(" quiere establecer una amistad contigo.");
+                }
             }
-
         }
-        System.out.println("Tu usuario: " + profile.getName());
-        System.out.println("Tu estado: " + profile.getStatus());
-        System.out.println("Mostrando " + postsShowed + " últimos posts");
     }
 
     /**
