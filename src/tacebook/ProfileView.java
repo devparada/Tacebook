@@ -392,7 +392,7 @@ private void addLike(Scanner scanner, Profile profile) {
                 System.out.println("Todavia non tes ningun amigo engadido :(");
                 showProfileMenu(profile);
             } else {
-                int friendNum = selectElement("Introduce a amistade a que queres ver a biografia", profile.getFriends().size(), scanner);
+                int friendNum = selectElement("Introduce(utilizando numeros) a amistade a que queres ver a biografia", profile.getFriends().size(), scanner);
                 this.profileController.setShownProfile(profile.getFriends().get(friendNum));
             }
         } else {
@@ -467,7 +467,7 @@ private void addLike(Scanner scanner, Profile profile) {
                 showProfileMenu(profile);
                 return;
             }
-            numAmg = selectElement("Indica o amigo(a) que desear enviar un mensaxe", profile.getFriends().size(), scanner);
+            numAmg = selectElement("Indica(utilizando numeros) o amigo(a) que desear enviar un mensaxe", profile.getFriends().size(), scanner);
             destProfile = profile.getFriends().get(numAmg);
         }
         System.out.println("Introduce o texto da mensaxe:");
@@ -475,8 +475,8 @@ private void addLike(Scanner scanner, Profile profile) {
         this.profileController.newMessage(destProfile, msgTxt);
     }
 
-    /*
-    FALLA Y REALIZA UNA SALIDA DE LA SESION EXISTENTE
+    /**
+     * falta comentar!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
      */
     private void readPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
         if (ownProfile) {
