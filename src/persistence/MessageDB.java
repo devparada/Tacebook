@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package tacebook;
+package persistence;
+
+import model.Message;
 
 /**
  * Esta clase almacena y elimina un mensaje de la lista de mensajes del perfil

@@ -2,7 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package tacebook;
+package persistence;
+
+import model.Post;
+import model.Profile;
 
 /**
  * Esta clase guardará toda la persistencia de datos de las publicaciones

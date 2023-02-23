@@ -2,9 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package tacebook;
+package controller;
 
+import view.InitMenuView;
+import persistence.TacebookDB;
+import persistence.ProfileDB;
 import java.util.Date;
+import model.Post;
+import model.Profile;
 
 /**
  * Esta clase tendrá el método main para hacer la llamada al menú, cuidará de

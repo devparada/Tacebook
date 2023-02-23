@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package tacebook;
+package persistence;
 
 import java.util.ArrayList;
+import model.Profile;
 
 /**
  * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl

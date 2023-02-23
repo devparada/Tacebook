@@ -2,9 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package tacebook;
+package controller;
 
+import view.ProfileView;
+import persistence.ProfileDB;
+import persistence.MessageDB;
+import persistence.CommentDB;
 import java.util.Date;
+import model.Comment;
+import model.Message;
+import model.Post;
+import persistence.PostDB;
+import model.Profile;
 
 /**
  * Esta es la clase controladora que se junta al modelo de vista, está clase

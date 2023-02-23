@@ -2,10 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package tacebook;
+package view;
 
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
+import model.Comment;
+import model.Message;
+import model.Post;
+import model.Profile;
+import controller.ProfileController;
 
 /**
  * Esta clase es el modelo de vista de nuestro programa, es la parte "visual"
