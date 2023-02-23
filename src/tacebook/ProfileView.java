@@ -345,7 +345,7 @@ public class ProfileView {
     private void writeNewPost(Scanner scanner, Profile profile) {
         System.out.println("Introduce o texto da publicacion");
         String text = scanner.nextLine();
-        profileController.newPost(text, profile);
+        this.profileController.newPost(text, profile);
     }
 
     /**
