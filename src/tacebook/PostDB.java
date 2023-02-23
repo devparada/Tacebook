@@ -29,7 +29,6 @@ public class PostDB {
      * @param profile
      */
     public static void saveLike(Post post, Profile profile) {
-//        post.getProfileLikes().add(profile);
-        post.getProfileLikes().add(0, profile);
+        post.getProfileLikes().add(profile);
     }
 }

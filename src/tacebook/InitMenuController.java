@@ -4,6 +4,8 @@
  */
 package tacebook;
 
+import java.util.Date;
+
 /**
  * Esta clase tendrá el método main para hacer la llamada al menú, cuidará de
  * toda la parte de funcionabilidad, para que todos los botones con numeros y
@@ -83,6 +85,38 @@ public class InitMenuController {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        Profile miguel = new Profile("miguel", "", "ben");
+        Profile ainhoa = new Profile("ainhoa", "", "ben");
+        Profile sandra = new Profile("garnet.va", "", "ben");
+        Profile bilinho = new Profile("bilinho", "", "soy brasileiro");
+
+     
+            TacebookDB.getProfiles().add(miguel);
+            TacebookDB.getProfiles().add(ainhoa);
+            TacebookDB.getProfiles().add(sandra);
+            TacebookDB.getProfiles().add(bilinho);
+
+        
+
+        miguel.getFriends().add(ainhoa);
+        ainhoa.getFriends().add(miguel);
+        sandra.getFriends().add(ainhoa);
+        sandra.getFriends().add(miguel);
+        miguel.getFriends().add(sandra);
+        ainhoa.getFriends().add(sandra);
+        ainhoa.getFriends().add(sandra);
+        bilinho.getFriends().add(sandra);
+        bilinho.getFriends().add(ainhoa);
+        bilinho.getFriends().add(miguel);
+        miguel.getFriends().add(bilinho);
+        ainhoa.getFriends().add(bilinho);
+        sandra.getFriends().add(bilinho);
+
+//        miguel.getPosts().add(new Post(0, new Date(), "hola", miguel, miguel));
+//        ainhoa.getPosts().add(new Post(0, new Date(), "hola", ainhoa, ainhoa));
+//        sandra.getPosts().add(new Post(0, new Date(), "hola", sandra, sandra));
+        bilinho.getPosts().add(new Post(0, new Date(), "Soy buenísimo", bilinho, bilinho));
         InitMenuController intiMenuController = new InitMenuController();
         intiMenuController.init();
     }
