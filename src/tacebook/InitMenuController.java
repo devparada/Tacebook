@@ -85,20 +85,21 @@ public class InitMenuController {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
+        // ESTOS SON PERFILES DE PRUEBA (BORRAR AL FINALIZAR)
+        // Aquí se crean perfiles de prueba
         Profile miguel = new Profile("miguel", "", "ben");
         Profile ainhoa = new Profile("ainhoa", "", "ben");
         Profile sandra = new Profile("garnet.va", "", "ben");
         Profile bilinho = new Profile("bilinho", "", "soy brasileiro");
 
-     
-            TacebookDB.getProfiles().add(miguel);
-            TacebookDB.getProfiles().add(ainhoa);
-            TacebookDB.getProfiles().add(sandra);
-            TacebookDB.getProfiles().add(bilinho);
+        // Se añade el perfil al array de perfiles
+        TacebookDB.getProfiles().add(miguel);
+        TacebookDB.getProfiles().add(ainhoa);
+        TacebookDB.getProfiles().add(sandra);
+        TacebookDB.getProfiles().add(bilinho);
 
-        
-
+        // Se añaden de amigos mutuos cada perfil
         miguel.getFriends().add(ainhoa);
         ainhoa.getFriends().add(miguel);
         sandra.getFriends().add(ainhoa);
@@ -113,10 +114,13 @@ public class InitMenuController {
         ainhoa.getFriends().add(bilinho);
         sandra.getFriends().add(bilinho);
 
-//        miguel.getPosts().add(new Post(0, new Date(), "hola", miguel, miguel));
-//        ainhoa.getPosts().add(new Post(0, new Date(), "hola", ainhoa, ainhoa));
-//        sandra.getPosts().add(new Post(0, new Date(), "hola", sandra, sandra));
+        // Se añaden posts lo que está comentado no está en uso
+        //miguel.getPosts().add(new Post(0, new Date(), "hola", miguel, miguel));
+        //ainhoa.getPosts().add(new Post(0, new Date(), "hola", ainhoa, ainhoa));
+        //sandra.getPosts().add(new Post(0, new Date(), "hola", sandra, sandra));
         bilinho.getPosts().add(new Post(0, new Date(), "Soy buenísimo", bilinho, bilinho));
+        // FIN DEE LOS PERFILES DE PRUEBA
+        
         InitMenuController intiMenuController = new InitMenuController();
         intiMenuController.init();
     }
