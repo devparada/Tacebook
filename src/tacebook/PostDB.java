@@ -14,7 +14,7 @@ public class PostDB {
 
     /**
      * Este método permite guardar una publicación y añadirla arriba del todo en
-     * la lista de publiaciones.
+     * la lista de publicaciones.
      *
      * @param post
      */
@@ -29,6 +29,7 @@ public class PostDB {
      * @param profile
      */
     public static void saveLike(Post post, Profile profile) {
-        post.getProfileLikes().add(profile);
+//        post.getProfileLikes().add(profile);
+        post.getProfileLikes().add(0, profile);
     }
 }

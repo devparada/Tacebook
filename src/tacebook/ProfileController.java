@@ -257,7 +257,8 @@ public class ProfileController {
      * @param text
      */
     public void newMessage(Profile destProfile, String text) {
-        Message message = new Message(0, text, new Date(), false);
+//        Message message = new Message(0, text, new Date(), false);
+        Message message = new Message(0, text, new Date(), false, this.sessionProfile, destProfile);
         MessageDB.save(message);
         reloadProfile();
     }
