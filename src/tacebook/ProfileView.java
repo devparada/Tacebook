@@ -121,7 +121,7 @@ public class ProfileView {
          */
         for (int i = 0; i < profile.getFriendshipRequests().size(); i++) {
             System.out.println("");
-            System.out.println("ID: " + i);
+            System.out.println("ID da peticion de amistade: " + i);
             System.out.println("Nome: " + profile.getFriendshipRequests().get(i).getName());
             System.out.println("-------------------------------------------------------------------");
         }
@@ -138,7 +138,7 @@ public class ProfileView {
          */
         for (int i = 0; i < profile.getFriends().size(); i++) {
             System.out.println("");
-            System.out.println("ID da peticion: " + i);
+            System.out.println("ID da amistade: " + i);
             System.out.println("Nome: " + profile.getFriends().get(i).getName());
             System.out.println("-------------------------------------------------------------------");
         }
@@ -160,7 +160,7 @@ public class ProfileView {
             //Fecha del post con un formato determinado (formatter)
             System.out.println("Data: " + formatter.format(profile.getPosts().get(i).getDate()));
             System.out.println("Texto: " + profile.getPosts().get(i).getText());
-            System.out.print("Likes: ");
+            System.out.println("Likes: " + profile.getPosts().get(i).getProfileLikes().size());
             for (int j = 0; j < profile.getPosts().get(i).getProfileLikes().size(); j++) {
                 System.out.print(" " + profile.getPosts().get(i).getProfileLikes().get(j).getName() + " ");
             }
