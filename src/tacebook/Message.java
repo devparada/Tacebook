@@ -29,12 +29,16 @@ public class Message {
      * @param text
      * @param date
      * @param read
+     * @param sourceProfile
+     * @param destProfile
      */
-    public Message(int id, String text, Date date, boolean read) {
+    public Message(int id, String text, Date date, boolean read, Profile sourceProfile, Profile destProfile) {
         this.id = id;
         this.text = text;
         this.date = date;
         this.read = read;
+        this.sourceProfile = sourceProfile;
+        this.destProfile = destProfile;
     }
 
     /**
