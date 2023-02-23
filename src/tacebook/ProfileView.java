@@ -164,6 +164,7 @@ public class ProfileView {
             for (int j = 0; j < profile.getPosts().get(i).getProfileLikes().size(); j++) {
                 System.out.print(" " + profile.getPosts().get(i).getProfileLikes().get(j).getName() + " ");
             }
+            System.out.println("");
             System.out.println("-------------------------------------------------------------------");
 
             /*
