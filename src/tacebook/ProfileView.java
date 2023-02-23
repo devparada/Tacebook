@@ -176,7 +176,7 @@ public class ProfileView {
             for (int j = 0; j < profile.getPosts().get(i).getComments().size(); j++) {
                 System.out.println("");
                 System.out.println("ID do comantario: " + profile.getPosts().get(i).getComments().get(j).getId());
-                System.out.println("Data: " + profile.getPosts().get(i).getComments().get(j).getDate());
+                System.out.println("Data: " + formatter.format(profile.getPosts().get(i).getComments().get(j).getDate()));
                 System.out.println("Texto: " + profile.getPosts().get(i).getComments().get(j).getText());
                 System.out.println("-------------------------------------------------------------------");
             }
