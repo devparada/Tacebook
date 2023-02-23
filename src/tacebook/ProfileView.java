@@ -95,8 +95,6 @@ public class ProfileView {
         Condición if si hay mensajes
          */
         if (!profile.getMessages().isEmpty()) {
-            System.out.println("---> Hai mensaxes recibidas");
-            System.out.println("");
             System.out.println("---> Mensaxes:");
         }
 
@@ -104,11 +102,11 @@ public class ProfileView {
         Bucle for para los mensajes
          */
         for (int i = 0; i < profile.getMessages().size(); i++) {
-            System.out.println("");
-            System.out.println("Fecha:" + profile.getMessages().get(i).getDate());
-            System.out.println("De: " + profile.getMessages().get(i).getSourceProfile());
-            System.out.println("Para: " + profile.getMessages().get(i).getDestProfile());
-            System.out.println(profile.getMessages().get(i).getId() + " " + profile.getMessages().get(i).getText());
+            System.out.println("ID do mensaxe: " + profile.getMessages().get(i).getId());
+            System.out.println("Data: " + profile.getMessages().get(i).getDate());
+            System.out.println("De: " + profile.getMessages().get(i).getSourceProfile().getName());
+            System.out.println("Para: " + profile.getMessages().get(i).getDestProfile().getName());
+            System.out.println("Texto: " + profile.getMessages().get(i).getText());
             System.out.println("-------------------------------------------------------------------");
         }
 
@@ -116,8 +114,6 @@ public class ProfileView {
         Condición if si hay solicitudes de amistad
          */
         if (!profile.getFriendshipRequests().isEmpty()) {
-            System.out.println("---> Hai peticions de amizade recibidas");
-            System.out.println("");
             System.out.println("---> Peticions de amizade");
         }
         /*
@@ -134,8 +130,6 @@ public class ProfileView {
         Condición if si hay amigos
          */
         if (!profile.getFriends().isEmpty()) {
-            System.out.println("---> Este perfil ten amigos");
-            System.out.println("");
             System.out.println("---> Amigos");
         }
 
@@ -144,7 +138,7 @@ public class ProfileView {
          */
         for (int i = 0; i < profile.getFriends().size(); i++) {
             System.out.println("");
-            System.out.println("ID: " + i);
+            System.out.println("ID da peticion: " + i);
             System.out.println("Nome: " + profile.getFriends().get(i).getName());
             System.out.println("-------------------------------------------------------------------");
         }
@@ -153,8 +147,6 @@ public class ProfileView {
         Condición if si hay publicaciones
          */
         if (!profile.getPosts().isEmpty()) {
-            System.out.println("---> Este perfil ten publicacions");
-            System.out.println("");
             System.out.println("---> Publicacions");
         }
 
@@ -163,20 +155,21 @@ public class ProfileView {
          */
         for (int i = 0; i < profile.getPosts().size() && i < postsShowed; i++) {
             System.out.println("");
-            System.out.println("ID: " + profile.getPosts().get(i).getId());
+            System.out.println("ID da publicacion: " + profile.getPosts().get(i).getId());
             System.out.println("Autor: " + profile.getPosts().get(i).getAuthor().getName());
             //Fecha del post con un formato determinado (formatter)
             System.out.println("Data: " + formatter.format(profile.getPosts().get(i).getDate()));
             System.out.println("Texto: " + profile.getPosts().get(i).getText());
-            System.out.println("Likes: " + profile.getPosts().get(i).getProfileLikes().size());
+            System.out.print("Likes: ");
+            for (int j = 0; j < profile.getPosts().get(i).getProfileLikes().size(); j++) {
+                System.out.print(" " + profile.getPosts().get(i).getProfileLikes().get(j).getName() + " ");
+            }
             System.out.println("-------------------------------------------------------------------");
 
             /*
         Condición if si hay comentarios en una publicacion
              */
             if (!profile.getPosts().get(i).getComments().isEmpty()) {
-                System.out.println("---> Esta publicacion ten comentarios");
-                System.out.println("");
                 System.out.println("---> Comentarios");
             }
 
@@ -185,8 +178,9 @@ public class ProfileView {
              */
             for (int j = 0; j < profile.getPosts().get(i).getComments().size(); j++) {
                 System.out.println("");
-                System.out.println("-> Comentarios: " + i);
-                System.out.println(profile.getPosts().get(i).getComments().get(j).getId() + " " + profile.getPosts().get(i).getComments().get(j).getText());
+                System.out.println("ID do comantario " + profile.getPosts().get(i).getComments().get(j).getId());
+                System.out.println("Data" + profile.getPosts().get(i).getComments().get(j).getDate());
+                System.out.println("Texto" + profile.getPosts().get(i).getComments().get(j).getText());
                 System.out.println("-------------------------------------------------------------------");
             }
 
@@ -359,21 +353,21 @@ public class ProfileView {
             System.out.println("No hay ningun post :(");
             showProfileMenu(profile);
         } else {
-        int postCommentNum = selectElement("Indica el post que quieres comentar", Math.min(profile.getPosts().size(), this.postsShowed), scanner);
-        Post commentedPost = profile.getPosts().get(postCommentNum);
+            int postCommentNum = selectElement("Indica el post que quieres comentar", Math.min(profile.getPosts().size(), this.postsShowed), scanner);
+            Post commentedPost = profile.getPosts().get(postCommentNum);
             System.out.println("Escribe el comentario que deseas añadir");
             String commentTxt = scanner.nextLine();
             this.profileController.newComment(commentedPost, commentTxt);
         }
-}
+    }
 
-/**
- * Este método hace que a una publicición un usuario le de like
- *
- * @param scanner el scanner que se utiliza
- * @param profile el perfil que da like
- */
-private void addLike(Scanner scanner, Profile profile) {
+    /**
+     * Este método hace que a una publicición un usuario le de like
+     *
+     * @param scanner el scanner que se utiliza
+     * @param profile el perfil que da like
+     */
+    private void addLike(Scanner scanner, Profile profile) {
         int position = selectElement("Introduce o numero da publicacion", profile.getPosts().size(), scanner);
         profileController.newLike(profile.getPosts().get(position));
     }
@@ -476,7 +470,8 @@ private void addLike(Scanner scanner, Profile profile) {
     }
 
     /**
-     * falta comentar!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     * falta
+     * comentar!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
      */
     private void readPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
         if (ownProfile) {
