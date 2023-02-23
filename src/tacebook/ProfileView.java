@@ -356,24 +356,24 @@ public class ProfileView {
      */
     private void commentPost(Scanner scanner, Profile profile) {
         if (profile.getPosts().isEmpty()) {
-            System.out.println("---> Non hai publicacions");
+            System.out.println("No hay ningun post :(");
             showProfileMenu(profile);
         } else {
-            int postNum = selectElement("Indica o numero do post que queres comentar", profile.getPosts().size(), scanner);
-            Post postCommented = profile.getPosts().get(postNum);
-            System.out.println("Escribe o comentario que desexas");
-            String commentText = scanner.nextLine();
-            this.profileController.newComment(postCommented, commentText);
+        int postCommentNum = selectElement("Indica el post que quieres comentar", Math.min(profile.getPosts().size(), this.postsShowed), scanner);
+        Post commentedPost = profile.getPosts().get(postCommentNum);
+            System.out.println("Escribe el comentario que deseas añadir");
+            String commentTxt = scanner.nextLine();
+            this.profileController.newComment(commentedPost, commentTxt);
         }
-    }
+}
 
-    /**
-     * Este método hace que a una publicición un usuario le de like
-     *
-     * @param scanner el scanner que se utiliza
-     * @param profile el perfil que da like
-     */
-    private void addLike(Scanner scanner, Profile profile) {
+/**
+ * Este método hace que a una publicición un usuario le de like
+ *
+ * @param scanner el scanner que se utiliza
+ * @param profile el perfil que da like
+ */
+private void addLike(Scanner scanner, Profile profile) {
         int position = selectElement("Introduce o numero da publicacion", profile.getPosts().size(), scanner);
         profileController.newLike(profile.getPosts().get(position));
     }
