@@ -22,8 +22,8 @@ public class Post {
     private String text;
     private Profile profile;
     private Profile author;
-    private ArrayList<Profile> profileLikes = new ArrayList<>();
-    private ArrayList<Comment> comments = new ArrayList<>();
+    private ArrayList<Profile> profileLikes;
+    private ArrayList<Comment> comments;
 
     /**
      * Este es el constructor de la clase Post
@@ -40,6 +40,8 @@ public class Post {
         this.text = text;
         this.profile = profile;
         this.author = author;
+        profileLikes = new ArrayList<>();
+        comments = new ArrayList<>();
     }
 
     /**

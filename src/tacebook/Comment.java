@@ -19,8 +19,8 @@ public class Comment {
     private int id;
     private Date date;
     private String text;
-    private ArrayList<Profile> sourceProfile = new ArrayList<>();
-    private ArrayList<Post> post = new ArrayList<>();
+    private ArrayList<Profile> sourceProfile;
+    private ArrayList<Post> post;
 
     /**
      * Este es el constructor de la clase Comment
@@ -33,6 +33,8 @@ public class Comment {
         this.id = id;
         this.date = date;
         this.text = text;
+        sourceProfile = new ArrayList<>();
+        post = new ArrayList<>();
     }
 
     /**
