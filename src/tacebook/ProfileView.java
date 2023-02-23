@@ -161,10 +161,6 @@ public class ProfileView {
             System.out.println("Data: " + formatter.format(profile.getPosts().get(i).getDate()));
             System.out.println("Texto: " + profile.getPosts().get(i).getText());
             System.out.println("Likes: " + profile.getPosts().get(i).getProfileLikes().size());
-            for (int j = 0; j < profile.getPosts().get(i).getProfileLikes().size(); j++) {
-                System.out.print(" " + profile.getPosts().get(i).getProfileLikes().get(j).getName() + " ");
-            }
-            System.out.println("");
             System.out.println("-------------------------------------------------------------------");
 
             /*
