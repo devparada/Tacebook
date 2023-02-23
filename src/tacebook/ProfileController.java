@@ -145,7 +145,7 @@ public class ProfileController {
     public void newComment(Post post, String commentText) {
         //Creamos date ya pasando como parametro en creacion del objeto comment,
         //aun que puede ser que falten cositas aqui
-        Comment comment = new Comment(0, new Date(), commentText);
+        Comment comment = new Comment(post.getComments().size(), new Date(), commentText);
         CommentDB.save(comment);
         reloadProfile();
     }

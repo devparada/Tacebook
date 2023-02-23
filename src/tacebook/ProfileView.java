@@ -359,7 +359,7 @@ public class ProfileView {
             System.out.println("---> Non hai publicacions");
             showProfileMenu(profile);
         } else {
-            int postNum = selectElement("Indica o numero do post que queres comentar", Math.min(profile.getPosts().size(), this.postsShowed), scanner);
+            int postNum = selectElement("Indica o numero do post que queres comentar", profile.getPosts().size(), scanner);
             Post postCommented = profile.getPosts().get(postNum);
             System.out.println("Escribe o comentario que desexas");
             String commentText = scanner.nextLine();
@@ -562,7 +562,7 @@ public class ProfileView {
         System.out.println("Introduce o numero de publicacions a visualizar");
         int number = scanner.nextInt();
         postsShowed = number;
-        profileController.reloadProfile();
+        this.profileController.reloadProfile();
     }
 
     /**
