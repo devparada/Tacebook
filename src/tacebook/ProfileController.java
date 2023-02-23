@@ -150,27 +150,27 @@ public class ProfileController {
         reloadProfile();
     }
 
-    /**
+ /**
      * Método que fai un like
      *
      * @param post
      */
     //!!!! Puede que necesite revision este método, en principio pinta guay
     public void newLike(Post post) {
-        //condicion if para avisar que no podemos dar like a nuestra propia 
-        //publicacion
-        if (post.getAuthor().getName().equals(this.sessionProfile.getName())) {
-            this.profileView.showCannotLikeOwnPostMessage();
-        } else {
-            //ahora hacemos comprobación para ver que el perfil no esta dando 
-            //like más de una vez en cualquier otro post
-            for (Profile profileLike : post.getProfileLikes()) {
-                if (profileLike.getName().equals(this.sessionProfile.getName())) {
-                } else {
-                    this.profileView.showAlreadyLikedPostMessage();
-                    return;
+        boolean saveLike = true;
+        if (!sessionProfile.getName().equals(post.getAuthor().getName())) {
+            for (Profile profLike : post.getProfileLikes()) {
+                if (sessionProfile.getName().equals(profLike.getName())) {
+                    saveLike = false;
                 }
             }
+            if (saveLike) {
+                PostDB.saveLike(post, sessionProfile);
+            } else {
+                profileView.showAlreadyLikedPostMessage();
+            }
+        } else {
+            profileView.showCannotLikeOwnPostMessage();
         }
         reloadProfile();
     }
