@@ -229,16 +229,18 @@ public class ProfileView {
      */
     public void showProfileMenu(Profile profile) {
         Scanner scan = new Scanner(System.in);
-
-        showProfileInfo(true, profile);
-
+        boolean ownProfile = this.profileController.getSessionProfile().getName().equals(profile.getName());
+        showProfileInfo(ownProfile, profile);
         int select;
 
-        do {
-            System.out.println("Selecciona unha opcion:");
-            System.out.println("1. Escribir unha nova publicacion");
-            System.out.println("2. Comentar unha publicacion");
-            System.out.println("3. Facer me gusta sobre unha publicacion");
+        System.out.println("");
+        System.out.println("Selecciona unha opcion:");
+        System.out.println("1. Escribir unha nova publicacion");
+        System.out.println("2. Comentar unha publicacion");
+        System.out.println("3. Facer me gusta sobre unha publicacion");
+
+        ///
+        if (ownProfile) {
             System.out.println("4. Ver a biografia dun amigo");
             System.out.println("5. Enviar unha solicitude de amizade");
             System.out.println("6. Aceptar unha solicitude de amizade");
@@ -249,71 +251,78 @@ public class ProfileView {
             System.out.println("11. Ver publicacions anteriores");
             System.out.println("12. Cambiar o estado");
             System.out.println("13. Pechar a sesion");
-            select = scan.nextInt();
-            scan.nextLine();
-        } while (select > 13);
+        } else {
+            System.out.println("4. Volver á miña biografía");
+            System.out.println("8. Enviar unha mensaxe privada");
+            System.out.println("11. Ver publicacions anteriores");
+            System.out.println("13. Pechar a sesion");
+        }
+        select = scan.nextInt();
+        scan.nextLine();
+    }
+    while (select > 13);
 
         switch (select) {
-            case 1:
-                writeNewPost(scan, profile);
-                break;
-            case 2:
-                commentPost(scan, profile);
-                break;
-            case 3:
-                addLike(scan, profile);
-                break;
-            case 4:
-                showBiography(true, scan, profile);
-                break;
-            case 5:
-                sendFriendshipRequest(true, scan, profile);
-                break;
-            case 6:
-                // Si acepta la solicitud es true el valor de la variable accept
-                proccessFriendshipRequest(true, scan, profile, true);
-                break;
-            case 7:
-                // Si rechaza la solicitud es false el valor de la variable accept
-                proccessFriendshipRequest(true, scan, profile, false);
-                break;
-            case 8:
-                sendPrivateMessage(true, scan, profile);
-                break;
-            case 9:
-                readPrivateMessage(true, scan, profile);
-                break;
-            case 10:
-                deletePrivateMessage(true, scan, profile);
-                break;
-            case 11:
-                showOldPosts(scan, profile);
-                break;
-            /*
+        case 1:
+            writeNewPost(scan, profile);
+            break;
+        case 2:
+            commentPost(scan, profile);
+            break;
+        case 3:
+            addLike(scan, profile);
+            break;
+        case 4:
+            showBiography(true, scan, profile);
+            break;
+        case 5:
+            sendFriendshipRequest(true, scan, profile);
+            break;
+        case 6:
+            // Si acepta la solicitud es true el valor de la variable accept
+            proccessFriendshipRequest(true, scan, profile, true);
+            break;
+        case 7:
+            // Si rechaza la solicitud es false el valor de la variable accept
+            proccessFriendshipRequest(true, scan, profile, false);
+            break;
+        case 8:
+            sendPrivateMessage(true, scan, profile);
+            break;
+        case 9:
+            readPrivateMessage(true, scan, profile);
+            break;
+        case 10:
+            deletePrivateMessage(true, scan, profile);
+            break;
+        case 11:
+            showOldPosts(scan, profile);
+            break;
+        /*
             Si el usuario selecciona la opcion 12, que reciba un scanner para que
             pueda cambiar su estado.
-             */
-            case 12:
-                changeStatus(true, scan, profile);
-                break;
-            /*
+         */
+        case 12:
+            changeStatus(true, scan, profile);
+            break;
+        /*
             Si el usuario selecciona la opcion 13, que simplemente cierre la 
             sesión y que salga del bucle.
-             */
-            case 13:
-                break;
-        }
+         */
+        case 13:
+            break;
     }
+}
 
-    /**
-     * Este método pide al usuario un numero y lo devuelve
-     *
-     * @param text el texto que se muestra
-     * @param maxNumber el número máximo para localizar
-     * @param scanner el scanner que se utiliza
-     * @return Devuelve un número introducido por el usuario
-     */
-    private int selectElement(String text, int maxNumber, Scanner scanner) {
+/**
+ * Este método pide al usuario un numero y lo devuelve
+ *
+ * @param text el texto que se muestra
+ * @param maxNumber el número máximo para localizar
+ * @param scanner el scanner que se utiliza
+ * @return Devuelve un número introducido por el usuario
+ */
+private int selectElement(String text, int maxNumber, Scanner scanner) {
         int index;
         do {
             System.out.println(text);
