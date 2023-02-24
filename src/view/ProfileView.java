@@ -82,18 +82,18 @@ public class ProfileView {
      */
     private void showProfileInfo(boolean ownProfile, Profile profile) {
         System.out.println("");
-        System.out.println("Bienvenido ao Tacebook!" + profile.getName());
+        System.out.println("Benvenido ao Tacebook!" + profile.getName());
+        System.out.println("");
         System.out.println("Estado actual: " + profile.getStatus());
 
-        System.out.println("[Tu biografia]");
-        System.out.println("[" + this.postsShowed + " publicaciones recentes]");
+        System.out.println("[A tua biografia]");
+        System.out.println("[" + this.postsShowed + " publicacions recentes]");
         for (int i = 0; i < this.postsShowed && i < profile.getPosts().size(); i++) {
             Post post = profile.getPosts().get(i);
             System.out.println("   " + i + "[ .0 " + this.formatter.format(post.getDate()) + "]");
             if (post.getAuthor().getName().equals(this.profileController.getSessionProfile().getName())) {
-                System.out.println("Esto es un test, si ves este mensaje, adecualo a lo que tenga que printear por pantalla!!!");
             } else {
-                System.out.println(" " + post.getAuthor().getName() + " escribió");
+                System.out.println(" " + post.getAuthor().getName() + " escribiu");
             }
             System.out.println("" + post.getProfileLikes().size() + " me gusta");
             System.out.println("-----" + post.getText());
@@ -102,7 +102,7 @@ public class ProfileView {
                 System.out.println("  [" + comment.getText() + " - " + comment.getSourceProfile().getName() + " - " + this.formatter.format(comment.getDate()));
             }
         }
-        System.out.println("Amigos añadidos:");
+        System.out.println("Amigos engadidos:");
         for (int i = 0; i < profile.getFriends().size(); i++) {
             System.out.println("" + i + ". " + i);
             System.out.println(" - " + ((Profile) profile.getFriends().get(i)).getStatus());
@@ -110,7 +110,7 @@ public class ProfileView {
         if (ownProfile) {
 
             if (!profile.getMessages().isEmpty()) {
-                System.out.println("[Mensajes privados]");
+                System.out.println("[Mensaxes privados]");
                 int msgNoLeidos = 0;
                 for (Message message : profile.getMessages()) {
                     if (!message.isRead()) {
@@ -118,7 +118,7 @@ public class ProfileView {
                     }
                 }
                 if (msgNoLeidos > 0) {
-                    System.out.println("Tienes " + msgNoLeidos + " mensajes sin leer");
+                    System.out.println("Tes " + msgNoLeidos + " mensaxes sin ler");
                 }
                 for (int i = 0; i < profile.getMessages().size(); i++) {
                     Message message = profile.getMessages().get(i);
@@ -128,15 +128,16 @@ public class ProfileView {
                     System.out.println("" + i + ". De " + i);
                     System.out.println("[" + this.formatter.format(message.getDate()) + "]");
 
+                    // Muestra el texto del mensaje de forma resumida
                     System.out.println(message.getText().substring(0, Math.min(10, message.getText().length() - 1)) + "...");
                 }
             }
 
             if (!profile.getFriendshipRequests().isEmpty()) {
-                System.out.println("Tienes los siguientes pedidos de amistad:");
+                System.out.println("Tes as seguintes peticions de amistade:");
                 for (int i = 0; i < profile.getFriendshipRequests().size(); i++) {
                     System.out.println("" + i + ". " + i);
-                    System.out.println(" quiere establecer una amistad contigo.");
+                    System.out.println(" Quere establecer unha amistade contigo");
                 }
             }
         }
