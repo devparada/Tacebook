@@ -6,6 +6,7 @@ package view;
 
 import java.util.Scanner;
 import controller.InitMenuController;
+import java.util.InputMismatchException;
 
 /**
  * Esta clase se encarga de aportar toda la información del programa, como
@@ -40,21 +41,34 @@ public class InitMenuView {
      */
     public boolean showLoginMenu() {
         Scanner scan = new Scanner(System.in);
-
         System.out.println("Bienvenido al Tacebook");
-
         String username;
         String password;
-
-        int select;
+        int select = 0;
 
         do {
             System.out.println("Menu principal");
             System.out.println("1. Iniciar sesion");
             System.out.println("2. Registrarse");
             System.out.println("3. Sair da aplicacion");
-            select = scan.nextInt();
-            scan.nextLine();
+            //aqui queremos capturar un error para que el usuario introduzca
+//            numeros, si el usuario no introduce ninguno de los numeros 
+//                    informados o incluso si introduce una letra, capturamos 
+//                            la excepcion avisando que los datos introducidos 
+//                                    son incorrectos
+            try {
+                select = scan.nextInt();
+                scan.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Debes introducir un numero de los indicados.");
+                scan.nextLine(); // Limpia el búfer del escáner
+                continue;
+            }
+
+            if (select != 1 || select != 2 || select != 3) {
+                System.out.println("Debes introducir un numero de los indicados.");
+                showLoginMenu();
+            }
         } while (select > 3);
 
         switch (select) {
@@ -72,6 +86,7 @@ public class InitMenuView {
                 return true;
         }
         return false;
+
     }
 
     /**
