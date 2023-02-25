@@ -11,6 +11,8 @@ import model.Message;
 import model.Post;
 import model.Profile;
 import controller.ProfileController;
+import java.time.temporal.TemporalAdjusters;
+import java.util.NoSuchElementException;
 
 /**
  * Esta clase es el modelo de vista de nuestro programa, es la parte "visual"
@@ -82,7 +84,7 @@ public class ProfileView {
      */
     private void showProfileInfo(boolean ownProfile, Profile profile) {
         System.out.println("");
-        System.out.println("Benvenido ao Tacebook!" + profile.getName());
+        System.out.println("Hola " + profile.getName() +", Benvenido ao Tacebook!");
         System.out.println("");
         System.out.println("Estado actual: " + profile.getStatus());
 
@@ -280,7 +282,7 @@ public class ProfileView {
         int index;
         do {
             System.out.println(text);
-            index = scanner.nextInt();
+            index = readNumber(scanner);
             scanner.nextLine();
             if (index < 0 || index > maxNumber - 1) {
                 System.out.println("Debes introducir un numero entre 0 e " + (maxNumber - 1));
@@ -572,5 +574,15 @@ public class ProfileView {
      */
     public void showDuplicateFrienshipRequestMessage(String profileName) {
         System.out.println("Xa tes unha peticion de amizade con " + profileName);
+    }
+    
+    private int readNumber(Scanner scanner){
+        try {
+            int result = scanner.nextInt();
+            scanner.nextLine();
+        } catch (NoSuchElementException e){
+            System.out.println("Debes introducir un numero.");
+        }
+        return readNumber(scanner);
     }
 }

@@ -7,6 +7,7 @@ package view;
 import java.util.Scanner;
 import controller.InitMenuController;
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 
 /**
  * Esta clase se encarga de aportar toda la información del programa, como
@@ -40,53 +41,42 @@ public class InitMenuView {
      * @return
      */
     public boolean showLoginMenu() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Bienvenido al Tacebook");
-        String username;
-        String password;
-        int select = 0;
+        String username, password;
+        Scanner scanner = new Scanner(System.in);
 
-        do {
-            System.out.println("Menu principal");
-            System.out.println("1. Iniciar sesion");
-            System.out.println("2. Registrarse");
-            System.out.println("3. Sair da aplicacion");
-            //aqui queremos capturar un error para que el usuario introduzca
-//            numeros, si el usuario no introduce ninguno de los numeros 
-//                    informados o incluso si introduce una letra, capturamos 
-//                            la excepcion avisando que los datos introducidos 
-//                                    son incorrectos
-            try {
-                select = scan.nextInt();
-                scan.nextLine();
-            } catch (InputMismatchException e) {
-                System.out.println("Debes introducir un numero de los indicados.");
-                scan.nextLine(); // Limpia el búfer del escáner
-                continue;
-            }
+        System.out.println("[ Bienvenido al Tacebook ]");
+        System.out.println("Escolle unha opción:");
+        System.out.println("1. Iniciar sesión");
+        System.out.println("2. Crear un novo perfil");
+        System.out.println("3. Saír da aplicación");
 
-            if (select != 1 || select != 2 || select != 3) {
-                System.out.println("Debes introducir un numero de los indicados.");
-                showLoginMenu();
-            }
-        } while (select > 3);
-
+        int select = readNumber(scanner);
         switch (select) {
+
             case 1:
-                System.out.println("Usuario");
-                username = scan.nextLine();
-                System.out.println("Contrasinal");
-                password = scan.nextLine();
-                initMenuController.login(username, password);
-                break;
+                System.out.println("Introduce o nome do usuario:");
+                username = scanner.nextLine();
+                if (System.console() != null) {
+                    password = new String(System.console().readPassword());
+                } else {
+                    password = scanner.nextLine();
+                }
+                this.initMenuController.login(username, password);
+                return true;
+
             case 2:
-                showRegisterMenu();
-                break;
+                this.initMenuController.register();
+                return true;
+
             case 3:
                 return true;
         }
+        if (select != 1 || select != 2 || select != 3) {
+            System.out.println("Debes introducir un numero de 1 a 3");
+            System.out.println("\n");
+            System.out.println("\n");
+        }
         return false;
-
     }
 
     /**
@@ -108,12 +98,12 @@ public class InitMenuView {
         String password;
         String confirmPassword;
 
-        System.out.println("Usuario");
+        System.out.println("Introduce o nome de usuario que desexa crear");
         username = scan.nextLine();
         do {
-            System.out.println("Contrasinal");
+            System.out.println("Introduce o contrasinal");
             password = scan.nextLine();
-            System.out.println("Confirmar Contrasinal");
+            System.out.println("Confirme Contrasinal");
             confirmPassword = scan.nextLine();
             if (!password.equals(confirmPassword)) {
                 System.out.println("As contrasinais non coinciden");
@@ -139,5 +129,17 @@ public class InitMenuView {
         System.out.println("Introduce outro nome: ");
         String result = scan.next();
         return result;
+    }
+
+    private int readNumber(Scanner scanner) {
+        try {
+            int number = scanner.nextInt();;
+            scanner.nextLine();
+            return number;
+        } catch (NoSuchElementException e) {
+            System.out.println("Debe introducir un número.");
+            scanner.nextLine(); // Ler a nova linha pendente
+            return readNumber(scanner); // Chamada recursiva para ler novamente
+        }
     }
 }

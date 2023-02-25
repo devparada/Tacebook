@@ -19,7 +19,7 @@ public class CommentDB {
      *
      * @param comment
      */
-    public static void save(Comment comment) {
+    public static void save(Comment comment) throws PersistenceException{
     comment.getPost().getComments().add(0, comment); 
   }
  }

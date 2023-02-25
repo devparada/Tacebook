@@ -21,7 +21,7 @@ public class MessageDB {
      *
      * @param message el mensaje que se almacena
      */
-    public static void save(Message message) {
+    public static void save(Message message) throws PersistenceException{
         message.getDestProfile().getMessages().add(0, message);
     }
 
@@ -30,7 +30,7 @@ public class MessageDB {
      *
      * @param message el mensaje que se actualiza
      */
-    public static void update(Message message) {
+    public static void update(Message message) throws PersistenceException{
         // De momento este método non fai nada
     }
 
@@ -39,7 +39,7 @@ public class MessageDB {
      *
      * @param message el mensaje que se elimina
      */
-    public static void remove(Message message) {
+    public static void remove(Message message) throws PersistenceException{
         message.getDestProfile().getMessages().remove(message);
     }
 }

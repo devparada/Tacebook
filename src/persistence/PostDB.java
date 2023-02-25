@@ -21,7 +21,7 @@ public class PostDB {
      *
      * @param post
      */
-    public static void save(Post post) {
+    public static void save(Post post) throws PersistenceException{
         post.getProfile().getPosts().add(0, post);
     }
 
@@ -31,7 +31,7 @@ public class PostDB {
      * @param post
      * @param profile
      */
-    public static void saveLike(Post post, Profile profile) {
+    public static void saveLike(Post post, Profile profile) throws PersistenceException{
         post.getProfileLikes().add(profile);
     }
 }

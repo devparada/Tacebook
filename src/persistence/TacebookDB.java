@@ -29,7 +29,7 @@ public class TacebookDB {
      *
      * @return Devolve o objecto profile
      */
-    public static ArrayList<Profile> getProfiles() {
+    public static ArrayList<Profile> getProfiles() throws PersistenceException{
         return profiles;
     }
 

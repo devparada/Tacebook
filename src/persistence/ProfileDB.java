@@ -28,7 +28,7 @@ public class ProfileDB {
      * @param numberOfPosts atributo que guarda la cantidad de posts del usario
      * @return profile
      */
-    public static Profile findByName(String name, int numberOfPosts) {
+    public static Profile findByName(String name, int numberOfPosts) throws PersistenceException {
         for (Profile profile : TacebookDB.getProfiles()) {
             if (profile.getName().equals(name)) {
                 return profile;
@@ -47,7 +47,7 @@ public class ProfileDB {
      * @param numberOfPosts atributo que guarda la cantidad de posts del usario
      * @return
      */
-    public static Profile findByNameAndPassword(String name, String password, int numberOfPosts) {
+    public static Profile findByNameAndPassword(String name, String password, int numberOfPosts) throws PersistenceException {
         //Enhanced for para percorrer todos los objetos profile de TacebookDB
         for (Profile profile : TacebookDB.getProfiles()) {
             /*
@@ -73,7 +73,7 @@ public class ProfileDB {
      *
      * @param profile perfil del arrayList
      */
-    public static void save(Profile profile) {
+    public static void save(Profile profile) throws PersistenceException {
         TacebookDB.getProfiles().add(profile);
     }
 
@@ -82,7 +82,7 @@ public class ProfileDB {
      *
      * @param profile
      */
-    public static void update(Profile profile) {
+    public static void update(Profile profile) throws PersistenceException {
     }
 
     /**
@@ -92,7 +92,7 @@ public class ProfileDB {
      * @param destProfile perfil que tienes tu cuando inicias el programa
      * @param sourceProfile perfil al que hacemos solicitud de amistad
      */
-    public static void saveFrienshipRequest(Profile destProfile, Profile sourceProfile) {
+    public static void saveFrienshipRequest(Profile destProfile, Profile sourceProfile) throws PersistenceException {
         destProfile.getFriendshipRequests().add(sourceProfile);
     }
 
@@ -103,7 +103,7 @@ public class ProfileDB {
      * @param destProfile perfil que tienes tu cuando inicias el programa
      * @param sourceProfile perfil al que hacemos solicitud de amistad
      */
-    public static void removeFrienshipRequest(Profile destProfile, Profile sourceProfile) {
+    public static void removeFrienshipRequest(Profile destProfile, Profile sourceProfile) throws PersistenceException {
         destProfile.getFriendshipRequests().remove(sourceProfile);
     }
 
@@ -115,7 +115,7 @@ public class ProfileDB {
      * @param profile1
      * @param profile2
      */
-    public static void saveFriendship(Profile profile1, Profile profile2) {
+    public static void saveFriendship(Profile profile1, Profile profile2) throws PersistenceException {
         profile1.getFriends().add(profile2);
         profile2.getFriends().add(profile1);
     }
