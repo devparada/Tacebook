@@ -58,7 +58,8 @@ public class ProfileController {
         if (textMode) {
             profileView = (ProfileView)new TextProfileView(this);
         } else {
-            profileView = (ProfileView)new GUIProfileView();
+            profileView = (ProfileView)new GUIProfileView(this);
+//            profileView = (ProfileView)new GUIProfileView();
         }
     }
 

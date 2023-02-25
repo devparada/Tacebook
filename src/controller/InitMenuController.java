@@ -21,6 +21,9 @@ import persistence.PersistenceException;
  * Parada de la Fuente
  */
 public class InitMenuController {
+
+    public InitMenuController(boolean textMode1) {
+    }
  
     private boolean textMode;
 
@@ -111,7 +114,7 @@ public class InitMenuController {
      */
     public static void main(String[] args) {
          boolean textMode = (args.length == 1 && args[0].equals("text"));
-         InitMenuController initMenuController = new InitMenuController();
+         InitMenuController initMenuController = new InitMenuController(textMode);
          initMenuController.init();
     }
 
