@@ -11,6 +11,8 @@ import java.util.Date;
 import model.Post;
 import model.Profile;
 import persistence.PersistenceException;
+import view.GUIInitMenuView;
+import view.InitMenuView;
 
 /**
  * Esta clase tendrá el método main para hacer la llamada al menú, cuidará de
@@ -21,11 +23,19 @@ import persistence.PersistenceException;
  * Parada de la Fuente
  */
 public class InitMenuController {
-
-    public InitMenuController(boolean textMode1) {
-    }
- 
+    private InitMenuView initMenuView;
     private boolean textMode;
+
+    public InitMenuController(boolean textMode) {
+        this.textMode = textMode;
+        if (textMode) {
+            this.initMenuView = (InitMenuView)new TextInitMenuView(this);
+        } else {
+            this.initMenuView = (InitMenuView)new GUIInitMenuView(this);
+        }
+    }
+
+    
 
     public boolean isTextMode() {
         return textMode;
@@ -34,8 +44,6 @@ public class InitMenuController {
     public void setTextMode(boolean textMode) {
         this.textMode = textMode;
     }
-
-    private TextInitMenuView initMenuView = new TextInitMenuView(this);
 
     /**
      * Este método inicia el programa llamando al metodo que saca el menu por
@@ -113,9 +121,9 @@ public class InitMenuController {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-         boolean textMode = (args.length == 1 && args[0].equals("text"));
-         InitMenuController initMenuController = new InitMenuController(textMode);
-         initMenuController.init();
+        boolean textMode = (args.length == 1 && args[0].equals("text"));
+        InitMenuController initMenuController = new InitMenuController(textMode);
+        initMenuController.init();
     }
 
     private void proccessPersistenceException(PersistenceException e) {

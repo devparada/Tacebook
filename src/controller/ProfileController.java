@@ -59,7 +59,6 @@ public class ProfileController {
             profileView = (ProfileView)new TextProfileView(this);
         } else {
             profileView = (ProfileView)new GUIProfileView(this);
-//            profileView = (ProfileView)new GUIProfileView();
         }
     }
 
