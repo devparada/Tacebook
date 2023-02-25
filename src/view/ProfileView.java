@@ -585,4 +585,17 @@ public class ProfileView {
         }
         return readNumber(scanner);
     }
+    
+    public void showConnectionErrorMessage(){
+        System.out.println("Erro na conexión co almacén de datos!");
+    }
+    
+    public void showReadErrorMessage(){
+        System.out.println("Erro na lectura de datos!");
+    }
+    
+    public void showWriteErrorMessage(){
+        System.out.println("Erro na escritura dos datos!");
+    }
+    
 }
