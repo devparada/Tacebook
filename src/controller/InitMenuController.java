@@ -4,12 +4,13 @@
  */
 package controller;
 
-import view.InitMenuView;
+import view.TextInitMenuView;
 import persistence.TacebookDB;
 import persistence.ProfileDB;
 import java.util.Date;
 import model.Post;
 import model.Profile;
+import persistence.PersistenceException;
 
 /**
  * Esta clase tendrá el método main para hacer la llamada al menú, cuidará de
@@ -20,8 +21,18 @@ import model.Profile;
  * Parada de la Fuente
  */
 public class InitMenuController {
+ 
+    private boolean textMode;
 
-    private InitMenuView initMenuView = new InitMenuView(this);
+    public boolean isTextMode() {
+        return textMode;
+    }
+
+    public void setTextMode(boolean textMode) {
+        this.textMode = textMode;
+    }
+
+    private TextInitMenuView initMenuView = new TextInitMenuView(this);
 
     /**
      * Este método inicia el programa llamando al metodo que saca el menu por
@@ -42,14 +53,18 @@ public class InitMenuController {
      * @param password
      */
     public void login(String name, String password) {
-        ProfileController profileController = new ProfileController();
-        Profile profile = ProfileDB.findByNameAndPassword(name, password, profileController.getPostsShowed());
+        try {
+            ProfileController profileController = new ProfileController(textMode);
+            Profile profile = ProfileDB.findByNameAndPassword(name, password, profileController.getPostsShowed());
 
-        if (profile == null) {
-            initMenuView.showLoginErrorMessage();
-        } else {
-            System.out.println("Benvido unha vez mais a Tacebook!");
-            profileController.openSession(profile);
+            if (profile == null) {
+                initMenuView.showLoginErrorMessage();
+            } else {
+                System.out.println("Benvido unha vez mais a Tacebook!");
+                profileController.openSession(profile);
+            }
+        } catch (PersistenceException e) {
+            proccessPersistenceException(e);
         }
     }
 
@@ -70,18 +85,23 @@ public class InitMenuController {
      * @param status
      */
     public void createProfile(String name, String password, String status) {
-        // Comprobamos que o nome non estea repetido
-        while (ProfileDB.findByName(name, 0) != null) {
-            name = initMenuView.showNewNameMenu();
+        try {
+            // Comprobamos que o nome non estea repetido
+            while (ProfileDB.findByName(name, 0) != null) {
+                name = initMenuView.showNewNameMenu();
+            }
+
+            // Creamos o perfil e gardamos
+            Profile profile = new Profile(name, password, status);
+            ProfileDB.save(profile);
+
+            // Abrimos a sesion do usuario
+            ProfileController profileController = new ProfileController(textMode);
+            profileController.openSession(profile);
+        } catch (PersistenceException e) {
+            proccessPersistenceException(e);
+
         }
-
-        // Creamos o perfil e gardamos
-        Profile profile = new Profile(name, password, status);
-        ProfileDB.save(profile);
-
-        // Abrimos a sesion do usuario
-        ProfileController profileController = new ProfileController();
-        profileController.openSession(profile);
     }
 
     /**
@@ -90,44 +110,33 @@ public class InitMenuController {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+         boolean textMode = (args.length == 1 && args[0].equals("text"));
+         InitMenuController initMenuController = new InitMenuController();
+         initMenuController.init();
+    }
 
-        // ESTOS SON PERFILES DE PRUEBA (BORRAR AL FINALIZAR)
-        // Aquí se crean perfiles de prueba
-        Profile miguel = new Profile("miguel", "", "ben");
-        Profile ainhoa = new Profile("ainhoa", "", "ben");
-        Profile sandra = new Profile("garnet.va", "", "ben");
-        Profile bilinho = new Profile("bilinho", "", "soy brasileiro");
+    private void proccessPersistenceException(PersistenceException e) {
+        //Como tenemos 3 tipos de erroroes, lo mas adecuado es utilizar un switch
+        //para poder controlar cada situacioón, ademas, es necesario el uso de 
+        //switch porque lo que hace la llamada a cada uno de estos 3 metodos es 
+        //atributo "code", que se utiliza como identificador para cada uno de ellos.
+        switch (e.getCode()) {
 
-        // Se añade el perfil al array de perfiles
-        TacebookDB.getProfiles().add(miguel);
-        TacebookDB.getProfiles().add(ainhoa);
-        TacebookDB.getProfiles().add(sandra);
-        TacebookDB.getProfiles().add(bilinho);
+            //identificador del metodo showConnectionErrorMessage
+            case 0:
+                this.initMenuView.showConnectionErrorMessage();
+                break;
 
-        // Se añaden de amigos mutuos cada perfil
-        miguel.getFriends().add(ainhoa);
-        ainhoa.getFriends().add(miguel);
-        sandra.getFriends().add(ainhoa);
-        sandra.getFriends().add(miguel);
-        miguel.getFriends().add(sandra);
-        ainhoa.getFriends().add(sandra);
-        ainhoa.getFriends().add(sandra);
-        bilinho.getFriends().add(sandra);
-        bilinho.getFriends().add(ainhoa);
-        bilinho.getFriends().add(miguel);
-        miguel.getFriends().add(bilinho);
-        ainhoa.getFriends().add(bilinho);
-        sandra.getFriends().add(bilinho);
+            //identificador del metodo showReadErrorMessage
+            case 1:
+                this.initMenuView.showReadErrorMessage();
+                break;
 
-        // Se añaden posts lo que está comentado no está en uso
-        //miguel.getPosts().add(new Post(0, new Date(), "hola", miguel, miguel));
-        //ainhoa.getPosts().add(new Post(0, new Date(), "hola", ainhoa, ainhoa));
-        //sandra.getPosts().add(new Post(0, new Date(), "hola", sandra, sandra));
-        bilinho.getPosts().add(new Post(0, new Date(), "Soy buenísimo", bilinho, bilinho));
-        // FIN DEE LOS PERFILES DE PRUEBA
-        
-        InitMenuController intiMenuController = new InitMenuController();
-        intiMenuController.init();
+            //identificador del metodo showWriteErrorMessage
+            case 2:
+                this.initMenuView.showWriteErrorMessage();
+                break;
+        }
     }
 
 }

@@ -29,8 +29,16 @@ public class TacebookDB {
      *
      * @return Devolve o objecto profile
      */
-    public static ArrayList<Profile> getProfiles() throws PersistenceException{
+    public static ArrayList<Profile> getProfiles() throws PersistenceException {
         return profiles;
+    }
+
+    /**
+     * Este metodo cierra la conexion con la base de datos, aun que de momento
+     * no hace nada.
+     */
+    public static void close() {
+
     }
 
 }

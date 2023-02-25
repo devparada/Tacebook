@@ -14,6 +14,9 @@ import model.Message;
 import model.Post;
 import persistence.PostDB;
 import model.Profile;
+import persistence.PersistenceException;
+import view.GUIProfileView;
+import view.TextProfileView;
 
 /**
  * Esta es la clase controladora que se junta al modelo de vista, está clase
@@ -24,6 +27,8 @@ import model.Profile;
  * Parada de la Fuente
  */
 public class ProfileController {
+
+    private boolean textMode;
 
     /**
      * El perfil que se está visualizando (puede coincidir o no con el perfil
@@ -48,8 +53,13 @@ public class ProfileController {
      * Este es el constructor de la clase, que inicializa el modelo de vista
      * para que todos los métodos tengan usabilidad y conectividad
      */
-    public ProfileController() {
-        profileView = new ProfileView(this);
+    public ProfileController(boolean textMode) {    
+        this.textMode = textMode;
+        if (textMode) {
+            profileView = (ProfileView)new TextProfileView(this);
+        } else {
+            profileView = (ProfileView)new GUIProfileView();
+        }
     }
 
     /**
@@ -104,7 +114,12 @@ public class ProfileController {
      * llama al menu y lo muestra por pantalla.
      */
     public void reloadProfile() {
-        shownProfile = ProfileDB.findByName(shownProfile.getName(), getPostsShowed());
+        try {
+            shownProfile = ProfileDB.findByName(shownProfile.getName(), getPostsShowed());
+        } catch (PersistenceException e) {
+            proccessPersistenceException(e);
+
+        }
         profileView.showProfileMenu(shownProfile);
     }
 
@@ -128,8 +143,13 @@ public class ProfileController {
      * @param newStatus
      */
     public void updateProfileStatus(String newStatus) {
-        sessionProfile.setStatus(newStatus);
-        ProfileDB.update(this.sessionProfile);
+        try {
+            sessionProfile.setStatus(newStatus);
+            ProfileDB.update(this.sessionProfile);
+        } catch (PersistenceException e) {
+            proccessPersistenceException(e);
+
+        }
         reloadProfile();
     }
 
@@ -140,8 +160,14 @@ public class ProfileController {
      * @param destProfile
      */
     public void newPost(String text, Profile destProfile) {
-        Post post = new Post(destProfile.getPosts().size(), new Date(), text, destProfile, destProfile);
-        PostDB.save(post);
+        try {
+            Post post = new Post(destProfile.getPosts().size(), new Date(), text, destProfile, destProfile);
+
+            PostDB.save(post);
+        } catch (PersistenceException e) {
+            proccessPersistenceException(e);
+
+        }
         reloadProfile();
     }
 
@@ -152,10 +178,15 @@ public class ProfileController {
      * @param commentText
      */
     public void newComment(Post post, String commentText) {
-        //Creamos date ya pasando como parametro en creacion del objeto comment,
-        //aun que puede ser que falten cositas aqui
-        Comment comment = new Comment(0, new Date(), commentText, this.sessionProfile, post);
-        CommentDB.save(comment);
+        try {
+//Creamos date ya pasando como parametro en creacion del objeto comment,
+            //aun que puede ser que falten cositas aqui
+            Comment comment = new Comment(0, new Date(), commentText, this.sessionProfile, post);
+            CommentDB.save(comment);
+        } catch (PersistenceException e) {
+            proccessPersistenceException(e);
+
+        }
         reloadProfile();
     }
 
@@ -165,21 +196,27 @@ public class ProfileController {
      * @param post
      */
     public void newLike(Post post) {
-        boolean saveLike = true;
-        if (!sessionProfile.getName().equals(post.getAuthor().getName())) {
-            for (Profile profLike : post.getProfileLikes()) {
-                if (sessionProfile.getName().equals(profLike.getName())) {
-                    saveLike = false;
+        try {
+            boolean saveLike = true;
+            if (!sessionProfile.getName().equals(post.getAuthor().getName())) {
+                for (Profile profLike : post.getProfileLikes()) {
+                    if (sessionProfile.getName().equals(profLike.getName())) {
+                        saveLike = false;
+                    }
                 }
-            }
-            if (saveLike) {
-                PostDB.saveLike(post, sessionProfile);
+                if (saveLike) {
+                    PostDB.saveLike(post, sessionProfile);
+                } else {
+                    profileView.showAlreadyLikedPostMessage();
+                }
             } else {
-                profileView.showAlreadyLikedPostMessage();
+                profileView.showCannotLikeOwnPostMessage();
             }
-        } else {
-            profileView.showCannotLikeOwnPostMessage();
+        } catch (PersistenceException e) {
+            proccessPersistenceException(e);
+
         }
+
         reloadProfile();
     }
 
@@ -190,48 +227,53 @@ public class ProfileController {
      * @param profileName
      */
     public void newFriendshipRequest(String profileName) {
-        Profile destProfile = ProfileDB.findByName(profileName, 0);
-        if (destProfile == null) {
-            this.profileView.showProfileNotFoundMessage();
-        } else {
-            /*
+        try {
+            Profile destProfile = ProfileDB.findByName(profileName, 0);
+            if (destProfile == null) {
+                this.profileView.showProfileNotFoundMessage();
+            } else {
+                /*
             aqui se comprueba si el perfil destino ya nos tiene en la lista
             de amigos. Apuntamos el perfil destino en un bucle forE y miramos 
             toda la lista de amigos, en seguida con un IF hacemos verificación
             para la posible situacion
-             */
-            for (Profile friend : destProfile.getFriends()) {
-                if (friend.getName().equals(this.sessionProfile.getName())) {
-                    this.profileView.showIsAlreadyFriendMessage(profileName);
-                    reloadProfile();
-                    return;
+                 */
+                for (Profile friend : destProfile.getFriends()) {
+                    if (friend.getName().equals(this.sessionProfile.getName())) {
+                        this.profileView.showIsAlreadyFriendMessage(profileName);
+                        reloadProfile();
+                        return;
+                    }
                 }
-            }
-            /*
+                /*
             Este bucle hace una comprobacion para ver si el perfil destino y 
             nuestro perfil ya son amigls, si lo son, llama al metodo 
             showduplicatemiverga, para decir que ya sois amigos
-             */
-            for (Profile friendshipRequest : destProfile.getFriendshipRequests()) {
-                if (friendshipRequest.getName().equals(this.sessionProfile.getName())) {
-                    this.profileView.showDuplicateFrienshipRequestMessage(profileName);
-                    reloadProfile();
-                    return;
+                 */
+                for (Profile friendshipRequest : destProfile.getFriendshipRequests()) {
+                    if (friendshipRequest.getName().equals(this.sessionProfile.getName())) {
+                        this.profileView.showDuplicateFrienshipRequestMessage(profileName);
+                        reloadProfile();
+                        return;
+                    }
                 }
-            }
-            /*
+                /*
             Este bucle hace exactamente lo mismo que el de arriba, pero con 
             solicitudes de amistad, comprueba que YA ENVIASTE una solicitud de 
             amistad.
-             */
-            for (Profile friendshipRequest : this.sessionProfile.getFriendshipRequests()) {
-                if (friendshipRequest.getName().equals(profileName)) {
-                    this.profileView.showExistsFrienshipRequestMessage(profileName);
-                    reloadProfile();
-                    return;
+                 */
+                for (Profile friendshipRequest : this.sessionProfile.getFriendshipRequests()) {
+                    if (friendshipRequest.getName().equals(profileName)) {
+                        this.profileView.showExistsFrienshipRequestMessage(profileName);
+                        reloadProfile();
+                        return;
+                    }
                 }
+                ProfileDB.saveFrienshipRequest(destProfile, this.sessionProfile);
             }
-            ProfileDB.saveFrienshipRequest(destProfile, this.sessionProfile);
+        } catch (PersistenceException e) {
+            proccessPersistenceException(e);
+
         }
         reloadProfile();
     }
@@ -243,8 +285,15 @@ public class ProfileController {
      * @param sourceProfile
      */
     public void acceptFriendshipRequest(Profile sourceProfile) {
-        ProfileDB.removeFrienshipRequest(this.sessionProfile, sourceProfile);
-        ProfileDB.saveFriendship(this.sessionProfile, sourceProfile);
+
+        try {
+            ProfileDB.removeFrienshipRequest(this.sessionProfile, sourceProfile);
+
+            ProfileDB.saveFriendship(this.sessionProfile, sourceProfile);
+        } catch (PersistenceException e) {
+            proccessPersistenceException(e);
+
+        }
         reloadProfile();
     }
 
@@ -254,7 +303,12 @@ public class ProfileController {
      * @param sourceProfile
      */
     public void rejectFriendshipRequest(Profile sourceProfile) {
-        ProfileDB.removeFrienshipRequest(this.sessionProfile, sourceProfile);
+        try {
+            ProfileDB.removeFrienshipRequest(this.sessionProfile, sourceProfile);
+        } catch (PersistenceException e) {
+            proccessPersistenceException(e);
+
+        }
         reloadProfile();
     }
 
@@ -265,9 +319,14 @@ public class ProfileController {
      * @param text
      */
     public void newMessage(Profile destProfile, String text) {
-//        Message message = new Message(0, text, new Date(), false);
-        Message message = new Message(0, text, new Date(), false, this.sessionProfile, destProfile);
-        MessageDB.save(message);
+        try {
+            //Message message = new Message(0, text, new Date(), false);
+            Message message = new Message(0, text, new Date(), false, this.sessionProfile, destProfile);
+            MessageDB.save(message);
+        } catch (PersistenceException e) {
+            proccessPersistenceException(e);
+
+        }
         reloadProfile();
     }
 
@@ -277,7 +336,12 @@ public class ProfileController {
      * @param message
      */
     public void deleteMessage(Message message) {
-        MessageDB.remove(message);
+        try {
+            MessageDB.remove(message);
+        } catch (PersistenceException e) {
+            proccessPersistenceException(e);
+
+        }
         reloadProfile();
     }
 
@@ -288,8 +352,13 @@ public class ProfileController {
      * @param message
      */
     public void markMessageAsRead(Message message) {
-        message.setRead(true);
-        MessageDB.update(message);
+        try {
+            message.setRead(true);
+            MessageDB.update(message);
+        } catch (PersistenceException e) {
+            proccessPersistenceException(e);
+
+        }
         reloadProfile();
     }
 
@@ -301,9 +370,37 @@ public class ProfileController {
      * @param text
      */
     public void replyMessage(Message message, String text) {
-        message.setRead(true);
-        MessageDB.update(message);
-        newMessage(message.getSourceProfile(), text);
+        try {
+            message.setRead(true);
+            MessageDB.update(message);
+            newMessage(message.getSourceProfile(), text);
+        } catch (PersistenceException e) {
+            proccessPersistenceException(e);
+
+        }
+    }
+
+    /**
+     * Este método hace acceso a las clases de persistencia para lanzar
+     * excepciones, como tenemos 3 casos de los cuales consideramos excepciones
+     * de cada tipo, utilizaremos un switch para controlar mejor la llamada a
+     * esos metodos que avisan la excepcion en concreto.
+     */
+    private void proccessPersistenceException(PersistenceException ex) {
+        switch (ex.getCode()) {
+            //connection error vale 0, asi que ocupara el case 0
+            case 0:
+                profileView.showConnectionErrorMessage();
+
+            //cannot_read ocupa el case 1, asi que 1.
+            case 1:
+                profileView.showReadErrorMessage();
+
+            //Y write error equivale a 2
+            case 2:
+                profileView.showWriteErrorMessage();
+        }
+        reloadProfile();
     }
 
 }
