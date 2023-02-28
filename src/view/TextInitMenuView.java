@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
  * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
  * Parada de la Fuente
  */
-public class TextInitMenuView {
+public class TextInitMenuView implements InitMenuView{
 
     /**
      * Mantiene la referencia al objecto controlador (InitMenuController)
