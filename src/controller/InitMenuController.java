@@ -13,6 +13,7 @@ import model.Profile;
 import persistence.PersistenceException;
 import view.GUIInitMenuView;
 import view.InitMenuView;
+import view.InitSesionDialog;
 
 /**
  * Esta clase tendrá el método main para hacer la llamada al menú, cuidará de
@@ -34,8 +35,6 @@ public class InitMenuController {
             this.initMenuView = (InitMenuView)new GUIInitMenuView(this);
         }
     }
-
-    
 
     public boolean isTextMode() {
         return textMode;
@@ -124,6 +123,7 @@ public class InitMenuController {
         boolean textMode = (args.length == 1 && args[0].equals("text"));
         InitMenuController initMenuController = new InitMenuController(textMode);
         initMenuController.init();
+        
     }
 
     private void proccessPersistenceException(PersistenceException e) {
