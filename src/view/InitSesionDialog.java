@@ -8,14 +8,22 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import controller.InitMenuController;
+
 /**
  *
  * @author Bilo Alejandro Martins Gonzalez
  */
 public class InitSesionDialog extends javax.swing.JDialog {
 
+    private InitMenuController initMenuController;
+    private InitMenuView initMenuView;
+
     /**
      * Creates new form InitSesionDialog
+     *
+     * @param parent
+     * @param modal
      */
     public InitSesionDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -130,14 +138,12 @@ public class InitSesionDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        
+        initMenuController.login(txtUsername.getText(), txtPassword.getText());
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        
+
     }//GEN-LAST:event_btnRegisterActionPerformed
-
-
 
     public JButton getBtnExit() {
         return btnExit;
@@ -203,7 +209,28 @@ public class InitSesionDialog extends javax.swing.JDialog {
         this.txtUsername = txtUsername;
     }
 
-    
+    /**
+     * Este es el método main
+     *
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        //boolean textMode = (args.length == 1 && args[0].equals("text"));
+
+        boolean textMode;
+
+        if (args.length == 1 && args[0].equals("text")) {
+            textMode = true;
+            InitMenuController initMenuController = new InitMenuController(textMode);
+            initMenuController.setTextMode(true);
+        } else {
+            textMode = false;
+            InitSesionDialog initSesionDialog = new InitSesionDialog(null, true);
+            initSesionDialog.setVisible(true);
+        }
+
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnLogin;
