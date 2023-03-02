@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author Bilo Alejandro Martins Gonzalez
  */
-public class GUIInitMenuView implements InitMenuView{
+public class GUIInitMenuView implements InitMenuView {
 
     /**
      * Mantiene la referencia al objecto controlador (InitMenuController)
