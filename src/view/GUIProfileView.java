@@ -17,9 +17,8 @@ import model.Profile;
  *
  * @author Bilo Alejandro Martins Gonzalez
  */
-public class GUIProfileView implements ProfileView{
+public class GUIProfileView implements ProfileView {
 
-    
     /**
      * El formato de la fecha
      */
@@ -81,7 +80,7 @@ public class GUIProfileView implements ProfileView{
     private void showProfileInfo(boolean ownProfile, Profile profile) {
         System.out.println("");
         System.out.println("[VERSION GUI]");
-        System.out.println("Hola " + profile.getName() +", Benvenido ao Tacebook!");
+        System.out.println("Hola " + profile.getName() + ", Benvenido ao Tacebook!");
         System.out.println("");
         System.out.println("Estado actual: " + profile.getStatus());
 
@@ -280,7 +279,6 @@ public class GUIProfileView implements ProfileView{
         do {
             System.out.println(text);
             index = readNumber(scanner);
-            scanner.nextLine();
             if (index < 0 || index > maxNumber - 1) {
                 System.out.println("Debes introducir un numero entre 0 e " + (maxNumber - 1));
             }
@@ -572,27 +570,28 @@ public class GUIProfileView implements ProfileView{
     public void showDuplicateFrienshipRequestMessage(String profileName) {
         System.out.println("Xa tes unha peticion de amizade con " + profileName);
     }
-    
-    private int readNumber(Scanner scanner){
+
+    private int readNumber(Scanner scanner) {
         try {
-            int result = scanner.nextInt();
+            int number = scanner.nextInt();
             scanner.nextLine();
-        } catch (NoSuchElementException e){
-            System.out.println("Debes introducir un numero.");
+            return number;
+        } catch (NoSuchElementException e) {
+            System.out.println("Debes introducir un numero");
         }
         return readNumber(scanner);
     }
-    
-    public void showConnectionErrorMessage(){
+
+    public void showConnectionErrorMessage() {
         System.out.println("Erro na conexión co almacén de datos!");
     }
-    
-    public void showReadErrorMessage(){
+
+    public void showReadErrorMessage() {
         System.out.println("Erro na lectura de datos!");
     }
-    
-    public void showWriteErrorMessage(){
+
+    public void showWriteErrorMessage() {
         System.out.println("Erro na escritura dos datos!");
     }
-    
+
 }

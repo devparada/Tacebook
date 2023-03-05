@@ -39,7 +39,7 @@ public class GUIInitMenuView implements InitMenuView {
     public boolean showLoginMenu() {
         String username, password;
         Scanner scanner = new Scanner(System.in);
-        
+
         System.out.println("VERSION GUI");
         System.out.println("[ Bienvenido al Tacebook ]");
         System.out.println("Escolle unha opción:");
@@ -130,12 +130,11 @@ public class GUIInitMenuView implements InitMenuView {
 
     private int readNumber(Scanner scanner) {
         try {
-            int number = scanner.nextInt();;
+            int number = scanner.nextInt();
             scanner.nextLine();
             return number;
         } catch (NoSuchElementException e) {
-            System.out.println("Debe introducir un número.");
-            scanner.nextLine(); // Ler a nova linha pendente
+            System.out.println("Debe introducir un numero");
             return readNumber(scanner); // Chamada recursiva para ler novamente
         }
     }
