@@ -24,15 +24,16 @@ import view.InitSesionDialog;
  * Parada de la Fuente
  */
 public class InitMenuController {
+
     private InitMenuView initMenuView;
     private boolean textMode;
 
     public InitMenuController(boolean textMode) {
         this.textMode = textMode;
         if (textMode) {
-            this.initMenuView = (InitMenuView)new TextInitMenuView(this);
+            this.initMenuView = (InitMenuView) new TextInitMenuView(this);
         } else {
-            this.initMenuView = (InitMenuView)new GUIInitMenuView(this);
+            this.initMenuView = (InitMenuView) new GUIInitMenuView(this);
         }
     }
 
@@ -49,9 +50,9 @@ public class InitMenuController {
      * pantalla
      */
     private void init() {
-        do {
+        while (!initMenuView.showLoginMenu()) {
             initMenuView.showLoginMenu();
-        } while (!initMenuView.showLoginMenu());
+        }
     }
 
     /**
@@ -123,7 +124,7 @@ public class InitMenuController {
         boolean textMode = (args.length == 1 && args[0].equals("text"));
         InitMenuController initMenuController = new InitMenuController(textMode);
         initMenuController.init();
-        
+
     }
 
     private void proccessPersistenceException(PersistenceException e) {
