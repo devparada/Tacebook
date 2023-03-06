@@ -114,7 +114,7 @@ public class Message {
     }
 
     /**
-     * Getter de date
+     * Getter de sourceProfile
      *
      * @return
      */
@@ -132,7 +132,7 @@ public class Message {
     }
 
     /**
-     * Getter de date
+     * Getter de destProfile
      *
      * @return
      */

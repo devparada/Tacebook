@@ -93,7 +93,7 @@ public class Comment {
     }
     
     /**
-     * Getter de text
+     * Getter de sourceProfile
      *
      * @return
      */
