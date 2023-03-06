@@ -17,19 +17,21 @@ public class PostDB {
 
     /**
      * Este método permite guardar una publicación y añadirla arriba del todo en
-     * la lista de publicaciones.
+     * la lista de publicaciones
      *
      * @param post
+     * @throws persistence.PersistenceException
      */
     public static void save(Post post) throws PersistenceException{
         post.getProfile().getPosts().add(0, post);
     }
 
     /**
-     * Este método guarda un like en la lista de likes de un post.
+     * Este método guarda un like en la lista de likes de un post
      *
      * @param post
      * @param profile
+     * @throws persistence.PersistenceException
      */
     public static void saveLike(Post post, Profile profile) throws PersistenceException{
         post.getProfileLikes().add(profile);

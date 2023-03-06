@@ -6,7 +6,6 @@ package view;
 
 import java.util.Scanner;
 import controller.InitMenuController;
-import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 
 /**
@@ -40,6 +39,7 @@ public class TextInitMenuView implements InitMenuView {
      *
      * @return
      */
+    @Override
     public boolean showLoginMenu() {
         String username, password;
         Scanner scanner = new Scanner(System.in);
@@ -84,14 +84,16 @@ public class TextInitMenuView implements InitMenuView {
      * Este método se encargará de avisar cuando los datos introducidos son
      * incorrectos.
      */
+    @Override
     public void showLoginErrorMessage() {
         System.out.println("Usuario o contrasinal incorrecto");
     }
 
     /**
      * Este método saca por pantalla el menú para registrarse, con opciones de
-     * poner usuario, contraseña.
+     * poner usuario y contraseña
      */
+    @Override
     public void showRegisterMenu() {
         Scanner scan = new Scanner(System.in);
 
@@ -123,6 +125,7 @@ public class TextInitMenuView implements InitMenuView {
      *
      * @return Devuelve el nombre introducido por el usuario
      */
+    @Override
     public String showNewNameMenu() {
         Scanner scan = new Scanner(System.in);
 
@@ -132,26 +135,46 @@ public class TextInitMenuView implements InitMenuView {
         return result;
     }
 
+    /**
+     * Este método muestra un error de conexión con el almacen de datos
+     */
+    @Override
+    public void showConnectionErrorMessage() {
+        System.out.println("Erro na conexión co almacén de datos!");
+    }
+
+    /**
+     * Este método muestra un error de lectura de datos
+     */
+    @Override
+    public void showReadErrorMessage() {
+        System.out.println("Erro na lectura de datos!");
+    }
+
+    /**
+     * Este método muestra un error de escritura de los datos
+     */
+    @Override
+    public void showWriteErrorMessage() {
+        System.out.println("Erro na escritura dos datos!");
+    }
+
+    /**
+     * Este método lee un numero y si no es un numero se vuelve a llamar a sí
+     * mismo
+     *
+     * @param scanner el scanner que se utiliza
+     * @return Devuelve un número una vez comprobado que es un número
+     */
     private int readNumber(Scanner scanner) {
         try {
             int number = scanner.nextInt();
             scanner.nextLine();
             return number;
         } catch (NoSuchElementException e) {
-            System.out.println("Debe introducir un numero");
-            return readNumber(scanner); // Chamada recursiva para ler novamente
+            System.out.println("Debes introducir un numero");
         }
+        return readNumber(scanner); // Chamada recursiva para ler novamente    
     }
 
-    public void showConnectionErrorMessage() {
-        System.out.println("Erro na conexión co almacén de datos!");
-    }
-
-    public void showReadErrorMessage() {
-        System.out.println("Erro na lectura de datos!");
-    }
-
-    public void showWriteErrorMessage() {
-        System.out.println("Erro na escritura dos datos!");
-    }
 }

@@ -6,7 +6,11 @@ package view;
 
 /**
  *
- * @author Bilo Alejandro Martins Gonzalez
+ * Esta interfaz es implementada en GUIInitMenuView y TextInitMenuView y obliga
+ * a esas dos clases a implementar estos métodos
+ *
+ * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
+ * Parada de la Fuente
  */
 public interface InitMenuView {
 

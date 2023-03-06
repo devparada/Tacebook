@@ -7,8 +7,8 @@ package model;
 import java.util.Date;
 
 /**
- * Esta clase guardará todos los mensajes y metodos que se relacionen con las
- * mensajes.
+ * Esta clase guardará todos los mensajes y metodos que se relacionen con los
+ * mensajes
  *
  * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
  * Parada de la Fuente
@@ -23,7 +23,7 @@ public class Message {
     private Profile destProfile;
 
     /**
-     * Este es el constructor de la clase Message
+     * Constructor de la clase Message
      *
      * @param id
      * @param text

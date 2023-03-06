@@ -11,12 +11,11 @@ import model.Message;
 import model.Post;
 import model.Profile;
 import controller.ProfileController;
-import java.time.temporal.TemporalAdjusters;
 import java.util.NoSuchElementException;
 
 /**
  * Esta clase es el modelo de vista de nuestro programa, es la parte "visual"
- * frente al cliente, aqui se implementa todo tipo de menu, mensaje y metodos
+ * frente al cliente, aqui se implementa todo tipo de menu, mensaje y métodos
  * para que trabajen en conjunto con los controladores
  *
  * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
@@ -54,6 +53,7 @@ public class TextProfileView implements ProfileView {
      *
      * @return postsShowed
      */
+    @Override
     public int getPostsShowed() {
         return postsShowed;
     }
@@ -74,13 +74,6 @@ public class TextProfileView implements ProfileView {
      * @param ownProfile si está en su perfil o no
      * @param profile el perfil que muesta la información
      *
-     */
-    // AVISO
-    /*
-    Modificaremos tamén os métodos "showProfileInfo" para que mostre a información completa do perfil 
-    (incluíndo publicacións, comentarios, solicitudes de amizade, amizades e mensaxes) e "showProfileMenu" 
-    para que mostre todas as opcións e chame a un método distinto para cada opción que se escolla. Ademais, 
-    engadiranse os seguintes métodos:
      */
     private void showProfileInfo(boolean ownProfile, Profile profile) {
         System.out.println("");
@@ -178,13 +171,7 @@ public class TextProfileView implements ProfileView {
      *
      * @param profile el perfil al que se entrega las opciones
      */
-    // AVISO    
-    /*
-    Modificaremos tamén os métodos "showProfileInfo" para que mostre a información completa do perfil 
-    (incluíndo publicacións, comentarios, solicitudes de amizade, amizades e mensaxes) e "showProfileMenu" 
-    para que mostre todas as opcións e chame a un método distinto para cada opción que se escolla. Ademais, 
-    engadiranse os seguintes métodos:
-     */
+    @Override
     public void showProfileMenu(Profile profile) {
         Scanner scan = new Scanner(System.in);
         boolean ownProfile = this.profileController.getSessionProfile().getName().equals(profile.getName());
@@ -197,7 +184,7 @@ public class TextProfileView implements ProfileView {
         System.out.println("2. Comentar unha publicacion");
         System.out.println("3. Facer me gusta sobre unha publicacion");
 
-        ///
+        // Condición if si el perfil está en su propio perfil o no
         if (ownProfile) {
             System.out.println("4. Ver a biografia dun amigo");
             System.out.println("5. Enviar unha solicitude de amizade");
@@ -267,6 +254,8 @@ public class TextProfileView implements ProfileView {
              */
             case 13:
                 break;
+            default:
+                showProfileMenu(profile);
         }
     }
 
@@ -431,8 +420,14 @@ public class TextProfileView implements ProfileView {
     }
 
     /**
-     * falta
-     * comentar!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     * Este método pide al usuario que seleccione un mensaje y lo muestra
+     * completa, dando las opciones de responderlo, eliminarlo o simplemente
+     * volver a la biografia marcando el mensaje como leido, llamando al
+     * controlador para ejecutar las distintas aciones
+     *
+     * @param ownProfile si está en su perfil o no
+     * @param scanner el scanner que se utiliza
+     * @param profile el perfil que modifica el mensaje
      */
     private void readPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
         if (ownProfile) {
@@ -525,6 +520,7 @@ public class TextProfileView implements ProfileView {
      * Este método muestra un mensaje al usuario sobre que no se encontro un
      * perfil
      */
+    @Override
     public void showProfileNotFoundMessage() {
         System.out.println("O perfil que estas intentando buscar non existe");
     }
@@ -533,6 +529,7 @@ public class TextProfileView implements ProfileView {
      * Este método muestra un mensaje al usuario sobre que no puedes dar like a
      * tu proia publicación
      */
+    @Override
     public void showCannotLikeOwnPostMessage() {
         System.out.println("Non podes dar like a tua propia publicacion");
     }
@@ -541,6 +538,7 @@ public class TextProfileView implements ProfileView {
      * Este método muestra un mensaje al usuario sobre que no es posible dar
      * like a una publicación que ya distes
      */
+    @Override
     public void showAlreadyLikedPostMessage() {
         System.out.println("Non e posible dar like a unha publicacion que xa diste like");
     }
@@ -551,6 +549,7 @@ public class TextProfileView implements ProfileView {
      *
      * @param profileName nombre de la persona
      */
+    @Override
     public void showIsAlreadyFriendMessage(String profileName) {
         System.out.println("Xa eres amigo de " + profileName);
     }
@@ -561,6 +560,7 @@ public class TextProfileView implements ProfileView {
      *
      * @param profileName nombre de la persona
      */
+    @Override
     public void showExistsFrienshipRequestMessage(String profileName) {
         System.out.println("Xa tes unha solicitude de amizade enviada a " + profileName);
     }
@@ -571,10 +571,42 @@ public class TextProfileView implements ProfileView {
      *
      * @param profileName nombre de la persona
      */
+    @Override
     public void showDuplicateFrienshipRequestMessage(String profileName) {
         System.out.println("Xa tes unha peticion de amizade con " + profileName);
     }
 
+    /**
+     * Este método muestra un error de conexión con el almacen de datos
+     */
+    @Override
+    public void showConnectionErrorMessage() {
+        System.out.println("Erro na conexión co almacén de datos!");
+    }
+
+    /**
+     * Este método muestra un error de lectura de datos
+     */
+    @Override
+    public void showReadErrorMessage() {
+        System.out.println("Erro na lectura de datos!");
+    }
+
+    /**
+     * Este método muestra un error de escritura de los datos
+     */
+    @Override
+    public void showWriteErrorMessage() {
+        System.out.println("Erro na escritura dos datos!");
+    }
+
+    /**
+     * Este método lee un numero y si no es un numero se vuelve a llamar a sí
+     * mismo
+     *
+     * @param scanner el scanner que se utiliza
+     * @return Devuelve un número una vez comprobado que es un número
+     */
     private int readNumber(Scanner scanner) {
         try {
             int number = scanner.nextInt();
@@ -583,19 +615,7 @@ public class TextProfileView implements ProfileView {
         } catch (NoSuchElementException e) {
             System.out.println("Debes introducir un numero");
         }
-        return readNumber(scanner);
-    }
-
-    public void showConnectionErrorMessage() {
-        System.out.println("Erro na conexión co almacén de datos!");
-    }
-
-    public void showReadErrorMessage() {
-        System.out.println("Erro na lectura de datos!");
-    }
-
-    public void showWriteErrorMessage() {
-        System.out.println("Erro na escritura dos datos!");
+        return readNumber(scanner); // Chamada recursiva para ler novamente    
     }
 
 }

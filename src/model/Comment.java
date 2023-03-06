@@ -7,8 +7,8 @@ package model;
 import java.util.Date;
 
 /**
- * Esta es la clase Comment, que guardará todos los datos relacionados a
- * comentarios.
+ * Esta es la clase Comment, que guardará todos los datos relacionados a los
+ * comentarios
  *
  * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
  * Parada de la Fuente
@@ -21,6 +21,15 @@ public class Comment {
     private Profile sourceProfile;
     private Post post;
 
+    /**
+     * Constructor de la clase Comment
+     *
+     * @param id
+     * @param date
+     * @param text
+     * @param sourceProfile
+     * @param post
+     */
     public Comment(int id, Date date, String text, Profile sourceProfile, Post post) {
         this.id = id;
         this.date = date;
@@ -28,21 +37,6 @@ public class Comment {
         this.sourceProfile = sourceProfile;
         this.post = post;
     }
-
-    /**
-     * Este es el constructor de la clase Comment
-     *
-     * @param id
-     * @param date
-     * @param text
-     */
-//    public Comment(int id, Date date, String text) {
-//        this.id = id;
-//        this.date = date;
-//        this.text = text;
-//        sourceProfile = new ArrayList<>();
-//        post = new ArrayList<>();
-//    }
 
     /**
      * Getter de id
@@ -97,58 +91,41 @@ public class Comment {
     public void setText(String text) {
         this.text = text;
     }
-
-    public Profile getSourceProfile() {
-        return sourceProfile;
-    }
-
-    public void setSourceProfile(Profile sourceProfile) {
-        this.sourceProfile = sourceProfile;
-    }
-
-    public Post getPost() {
-        return post;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
-    }
-
+    
     /**
-     * Getter de sourceProfile
+     * Getter de text
      *
      * @return
      */
-//    public ArrayList<Profile> getSourceProfile() {
-//        return sourceProfile;
-//    }
-
+    public Profile getSourceProfile() {
+        return sourceProfile;
+    }
+    
     /**
      * Setter de sourceProfile
      *
      * @param sourceProfile
      */
-//    public void setSourceProfile(ArrayList<Profile> sourceProfile) {
-//        this.sourceProfile = sourceProfile;
-//    }
-
+    public void setSourceProfile(Profile sourceProfile) {
+        this.sourceProfile = sourceProfile;
+    }
+    
     /**
      * Getter de post
      *
      * @return
      */
-//    public ArrayList<Post> getPost() {
-//        return post;
-//    }
-
+    public Post getPost() {
+        return post;
+    }
+    
     /**
      * Setter de post
      *
      * @param post
      */
-//    public void setPost(ArrayList<Post> post) {
-//        this.post = post;
-//    }
+    public void setPost(Post post) {
+        this.post = post;
+    }
 
-    
 }

@@ -5,13 +5,12 @@
  */
 package model;
 
-import model.Comment;
 import java.util.ArrayList;
 import java.util.Date;
 
 /**
  * Esta clase guardará todos los atributos y métodos que se relacionan con los
- * posts.
+ * posts
  *
  * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
  * Parada de la Fuente
@@ -27,7 +26,7 @@ public class Post {
     private ArrayList<Comment> comments = new ArrayList<>();
 
     /**
-     * Este es el constructor de la clase Post
+     * Constructor de la clase Post
      *
      * @param id
      * @param date
@@ -135,7 +134,7 @@ public class Post {
     }
 
     /**
-     * Array list profile que recibe el perfil de los autores.
+     * Array list profile que recibe el perfil de los autores
      *
      * @return
      */

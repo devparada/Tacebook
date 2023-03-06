@@ -28,8 +28,8 @@ import view.TextProfileView;
  */
 public class ProfileController {
 
+    
     private boolean textMode;
-
     /**
      * El perfil que se está visualizando (puede coincidir o no con el perfil
      * que ha iniciado sesión)
@@ -52,6 +52,8 @@ public class ProfileController {
     /**
      * Este es el constructor de la clase, que inicializa el modelo de vista
      * para que todos los métodos tengan usabilidad y conectividad
+     * 
+     * @param textMode
      */
     public ProfileController(boolean textMode) {    
         this.textMode = textMode;
@@ -179,8 +181,7 @@ public class ProfileController {
      */
     public void newComment(Post post, String commentText) {
         try {
-//Creamos date ya pasando como parametro en creacion del objeto comment,
-            //aun que puede ser que falten cositas aqui
+            //Creamos date ya pasando como parametro en creacion del objeto comment,
             Comment comment = new Comment(0, new Date(), commentText, this.sessionProfile, post);
             CommentDB.save(comment);
         } catch (PersistenceException e) {

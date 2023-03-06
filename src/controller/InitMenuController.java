@@ -5,15 +5,11 @@
 package controller;
 
 import view.TextInitMenuView;
-import persistence.TacebookDB;
 import persistence.ProfileDB;
-import java.util.Date;
-import model.Post;
 import model.Profile;
 import persistence.PersistenceException;
 import view.GUIInitMenuView;
 import view.InitMenuView;
-import view.InitSesionDialog;
 
 /**
  * Esta clase tendrá el método main para hacer la llamada al menú, cuidará de
@@ -28,6 +24,11 @@ public class InitMenuController {
     private InitMenuView initMenuView;
     private boolean textMode;
 
+    /**
+     * Constructor da clase InitMenuController
+     *
+     * @param textMode
+     */
     public InitMenuController(boolean textMode) {
         this.textMode = textMode;
         if (textMode) {
@@ -35,14 +36,6 @@ public class InitMenuController {
         } else {
             this.initMenuView = (InitMenuView) new GUIInitMenuView(this);
         }
-    }
-
-    public boolean isTextMode() {
-        return textMode;
-    }
-
-    public void setTextMode(boolean textMode) {
-        this.textMode = textMode;
     }
 
     /**
@@ -124,11 +117,10 @@ public class InitMenuController {
         boolean textMode = (args.length == 1 && args[0].equals("text"));
         InitMenuController initMenuController = new InitMenuController(textMode);
         initMenuController.init();
-
     }
 
     private void proccessPersistenceException(PersistenceException e) {
-        //Como tenemos 3 tipos de erroroes, lo mas adecuado es utilizar un switch
+        //Como tenemos 3 tipos de errores, lo mas adecuado es utilizar un switch
         //para poder controlar cada situacioón, ademas, es necesario el uso de 
         //switch porque lo que hace la llamada a cada uno de estos 3 metodos es 
         //atributo "code", que se utiliza como identificador para cada uno de ellos.

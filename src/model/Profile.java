@@ -4,12 +4,13 @@
  */
 package model;
 
-import model.Post;
-import model.Message;
 import java.util.ArrayList;
 
 /**
- *
+ * 
+ * Esta clase guardará todos los atributos y métodos que se relacionan con los
+ * profile
+ * 
  * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
  * Parada de la Fuente
  */
@@ -24,7 +25,7 @@ public class Profile {
     private ArrayList<Profile> friendshipRequests = new ArrayList<>();
 
     /**
-     * Constructor de la clase profile
+     * Constructor de la clase Profile
      *
      * @param name
      * @param password
@@ -37,7 +38,7 @@ public class Profile {
     }
 
     /**
-     * Método getter de name
+     * Getter de name
      *
      * @return
      */
@@ -55,7 +56,7 @@ public class Profile {
     }
 
     /**
-     * getter de password
+     * Getter de password
      *
      * @return
      */
@@ -64,7 +65,7 @@ public class Profile {
     }
 
     /**
-     * setter de pasword
+     * Setter de password
      *
      * @param password
      */
@@ -73,7 +74,7 @@ public class Profile {
     }
 
     /**
-     * getter de status
+     * Getter de status
      *
      * @return
      */
@@ -82,7 +83,7 @@ public class Profile {
     }
 
     /**
-     * setter de status
+     * Setter de status
      *
      * @param status
      */
@@ -91,6 +92,7 @@ public class Profile {
     }
 
     /**
+     * Getter de posts
      *
      * @return
      */
@@ -99,6 +101,7 @@ public class Profile {
     }
 
     /**
+     * Setter de status
      *
      * @param posts
      */
@@ -107,6 +110,7 @@ public class Profile {
     }
 
     /**
+     * Getter de messages
      *
      * @return
      */
@@ -115,6 +119,7 @@ public class Profile {
     }
 
     /**
+     * Setter de messages
      *
      * @param messages
      */
@@ -123,6 +128,7 @@ public class Profile {
     }
 
     /**
+     * Getter de friends
      *
      * @return
      */
@@ -131,6 +137,7 @@ public class Profile {
     }
 
     /**
+     * Setter de friends
      *
      * @param friends
      */
@@ -139,6 +146,7 @@ public class Profile {
     }
 
     /**
+     * Getter de friendshipRequests
      *
      * @return
      */
@@ -147,6 +155,7 @@ public class Profile {
     }
 
     /**
+     * Setter de friendshipRequests
      *
      * @param friendshipRequests
      */

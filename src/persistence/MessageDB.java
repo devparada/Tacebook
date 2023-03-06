@@ -20,6 +20,7 @@ public class MessageDB {
      * primera posición de modo que se vea primero los mensajes más recientes
      *
      * @param message el mensaje que se almacena
+     * @throws persistence.PersistenceException
      */
     public static void save(Message message) throws PersistenceException{
         message.getDestProfile().getMessages().add(0, message);
@@ -29,6 +30,7 @@ public class MessageDB {
      * Este método actualiza los mensajes
      *
      * @param message el mensaje que se actualiza
+     * @throws persistence.PersistenceException
      */
     public static void update(Message message) throws PersistenceException{
         // De momento este método non fai nada
@@ -38,6 +40,7 @@ public class MessageDB {
      * Este método elimina el mensaje del perfil destino
      *
      * @param message el mensaje que se elimina
+     * @throws persistence.PersistenceException
      */
     public static void remove(Message message) throws PersistenceException{
         message.getDestProfile().getMessages().remove(message);
