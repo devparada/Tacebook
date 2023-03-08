@@ -54,7 +54,14 @@ public class TextInitMenuView implements InitMenuView {
             System.out.println("2. Crear un novo perfil");
             System.out.println("3. Saír da aplicación");
 
-            select = readNumber(scanner);
+            try {
+                select = readNumber(scanner);
+            } catch (Exception e) {
+                System.out.println("Debes introducir un numero de 1 a 3");
+                System.out.println("\n");
+                System.out.println("\n");
+                select = readNumber(scanner);
+            }
             if (select < 1 || select > 3) {
                 System.out.println("Debes introducir un numero de 1 a 3");
                 System.out.println("\n");
@@ -65,8 +72,9 @@ public class TextInitMenuView implements InitMenuView {
         switch (select) {
             case 1:
                 System.out.println("Introduce o nome do usuario:");
+                scanner.nextLine();
                 username = scanner.nextLine();
-                System.out.println("Introduce a contrasinal");
+                System.out.println("Introduce a contrasinal:");
                 if (System.console() != null) {
                     password = new String(System.console().readPassword());
                 } else {
@@ -78,7 +86,7 @@ public class TextInitMenuView implements InitMenuView {
                 this.initMenuController.register();
                 break;
             case 3:
-                break;
+                return true;
         }
 
         return false;
@@ -105,12 +113,12 @@ public class TextInitMenuView implements InitMenuView {
         String password;
         String confirmPassword;
 
-        System.out.println("Introduce o nome de usuario que desexa crear");
+        System.out.println("Introduce o nome de usuario que desexa crear:");
         username = scan.nextLine();
         do {
-            System.out.println("Introduce o contrasinal");
+            System.out.println("Introduce o contrasinal:");
             password = scan.nextLine();
-            System.out.println("Confirme Contrasinal");
+            System.out.println("Confirme o contrasinal:");
             confirmPassword = scan.nextLine();
             if (!password.equals(confirmPassword)) {
                 System.out.println("As contrasinais non coinciden");
@@ -171,14 +179,16 @@ public class TextInitMenuView implements InitMenuView {
      * @return Devuelve un número una vez comprobado que es un número
      */
     private int readNumber(Scanner scanner) {
+        int number;
         try {
-            int number = scanner.nextInt();
+            number = scanner.nextInt();
             scanner.nextLine();
-            return number;
         } catch (NoSuchElementException e) {
             System.out.println("Debes introducir un numero");
+            scanner = new Scanner(System.in);
+            return readNumber(scanner); // Llamada recursiva para leer nuevamente
         }
-        return readNumber(scanner); // Llamada recursiva para leer nuevamente
+        return number;
     }
 
 }

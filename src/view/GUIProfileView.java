@@ -154,7 +154,7 @@ public class GUIProfileView implements ProfileView {
         datos.
          */
         if (ownProfile) {
-            System.out.println("Actualiza o teu estado: ");
+            System.out.println("Actualiza o teu estado:");
             String newStatus = scanner.next();
             profileController.updateProfileStatus(newStatus);
         } else {
@@ -302,12 +302,12 @@ public class GUIProfileView implements ProfileView {
      */
     private void commentPost(Scanner scanner, Profile profile) {
         if (profile.getPosts().isEmpty()) {
-            System.out.println("No hay ningun post :(");
+            System.out.println("Non hai ningun post :(");
             showProfileMenu(profile);
         } else {
-            int postCommentNum = selectElement("Indica el post que quieres comentar", Math.min(profile.getPosts().size(), this.postsShowed), scanner);
+            int postCommentNum = selectElement("Indica o numero do post que queres comentar", Math.min(profile.getPosts().size(), this.postsShowed), scanner);
             Post commentedPost = profile.getPosts().get(postCommentNum);
-            System.out.println("Escribe el comentario que deseas añadir");
+            System.out.println("Escribe o comentario que deseas engadir");
             String commentTxt = scanner.nextLine();
             this.profileController.newComment(commentedPost, commentTxt);
         }
@@ -609,14 +609,16 @@ public class GUIProfileView implements ProfileView {
      * @return Devuelve un número una vez comprobado que es un número
      */
     private int readNumber(Scanner scanner) {
+        int number;
         try {
-            int number = scanner.nextInt();
+            number = scanner.nextInt();
             scanner.nextLine();
-            return number;
         } catch (NoSuchElementException e) {
             System.out.println("Debes introducir un numero");
+            scanner = new Scanner(System.in);
+            return readNumber(scanner); // Llamada recursiva para leer nuevamente
         }
-        return readNumber(scanner); // Llamada recursiva para leer nuevamente   
+        return number;
     }
 
 }
