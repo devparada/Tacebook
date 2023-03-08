@@ -45,39 +45,43 @@ public class GUIInitMenuView implements InitMenuView {
         String username, password;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("VERSION GUI");
-        System.out.println("[ Bienvenido al Tacebook ]");
-        System.out.println("Escolle unha opción:");
-        System.out.println("1. Iniciar sesión");
-        System.out.println("2. Crear un novo perfil");
-        System.out.println("3. Saír da aplicación");
+        int select = 0;
 
-        int select = readNumber(scanner);
+        do {
+            System.out.println("VERSION TEXTO");
+            System.out.println("[ Bienvenido al Tacebook ]");
+            System.out.println("Escolle unha opción:");
+            System.out.println("1. Iniciar sesión");
+            System.out.println("2. Crear un novo perfil");
+            System.out.println("3. Saír da aplicación");
+
+            select = readNumber(scanner);
+            if (select < 1 || select > 3) {
+                System.out.println("Debes introducir un numero de 1 a 3");
+                System.out.println("\n");
+                System.out.println("\n");
+            }
+        } while (select < 1 || select > 3);
+
         switch (select) {
-
             case 1:
                 System.out.println("Introduce o nome do usuario:");
                 username = scanner.nextLine();
+                System.out.println("Introduce a contrasinal");
                 if (System.console() != null) {
                     password = new String(System.console().readPassword());
                 } else {
                     password = scanner.nextLine();
                 }
                 this.initMenuController.login(username, password);
-                return true;
-
+                break;
             case 2:
                 this.initMenuController.register();
-                return true;
-
+                break;
             case 3:
-                return true;
+                break;
         }
-        if (select != 1 || select != 2 || select != 3) {
-            System.out.println("Debes introducir un numero de 1 a 3");
-            System.out.println("\n");
-            System.out.println("\n");
-        }
+
         return false;
     }
 
