@@ -15,8 +15,8 @@ import model.Profile;
 
 /**
  *
- * Esta clase hace lo mismo que TextProfile pero mostrando nos menús o texto
- * "Versión GUI"
+ * Esta clase hace lo mismo que TextProfileView pero mostrando en los menús el
+ * texto "Versión GUI"
  *
  * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
  * Parada de la Fuente
@@ -68,8 +68,8 @@ public class GUIProfileView implements ProfileView {
     }
 
     /**
-     * Este método hace con que el usuario vea el perfil de algun usuario o, su
-     * propio perfil, sacando mensajes por pantalla.
+     * Este método muestea la información completa del perfil de un usuario,
+     * tanto si es en su perfil o no
      *
      * @param ownProfile si está en su perfil o no
      * @param profile el perfil que muesta la información
@@ -82,7 +82,7 @@ public class GUIProfileView implements ProfileView {
         System.out.println("");
         System.out.println("Estado actual: " + profile.getStatus());
 
-        System.out.println("[A tua biografia]");
+            System.out.println("[A tua biografia]");
         System.out.println("[" + this.postsShowed + " publicacions recentes]");
         for (int i = 0; i < this.postsShowed && i < profile.getPosts().size(); i++) {
             Post post = profile.getPosts().get(i);
@@ -172,13 +172,6 @@ public class GUIProfileView implements ProfileView {
      *
      * @param profile el perfil al que se entrega las opciones
      */
-    // AVISO    
-    /*
-    Modificaremos tamén os métodos "showProfileInfo" para que mostre a información completa do perfil 
-    (incluíndo publicacións, comentarios, solicitudes de amizade, amizades e mensaxes) e "showProfileMenu" 
-    para que mostre todas as opcións e chame a un método distinto para cada opción que se escolla. Ademais, 
-    engadiranse os seguintes métodos:
-     */
     @Override
     public void showProfileMenu(Profile profile) {
         Scanner scan = new Scanner(System.in);
@@ -264,6 +257,7 @@ public class GUIProfileView implements ProfileView {
                 break;
             default:
                 showProfileMenu(profile);
+                break;
         }
     }
 
@@ -428,10 +422,9 @@ public class GUIProfileView implements ProfileView {
     }
 
     /**
-     * Este método pide al usuario que seleccione un mensaje y la mostra
-     * completa, dando las opciones de responderlo, eliminarlo o simplemente
-     * volver a la biografia marcando la mensaje como leida, llamando al
-     * controlador para ejecutar las distintas aciones
+     * Este método pide al usuario que seleccione un mensaje y muestra el
+     * mensaje completo, dando las opciones de responderlo, eliminarlo o
+     * simplemente volver a la biografia marcando el mensaje como leido
      *
      * @param ownProfile si está en su perfil o no
      * @param scanner el scanner que se utiliza
@@ -623,7 +616,7 @@ public class GUIProfileView implements ProfileView {
         } catch (NoSuchElementException e) {
             System.out.println("Debes introducir un numero");
         }
-        return readNumber(scanner); // Chamada recursiva para ler novamente    
+        return readNumber(scanner); // Llamada recursiva para leer nuevamente   
     }
 
 }

@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /**
  *
- * Esta clase hace lo mismo que TextInitMenuView pero mostrando nos menús o
+ * Esta clase hace lo mismo que TextInitMenuView pero mostrando en los menús el
  * texto "Versión GUI"
  *
  * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
@@ -36,7 +36,7 @@ public class GUIInitMenuView implements InitMenuView {
 
     /**
      * Este método enseña las opciones de login de usuario para que pueda
-     * conectarse, registrar o salir de la aplicación.
+     * conectarse, registrar o salir de la aplicación
      *
      * @return
      */
@@ -83,7 +83,7 @@ public class GUIInitMenuView implements InitMenuView {
 
     /**
      * Este método se encargará de avisar cuando los datos introducidos son
-     * incorrectos.
+     * incorrectos
      */
     @Override
     public void showLoginErrorMessage() {
@@ -92,7 +92,7 @@ public class GUIInitMenuView implements InitMenuView {
 
     /**
      * Este método saca por pantalla el menú para registrarse, con opciones de
-     * poner usuario, contraseña.
+     * poner usuario, contraseña
      */
     @Override
     public void showRegisterMenu() {
@@ -122,7 +122,7 @@ public class GUIInitMenuView implements InitMenuView {
     /**
      * Este método se encarga de mostrar un mensaje cuando se intentan crear una
      * cuonta con un usuario que ya está en uso, avisando y pidiendo los datos
-     * otra vez.
+     * otra vez
      *
      * @return Devuelve el nombre introducido por el usuario
      */
@@ -175,7 +175,7 @@ public class GUIInitMenuView implements InitMenuView {
         } catch (NoSuchElementException e) {
             System.out.println("Debes introducir un numero");
         }
-        return readNumber(scanner); // Chamada recursiva para ler novamente
+        return readNumber(scanner); // Llamada recursiva para leer nuevamente
     }
 
 }

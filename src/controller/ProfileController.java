@@ -39,13 +39,8 @@ public class ProfileController {
      * Mantiene la referencia al objecto vista (ProfileView)
      */
     private ProfileView profileView;
-    //AVISO
-    /*
-    Precisamente neste método "reloadProfile" cambiaremos o código para que en lugar de almacenar o perfil no atributo "sessionProfile" 
-    o garde no atributo "shownProfile", e sexa ese atributo o que se lle pase ao obxecto da vista. No método "openSession" faremos algo 
-    similar, xa que o obxecto perfil que recibamos como parámetro o almacenaremos tanto en "sessionProfile" como en "shownProfile" 
-    (xa que o perfil que se ve por defecto é o propio), e será o atributo "shownProfile" o que lle pasemos como parámetro ao obxecto 
-    da vista.
+    /**
+     * El perfil que tiene la sesión inciada
      */
     private Profile sessionProfile;
 
@@ -113,14 +108,13 @@ public class ProfileController {
 
     /**
      * Este método obtiene un objeto del perfil que está conectado en la sesión,
-     * llama al menu y lo muestra por pantalla.
+     * llama al menu y lo muestra por pantalla
      */
     public void reloadProfile() {
         try {
             shownProfile = ProfileDB.findByName(shownProfile.getName(), getPostsShowed());
         } catch (PersistenceException e) {
             proccessPersistenceException(e);
-
         }
         profileView.showProfileMenu(shownProfile);
     }
@@ -321,7 +315,6 @@ public class ProfileController {
      */
     public void newMessage(Profile destProfile, String text) {
         try {
-            //Message message = new Message(0, text, new Date(), false);
             Message message = new Message(0, text, new Date(), false, this.sessionProfile, destProfile);
             MessageDB.save(message);
         } catch (PersistenceException e) {

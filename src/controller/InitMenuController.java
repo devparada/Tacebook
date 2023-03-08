@@ -51,7 +51,7 @@ public class InitMenuController {
     /**
      * Este método crea un objeto de la clase ProfileController y intentará
      * iniciar sesión con usuário y contraseña y buscará si hay algun perfil
-     * registrado.
+     * registrado
      *
      * @param name
      * @param password
@@ -119,24 +119,30 @@ public class InitMenuController {
         initMenuController.init();
     }
 
+    /**
+     * Este método procesa una excepción de persistencia en función del código
+     * de excepción
+     *
+     * @param e la excepción
+     */
     private void proccessPersistenceException(PersistenceException e) {
-        //Como tenemos 3 tipos de errores, lo mas adecuado es utilizar un switch
-        //para poder controlar cada situacioón, ademas, es necesario el uso de 
-        //switch porque lo que hace la llamada a cada uno de estos 3 metodos es 
-        //atributo "code", que se utiliza como identificador para cada uno de ellos.
+        /* Como tenemos 3 tipos de errores, lo mas adecuado es utilizar un switch
+        para poder controlar cada situación, ademas, es necesario el uso de 
+        switch porque lo que hace la llamada a cada uno de estos 3 metodos es 
+        atributo "code", que se utiliza como identificador para cada uno de ellos */
         switch (e.getCode()) {
 
-            //identificador del metodo showConnectionErrorMessage
+            // Identificador del método showConnectionErrorMessage
             case 0:
                 this.initMenuView.showConnectionErrorMessage();
                 break;
 
-            //identificador del metodo showReadErrorMessage
+            // Identificador del método showReadErrorMessage
             case 1:
                 this.initMenuView.showReadErrorMessage();
                 break;
 
-            //identificador del metodo showWriteErrorMessage
+            // Identificador del método showWriteErrorMessage
             case 2:
                 this.initMenuView.showWriteErrorMessage();
                 break;
