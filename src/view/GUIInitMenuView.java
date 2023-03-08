@@ -48,7 +48,7 @@ public class GUIInitMenuView implements InitMenuView {
         int select = 0;
 
         do {
-            System.out.println("VERSION TEXTO");
+            System.out.println("VERSION GUI");
             System.out.println("[ Bienvenido al Tacebook ]");
             System.out.println("Escolle unha opción:");
             System.out.println("1. Iniciar sesión");
