@@ -28,7 +28,9 @@ import view.TextProfileView;
  */
 public class ProfileController {
 
-    
+    /**
+     * Booleano que es true si está en modo texto y false si está en modo GUI
+     */
     private boolean textMode;
     /**
      * El perfil que se está visualizando (puede coincidir o no con el perfil
@@ -47,15 +49,15 @@ public class ProfileController {
     /**
      * Este es el constructor de la clase, que inicializa el modelo de vista
      * para que todos los métodos tengan usabilidad y conectividad
-     * 
+     *
      * @param textMode
      */
-    public ProfileController(boolean textMode) {    
+    public ProfileController(boolean textMode) {
         this.textMode = textMode;
         if (textMode) {
-            profileView = (ProfileView)new TextProfileView(this);
+            profileView = (ProfileView) new TextProfileView(this);
         } else {
-            profileView = (ProfileView)new GUIProfileView(this);
+            profileView = (ProfileView) new GUIProfileView(this);
         }
     }
 
@@ -157,8 +159,8 @@ public class ProfileController {
      */
     public void newPost(String text, Profile destProfile) {
         try {
-            Post post = new Post(destProfile.getPosts().size(), new Date(), text, destProfile, destProfile);
-
+            //Creamos date ya pasando como parametro en la creacion del objeto post
+            Post post = new Post(0, new Date(), text, destProfile, destProfile);
             PostDB.save(post);
         } catch (PersistenceException e) {
             proccessPersistenceException(e);
@@ -175,7 +177,7 @@ public class ProfileController {
      */
     public void newComment(Post post, String commentText) {
         try {
-            //Creamos date ya pasando como parametro en creacion del objeto comment,
+            //Creamos date ya pasando como parametro en la creacion del objeto comment
             Comment comment = new Comment(0, new Date(), commentText, this.sessionProfile, post);
             CommentDB.save(comment);
         } catch (PersistenceException e) {
@@ -379,18 +381,20 @@ public class ProfileController {
      * excepciones, como tenemos 3 casos de los cuales consideramos excepciones
      * de cada tipo, utilizaremos un switch para controlar mejor la llamada a
      * esos metodos que avisan la excepcion en concreto.
+     *
+     * @param ex
      */
     private void proccessPersistenceException(PersistenceException ex) {
         switch (ex.getCode()) {
-            //connection error vale 0, asi que ocupara el case 0
+            // connection error vale 0, asi que ocupara el case 0
             case 0:
                 profileView.showConnectionErrorMessage();
 
-            //cannot_read ocupa el case 1, asi que 1.
+            // cannot_read ocupa el case 1, asi que 1.
             case 1:
                 profileView.showReadErrorMessage();
 
-            //Y write error equivale a 2
+            // Y write error equivale a 2
             case 2:
                 profileView.showWriteErrorMessage();
         }

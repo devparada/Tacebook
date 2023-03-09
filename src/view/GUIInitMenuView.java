@@ -25,7 +25,7 @@ public class GUIInitMenuView implements InitMenuView {
 
     /**
      *
-     * Constructor de la clase InitMenuView
+     * Este es el constructor de la clase GUIInitMenuView
      *
      * @param initMenuController mantiene la referencia al objecto controlador
      * (InitMenuController)
@@ -36,7 +36,7 @@ public class GUIInitMenuView implements InitMenuView {
 
     /**
      * Este método enseña las opciones de login de usuario para que pueda
-     * conectarse, registrar o salir de la aplicación
+     * conectarse, registrar o salir de la aplicación.
      *
      * @return
      */
@@ -48,7 +48,7 @@ public class GUIInitMenuView implements InitMenuView {
         int select = 0;
 
         do {
-            System.out.println("VERSION TEXTO");
+            System.out.println("VERSION GUI");
             System.out.println("[ Bienvenido al Tacebook ]");
             System.out.println("Escolle unha opción:");
             System.out.println("1. Iniciar sesión");
@@ -73,7 +73,6 @@ public class GUIInitMenuView implements InitMenuView {
         switch (select) {
             case 1:
                 System.out.println("Introduce o nome do usuario:");
-                scanner.nextLine();
                 username = scanner.nextLine();
                 System.out.println("Introduce a contrasinal:");
                 if (System.console() != null) {
@@ -104,7 +103,7 @@ public class GUIInitMenuView implements InitMenuView {
 
     /**
      * Este método saca por pantalla el menú para registrarse, con opciones de
-     * poner usuario, contraseña
+     * poner usuario y contraseña
      */
     @Override
     public void showRegisterMenu() {

@@ -77,36 +77,49 @@ public class TextProfileView implements ProfileView {
      */
     private void showProfileInfo(boolean ownProfile, Profile profile) {
         System.out.println("");
+        System.out.println("[VERSION TEXTO]");
+        if (ownProfile) {
             System.out.println("Hola " + profile.getName() + ", Benvenido ao Tacebook!");
             System.out.println("");
             System.out.println("Estado actual: " + profile.getStatus());
+        } else {
+            System.out.println("Estado actual de " + profile.getName() + ": " + profile.getStatus());
+        }
 
+        if (ownProfile) {
             System.out.println("[A tua biografia]");
+        } else {
+            System.out.println("[Biografia de " + profile.getName() + "]");
+        }
         System.out.println("[" + this.postsShowed + " publicacions recentes]");
+        // Bucle for para los posts
         for (int i = 0; i < this.postsShowed && i < profile.getPosts().size(); i++) {
             Post post = profile.getPosts().get(i);
-            System.out.println("   " + i + "[ .0 " + this.formatter.format(post.getDate()) + "]");
+            System.out.println("   " + i + "[" + this.formatter.format(post.getDate()) + "]");
             if (post.getAuthor().getName().equals(this.profileController.getSessionProfile().getName())) {
+                System.out.println("ti escribiches");
             } else {
                 System.out.println(" " + post.getAuthor().getName() + " escribiu");
             }
             System.out.println("" + post.getProfileLikes().size() + " me gusta");
-            System.out.println("-----" + post.getText());
-
+            System.out.println("----- " + post.getText());
+            // Bucle for mejorado para los comentarios
             for (Comment comment : post.getComments()) {
                 System.out.println("  [" + comment.getText() + " - " + comment.getSourceProfile().getName() + " - " + this.formatter.format(comment.getDate()));
             }
         }
         System.out.println("Amigos engadidos:");
+        // Bucle for para los amigos
         for (int i = 0; i < profile.getFriends().size(); i++) {
-            System.out.println("" + i + ". " + i);
-            System.out.println(" - " + ((Profile) profile.getFriends().get(i)).getStatus());
+            System.out.println("" + i + ". " + profile.getFriends().get(i).getName());
+            System.out.println(" - " + profile.getFriends().get(i).getStatus());
         }
         if (ownProfile) {
 
             if (!profile.getMessages().isEmpty()) {
                 System.out.println("[Mensaxes privados]");
                 int msgNoLeidos = 0;
+                // Bucle for para saber cuantos mensajes tiene el perfil sin leer
                 for (Message message : profile.getMessages()) {
                     if (!message.isRead()) {
                         msgNoLeidos++;
@@ -115,6 +128,7 @@ public class TextProfileView implements ProfileView {
                 if (msgNoLeidos > 0) {
                     System.out.println("Tes " + msgNoLeidos + " mensaxes sin ler");
                 }
+                // Bucle for para los mensajes
                 for (int i = 0; i < profile.getMessages().size(); i++) {
                     Message message = profile.getMessages().get(i);
                     if (!message.isRead()) {
@@ -130,8 +144,9 @@ public class TextProfileView implements ProfileView {
 
             if (!profile.getFriendshipRequests().isEmpty()) {
                 System.out.println("Tes as seguintes peticions de amistade:");
+                // Bucle for para las solicitudes de amistad
                 for (int i = 0; i < profile.getFriendshipRequests().size(); i++) {
-                    System.out.println("" + i + ". " + i);
+                    System.out.println("" + i + ". " + profile.getFriendshipRequests().get(i).getName());
                     System.out.println(" Quere establecer unha amistade contigo");
                 }
             }
@@ -288,7 +303,7 @@ public class TextProfileView implements ProfileView {
      * @param profile el perfil que escribe el post
      */
     private void writeNewPost(Scanner scanner, Profile profile) {
-        System.out.println("Introduce o texto da publicacion");
+        System.out.println("Escribe o texto da publicacion:");
         String text = scanner.nextLine();
         this.profileController.newPost(text, profile);
     }
@@ -304,9 +319,9 @@ public class TextProfileView implements ProfileView {
             System.out.println("Non hai ningun post :(");
             showProfileMenu(profile);
         } else {
-            int postCommentNum = selectElement("Indica o numero do post que queres comentar", Math.min(profile.getPosts().size(), this.postsShowed), scanner);
+            int postCommentNum = selectElement("Introduce o numero do post que queres comentar", Math.min(profile.getPosts().size(), this.postsShowed), scanner);
             Post commentedPost = profile.getPosts().get(postCommentNum);
-            System.out.println("Escribe o comentario que deseas engadir");
+            System.out.println("Escribe o comentario que deseas engadir:");
             String commentTxt = scanner.nextLine();
             this.profileController.newComment(commentedPost, commentTxt);
         }
@@ -337,7 +352,7 @@ public class TextProfileView implements ProfileView {
                 System.out.println("Todavia non tes ningun amigo engadido :(");
                 showProfileMenu(profile);
             } else {
-                int friendNum = selectElement("Introduce(utilizando numeros) a amistade a que queres ver a biografia", profile.getFriends().size(), scanner);
+                int friendNum = selectElement("Introduce o numero do amigo do que queres ver a biografia", profile.getFriends().size(), scanner);
                 this.profileController.setShownProfile(profile.getFriends().get(friendNum));
             }
         } else {
@@ -405,14 +420,13 @@ public class TextProfileView implements ProfileView {
      */
     private void sendPrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
         Profile destProfile = null;
-        int numAmg;//amg de amigo, no de mercedes a45
         if (ownProfile) {
             if (profile.getFriends().isEmpty()) {
                 System.out.println("A tua lista de amigos esta vacia :(");
                 showProfileMenu(profile);
                 return;
             }
-            numAmg = selectElement("Indica (utilizando numeros) o amigo(a) que desear enviar un mensaxe", profile.getFriends().size(), scanner);
+            int numAmg = selectElement("Introduce o numero do amigo que desear enviar un mensaxe", profile.getFriends().size(), scanner);
             destProfile = profile.getFriends().get(numAmg);
         }
         System.out.println("Introduce o texto da mensaxe:");
@@ -436,7 +450,7 @@ public class TextProfileView implements ProfileView {
                 showProfileMenu(profile);
             } else {
                 String msgTxt;
-                int msgNum = selectElement("Selecciona o numero do mensaxe que queres ler", profile.getMessages().size(), scanner);
+                int msgNum = selectElement("Introduce o numero da mensaxe que queres ler", profile.getMessages().size(), scanner);
                 Message msg = profile.getMessages().get(msgNum);
 
                 // Muestra el mensaje seleccionado
@@ -487,13 +501,12 @@ public class TextProfileView implements ProfileView {
      * @param profile el perfil que borra el mensaje
      */
     private void deletePrivateMessage(boolean ownProfile, Scanner scanner, Profile profile) {
-        int msgSelect;
         if (ownProfile) {
             if (profile.getMessages().isEmpty()) {
                 System.out.println("Non tes mensaxes :(");
                 showProfileMenu(profile);
             } else {
-                msgSelect = selectElement("indica o mensaxe que desexas eliminar", profile.getMessages().size(), scanner);
+                int msgSelect = selectElement("Introduce o numero da mensaxe que desexas eliminar", profile.getMessages().size(), scanner);
                 profileController.deleteMessage(profile.getMessages().get(msgSelect));
             }
         } else {

@@ -21,7 +21,13 @@ import view.InitMenuView;
  */
 public class InitMenuController {
 
+    /**
+     * Mantiene la referencia al objecto vista (initMenuView)
+     */
     private InitMenuView initMenuView;
+    /**
+     * Booleano que es true si está en modo texto y false si está en modo GUI
+     */
     private boolean textMode;
 
     /**

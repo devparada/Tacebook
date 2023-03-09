@@ -24,7 +24,7 @@ public class TextInitMenuView implements InitMenuView {
 
     /**
      *
-     * Este es el constructor de la clase InitMenuView
+     * Este es el constructor de la clase TextInitMenuView
      *
      * @param initMenuController mantiene la referencia al objecto controlador
      * (InitMenuController)
@@ -72,7 +72,6 @@ public class TextInitMenuView implements InitMenuView {
         switch (select) {
             case 1:
                 System.out.println("Introduce o nome do usuario:");
-                scanner.nextLine();
                 username = scanner.nextLine();
                 System.out.println("Introduce a contrasinal:");
                 if (System.console() != null) {
