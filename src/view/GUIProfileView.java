@@ -594,7 +594,7 @@ public class GUIProfileView implements ProfileView {
      */
     @Override
     public void showConnectionErrorMessage() {
-        System.out.println("Erro na conexión co almacén de datos!");
+        System.out.println("Erro na conexion co almacen de datos!");
     }
 
     /**

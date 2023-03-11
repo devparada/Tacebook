@@ -50,10 +50,10 @@ public class GUIInitMenuView implements InitMenuView {
         do {
             System.out.println("VERSION GUI");
             System.out.println("[ Bienvenido al Tacebook ]");
-            System.out.println("Escolle unha opción:");
-            System.out.println("1. Iniciar sesión");
+            System.out.println("Escolle unha opcion:");
+            System.out.println("1. Iniciar sesion");
             System.out.println("2. Crear un novo perfil");
-            System.out.println("3. Saír da aplicación");
+            System.out.println("3. Sair da aplicacion");
 
             try {
                 select = readNumber(scanner);
@@ -141,7 +141,7 @@ public class GUIInitMenuView implements InitMenuView {
     public String showNewNameMenu() {
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("O nome introducido xa está en uso");
+        System.out.println("O nome introducido xa esta en uso");
         System.out.println("Introduce outro nome: ");
         String result = scan.next();
         return result;
@@ -152,7 +152,7 @@ public class GUIInitMenuView implements InitMenuView {
      */
     @Override
     public void showConnectionErrorMessage() {
-        System.out.println("Erro na conexión co almacén de datos!");
+        System.out.println("Erro na conexion co almacen de datos!");
     }
 
     /**
