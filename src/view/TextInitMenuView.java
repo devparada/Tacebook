@@ -57,9 +57,6 @@ public class TextInitMenuView implements InitMenuView {
             try {
                 select = readNumber(scanner);
             } catch (Exception e) {
-                System.out.println("Debes introducir un numero de 1 a 3");
-                System.out.println("\n");
-                System.out.println("\n");
                 select = readNumber(scanner);
             }
             if (select < 1 || select > 3) {
