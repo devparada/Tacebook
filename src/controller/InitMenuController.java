@@ -12,6 +12,7 @@ import view.GUIInitMenuView;
 import view.InitMenuView;
 
 /**
+ *
  * Esta clase tendrá el método main para hacer la llamada al menú, cuidará de
  * toda la parte de funcionabilidad, para que todos los botones con numeros y
  * opciones funcionen como deben.

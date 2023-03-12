@@ -19,6 +19,7 @@ import view.GUIProfileView;
 import view.TextProfileView;
 
 /**
+ *
  * Esta es la clase controladora que se junta al modelo de vista, está clase
  * entrega funcionalidad a los métodos reloadProfile, getPostsShowed,
  * openSession, updateProfileStatus.

@@ -9,6 +9,7 @@ import controller.InitMenuController;
 import java.util.NoSuchElementException;
 
 /**
+ *
  * Esta clase se encarga de aportar toda la información del programa, como
  * funciones y numeros que indican opciones para el usuario.
  *

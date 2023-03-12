@@ -14,6 +14,7 @@ import controller.ProfileController;
 import java.util.NoSuchElementException;
 
 /**
+ *
  * Esta clase es el modelo de vista de nuestro programa, es la parte "visual"
  * frente al cliente, aqui se implementa todo tipo de menu, mensaje y métodos
  * para que trabajen en conjunto con los controladores

@@ -7,6 +7,7 @@ package model;
 import java.util.Date;
 
 /**
+ *
  * Esta es la clase Comment, que guardará todos los datos relacionados a los
  * comentarios
  *

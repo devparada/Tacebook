@@ -7,6 +7,7 @@ package model;
 import java.util.Date;
 
 /**
+ *
  * Esta clase guardará todos los mensajes y metodos que se relacionen con los
  * mensajes
  *
