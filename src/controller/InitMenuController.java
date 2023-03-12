@@ -132,10 +132,12 @@ public class InitMenuController {
      * @param e la excepción
      */
     private void proccessPersistenceException(PersistenceException e) {
-        /* Como tenemos 3 tipos de errores, lo mas adecuado es utilizar un switch
+        /*
+        Como tenemos 3 tipos de errores, lo mas adecuado es utilizar un switch
         para poder controlar cada situación, ademas, es necesario el uso de 
         switch porque lo que hace la llamada a cada uno de estos 3 metodos es 
-        atributo "code", que se utiliza como identificador para cada uno de ellos */
+        atributo "code", que se utiliza como identificador para cada uno de ellos
+         */
         switch (e.getCode()) {
 
             // Identificador del método showConnectionErrorMessage

@@ -152,7 +152,7 @@ public class ProfileController {
     }
 
     /**
-     * Método que crea un nuevo post
+     * Este método crea un nuevo post
      *
      * @param text
      * @param destProfile
@@ -170,7 +170,7 @@ public class ProfileController {
     }
 
     /**
-     * Método que agrega un nuevo comentario en un post
+     * Este método agrega un nuevo comentario en un post
      *
      * @param post
      * @param commentText
@@ -188,7 +188,7 @@ public class ProfileController {
     }
 
     /**
-     * Método que fai un like
+     * Este método añade un like a un post
      *
      * @param post
      */
@@ -218,8 +218,7 @@ public class ProfileController {
     }
 
     /**
-     * Método que crea una nueva solicitud de amistad. MÉTODO INCOMPLETO, FALTA
-     * COMPROBACIONES PREVIAS
+     * Este método crea una nueva solicitud de amistad
      *
      * @param profileName
      */
@@ -230,7 +229,7 @@ public class ProfileController {
                 this.profileView.showProfileNotFoundMessage();
             } else {
                 /*
-            aqui se comprueba si el perfil destino ya nos tiene en la lista
+            Aqui se comprueba si el perfil destino ya nos tiene en la lista
             de amigos. Apuntamos el perfil destino en un bucle forE y miramos 
             toda la lista de amigos, en seguida con un IF hacemos verificación
             para la posible situacion
@@ -276,7 +275,7 @@ public class ProfileController {
     }
 
     /**
-     * Método que elimina la solicitud de amistad, y guarda la amistad entre los
+     * Este método elimina la solicitud de amistad, y guarda la amistad entre los
      * dos usuarios
      *
      * @param sourceProfile
@@ -295,7 +294,7 @@ public class ProfileController {
     }
 
     /**
-     * Método que simplemente elimina la solicitud
+     * Este método simplemente elimina la solicitud
      *
      * @param sourceProfile
      */
@@ -382,7 +381,7 @@ public class ProfileController {
      * de cada tipo, utilizaremos un switch para controlar mejor la llamada a
      * esos metodos que avisan la excepcion en concreto.
      *
-     * @param ex
+     * @param ex la excepción
      */
     private void proccessPersistenceException(PersistenceException ex) {
         switch (ex.getCode()) {
