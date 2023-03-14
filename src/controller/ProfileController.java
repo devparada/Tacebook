@@ -245,7 +245,7 @@ public class ProfileController {
                 /*
             Este bucle hace una comprobacion para ver si el perfil destino y 
             nuestro perfil ya son amigls, si lo son, llama al metodo 
-            showduplicatemiverga, para decir que ya sois amigos
+            showduplicate, para decir que ya sois amigos
                  */
                 for (Profile friendshipRequest : destProfile.getFriendshipRequests()) {
                     if (friendshipRequest.getName().equals(this.sessionProfile.getName())) {
