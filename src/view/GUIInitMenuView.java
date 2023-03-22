@@ -55,11 +55,8 @@ public class GUIInitMenuView implements InitMenuView {
             System.out.println("2. Crear un novo perfil");
             System.out.println("3. Sair da aplicacion");
 
-            try {
-                select = readNumber(scanner);
-            } catch (Exception e) {
-                select = readNumber(scanner);
-            }
+            select = readNumber(scanner);
+
             if (select < 1 || select > 3) {
                 System.out.println("Debes introducir un numero de 1 a 3");
                 System.out.println("\n");

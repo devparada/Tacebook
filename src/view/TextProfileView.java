@@ -88,32 +88,36 @@ public class TextProfileView implements ProfileView {
         }
 
         if (ownProfile) {
-            System.out.println("[A tua biografia]");
+            System.out.println("[A tua biografia] " + this.postsShowed + " ultimas publicacions");
         } else {
-            System.out.println("[Biografia de " + profile.getName() + "]");
+            System.out.println("[Biografia de " + profile.getName() + "] " + this.postsShowed + " ultimas publicacions");
         }
-        System.out.println("[" + this.postsShowed + " publicacions recentes]");
         // Bucle for para los posts
         for (int i = 0; i < this.postsShowed && i < profile.getPosts().size(); i++) {
             Post post = profile.getPosts().get(i);
-            System.out.println("   " + i + "[" + this.formatter.format(post.getDate()) + "]");
+            System.out.println("" + i + "." + post.getId()
+                    + " [" + this.formatter.format(post.getDate()) + "]"
+                    + " (" + post.getProfileLikes().size() + " me gusta) ");
+            System.out.println("----- " + post.getText());
             if (post.getAuthor().getName().equals(this.profileController.getSessionProfile().getName())) {
                 System.out.println("ti escribiches");
             } else {
                 System.out.println(" " + post.getAuthor().getName() + " escribiu");
             }
-            System.out.println("" + post.getProfileLikes().size() + " me gusta");
-            System.out.println("----- " + post.getText());
             // Bucle for mejorado para los comentarios
             for (Comment comment : post.getComments()) {
-                System.out.println("  [" + comment.getText() + " - " + comment.getSourceProfile().getName() + " - " + this.formatter.format(comment.getDate()));
+                System.out.println("  [" + comment.getText()
+                        + " - " + comment.getSourceProfile().getName()
+                        + " - "
+                        + this.formatter.format(comment.getDate())
+                        + "]");
             }
         }
         System.out.println("Amigos engadidos:");
         // Bucle for para los amigos
         for (int i = 0; i < profile.getFriends().size(); i++) {
             System.out.println("" + i + ". " + profile.getFriends().get(i).getName());
-            System.out.println(" - " + profile.getFriends().get(i).getStatus());
+            System.out.println("O seu estado e " + profile.getFriends().get(i).getStatus());
         }
         if (ownProfile) {
 
@@ -218,8 +222,7 @@ public class TextProfileView implements ProfileView {
             System.out.println("11. Ver publicacions anteriores");
             System.out.println("13. Pechar a sesion");
         }
-        select = scan.nextInt();
-        scan.nextLine();
+        select = readNumber(scan);
 
         switch (select) {
             case 1:
@@ -323,6 +326,7 @@ public class TextProfileView implements ProfileView {
             int postCommentNum = selectElement("Introduce o numero do post que queres comentar", Math.min(profile.getPosts().size(), this.postsShowed), scanner);
             Post commentedPost = profile.getPosts().get(postCommentNum);
             System.out.println("Escribe o comentario que deseas engadir:");
+            scanner.nextLine();
             String commentTxt = scanner.nextLine();
             this.profileController.newComment(commentedPost, commentTxt);
         }
