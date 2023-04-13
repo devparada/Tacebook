@@ -50,8 +50,10 @@ public class InitMenuController {
      * pantalla
      */
     private void init() {
-        while (!initMenuView.showLoginMenu()) {
-            initMenuView.showLoginMenu();
+        boolean exit = false;
+        
+        while (!exit) {
+            exit = initMenuView.showLoginMenu();
         }
     }
 
