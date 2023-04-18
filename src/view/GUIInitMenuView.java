@@ -5,18 +5,10 @@
 package view;
 
 import controller.InitMenuController;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.LayoutManager;
-import java.awt.event.WindowListener;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -65,7 +57,7 @@ public class GUIInitMenuView implements InitMenuView {
         switch (seleccion) {
             //Iniciar sesion
             case 0:
-                String name = txtUsuario.getName();
+                String name = txtUsuario.getText();
                 String password = new String(txtContrasena.getPassword());
                 initMenuController.login(name, password);
                 break;
@@ -97,27 +89,39 @@ public class GUIInitMenuView implements InitMenuView {
      */
     @Override
     public void showRegisterMenu() {
-        Scanner scan = new Scanner(System.in);
 
-        String username;
-        String password;
-        String confirmPassword;
-
-        System.out.println("Introduce o nome de usuario que desexa crear:");
-        username = scan.nextLine();
-        do {
-            System.out.println("Introduce o contrasinal:");
-            password = scan.nextLine();
-            System.out.println("Confirme o contrasinal:");
-            confirmPassword = scan.nextLine();
-            if (!password.equals(confirmPassword)) {
-                System.out.println("As contrasinais non coinciden");
-            }
-        } while (!password.equals(confirmPassword));
-        System.out.println("Estado:");
-        String status = scan.nextLine();
-
-        initMenuController.createProfile(username, password, status);
+        JLabel lblUsuario = new JLabel("Usuario");
+        JTextField txtUsuario = new JTextField();
+        JLabel lblContrasena = new JLabel("Contraseña");
+        JPasswordField txtContrasena = new JPasswordField();
+        JLabel lblConfCon = new JLabel("ConfCont");
+        JTextField txtConfCon = new JTextField();
+        JLabel lblEstado = new JLabel("Estado");
+        JPasswordField txtEstado = new JPasswordField();
+        String[] options = {"Iniciar Sesión", "Rexistrarse", "Saír"};
+        Object[] labelsOptions = {lblUsuario, txtUsuario, lblContrasena, txtContrasena, lblConfCon, txtConfCon, lblEstado, txtEstado};
+        int seleccion = JOptionPane.showOptionDialog(null, labelsOptions, "Selector de opciones", 0, 4, null, options, options[0]);
+//        Scanner scan = new Scanner(System.in);
+//
+//        String username;
+//        String password;
+//        String confirmPassword;
+//
+//        System.out.println("Introduce o nome de usuario que desexa crear:");
+//        username = scan.nextLine();
+//        do {
+//            System.out.println("Introduce o contrasinal:");
+//            password = scan.nextLine();
+//            System.out.println("Confirme o contrasinal:");
+//            confirmPassword = scan.nextLine();
+//            if (!password.equals(confirmPassword)) {
+//                System.out.println("As contrasinais non coinciden");
+//            }
+//        } while (!password.equals(confirmPassword));
+//        System.out.println("Estado:");
+//        String status = scan.nextLine();
+//
+//        initMenuController.createProfile(username, password, status);
     }
 
     /**
