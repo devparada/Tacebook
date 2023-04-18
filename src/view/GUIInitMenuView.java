@@ -5,8 +5,20 @@
 package view;
 
 import controller.InitMenuController;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.LayoutManager;
+import java.awt.event.WindowListener;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -42,47 +54,31 @@ public class GUIInitMenuView implements InitMenuView {
      */
     @Override
     public boolean showLoginMenu() {
-        String username, password;
-        Scanner scanner = new Scanner(System.in);
+        JLabel lblUsuario = new JLabel("Usuario");
+        JTextField txtUsuario = new JTextField();
+        JLabel lblContrasena = new JLabel("Contraseña");
+        JPasswordField txtContrasena = new JPasswordField();
+        String[] options = {"Iniciar Sesión", "Rexistrarse", "Saír"};
+        Object[] labelsOptions = {lblUsuario, txtUsuario, lblContrasena, txtContrasena};
+        int seleccion = JOptionPane.showOptionDialog(null, labelsOptions, "Selector de opciones", 0, 2, null, options, options[0]);
 
-        int select = 0;
+        switch (seleccion) {
+            //Iniciar sesion
+            case 0:
+                String name = txtUsuario.getName();
+                String password = new String(txtContrasena.getPassword());
+                initMenuController.login(name, password);
+                break;
 
-        do {
-            System.out.println("VERSION GUI");
-            System.out.println("[ Bienvenido al Tacebook ]");
-            System.out.println("Escolle unha opcion:");
-            System.out.println("1. Iniciar sesion");
-            System.out.println("2. Crear un novo perfil");
-            System.out.println("3. Sair da aplicacion");
-
-            select = readNumber(scanner);
-
-            if (select < 1 || select > 3) {
-                System.out.println("Debes introducir un numero de 1 a 3");
-                System.out.println("\n");
-                System.out.println("\n");
-            }
-        } while (select < 1 || select > 3);
-
-        switch (select) {
+            //Rexistrarse    
             case 1:
-                System.out.println("Introduce o nome do usuario:");
-                username = scanner.nextLine();
-                System.out.println("Introduce a contrasinal:");
-                if (System.console() != null) {
-                    password = new String(System.console().readPassword());
-                } else {
-                    password = scanner.nextLine();
-                }
-                this.initMenuController.login(username, password);
+                initMenuController.register();
                 break;
+
+            //Sair
             case 2:
-                this.initMenuController.register();
-                break;
-            case 3:
                 return true;
         }
-
         return false;
     }
 
