@@ -41,28 +41,20 @@ public class TextInitMenuView implements InitMenuView {
      * @return
      */
     @Override
-    public boolean showLoginMenu() {
+    public void showLoginMenu() {
         String username, password;
         Scanner scanner = new Scanner(System.in);
 
         int select = 0;
 
-        do {
-            System.out.println("VERSION TEXTO");
-            System.out.println("[ Bienvenido al Tacebook ]");
-            System.out.println("Escolle unha opcion:");
-            System.out.println("1. Iniciar sesion");
-            System.out.println("2. Crear un novo perfil");
-            System.out.println("3. Sair da aplicacion");
+        System.out.println("VERSION TEXTO");
+        System.out.println("[ Bienvenido al Tacebook ]");
+        System.out.println("Escolle unha opcion:");
+        System.out.println("1. Iniciar sesion");
+        System.out.println("2. Crear un novo perfil");
+        System.out.println("3. Sair da aplicacion");
 
-            select = readNumber(scanner);
-
-            if (select < 1 || select > 3) {
-                System.out.println("Debes introducir un numero de 1 a 3");
-                System.out.println("\n");
-                System.out.println("\n");
-            }
-        } while (select < 1 || select > 3);
+        select = readNumber(scanner);
 
         switch (select) {
             case 1:
@@ -80,10 +72,13 @@ public class TextInitMenuView implements InitMenuView {
                 this.initMenuController.register();
                 break;
             case 3:
-                return true;
+                return;
+
+            default:
+                System.out.println("Debes introducir un n\u00famero entre 1 e 3");
+                this.showLoginMenu();
         }
 
-        return false;
     }
 
     /**

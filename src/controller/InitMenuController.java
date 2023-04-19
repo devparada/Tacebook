@@ -50,11 +50,8 @@ public class InitMenuController {
      * pantalla
      */
     private void init() {
-        boolean exit = false;
-        
-        while (!exit) {
-            exit = initMenuView.showLoginMenu();
-        }
+      this.initMenuView.showLoginMenu();
+
     }
 
     /**
@@ -67,18 +64,18 @@ public class InitMenuController {
      */
     public void login(String name, String password) {
         try {
-            ProfileController profileController = new ProfileController(textMode);
+            ProfileController profileController = new ProfileController(this.textMode);
             Profile profile = ProfileDB.findByNameAndPassword(name, password, profileController.getPostsShowed());
-
             if (profile == null) {
-                initMenuView.showLoginErrorMessage();
+                this.initMenuView.showLoginErrorMessage();
             } else {
-                System.out.println("Benvido unha vez mais a Tacebook!");
                 profileController.openSession(profile);
             }
-        } catch (PersistenceException e) {
-            proccessPersistenceException(e);
         }
+        catch (PersistenceException ex) {
+            this.proccessPersistenceException(ex);
+        }
+        this.initMenuView.showLoginMenu();
     }
 
     /**
@@ -99,22 +96,43 @@ public class InitMenuController {
      */
     public void createProfile(String name, String password, String status) {
         try {
-            // Comprobamos que o nome non estea repetido
-            while (ProfileDB.findByName(name, 0) != null) {
-                name = initMenuView.showNewNameMenu();
-            }
-
-            // Creamos o perfil e gardamos
-            Profile profile = new Profile(name, password, status);
-            ProfileDB.save(profile);
-
-            // Abrimos a sesion do usuario
-            ProfileController profileController = new ProfileController(textMode);
-            profileController.openSession(profile);
-        } catch (PersistenceException e) {
-            proccessPersistenceException(e);
-
+            Profile exactProfile;
+            do {
+                if ((exactProfile = ProfileDB.findByName(name, 0)) == null) {
+                    continue;
+                }
+                name = this.initMenuView.showNewNameMenu();
+            } while (exactProfile != null);
+            Profile newProfile = new Profile(name, password, status);
+            ProfileDB.save(newProfile);
+            new ProfileController(this.textMode).openSession(newProfile);
+        } catch (PersistenceException ex) {
+            this.proccessPersistenceException(ex);
         }
+        this.initMenuView.showLoginMenu();
+
+//        try {
+//            Profile exactProfile;
+//            do {
+//                if (exactProfile) {
+//                    
+//                }
+//            // Comprobamos que o nome non estea repetido
+//            while (ProfileDB.findByName(name, 0) != null) {
+//                name = initMenuView.showNewNameMenu();
+//            }
+//
+//            // Creamos o perfil e gardamos
+//            Profile profile = new Profile(name, password, status);
+//            ProfileDB.save(profile);
+//
+//            // Abrimos a sesion do usuario
+//            ProfileController profileController = new ProfileController(textMode);
+//            profileController.openSession(profile);
+//        } catch (PersistenceException e) {
+//            proccessPersistenceException(e);
+//
+//        }
     }
 
     /**

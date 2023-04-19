@@ -14,7 +14,7 @@ package view;
  */
 public interface InitMenuView {
 
-    public boolean showLoginMenu();
+    public void showLoginMenu();
 
     public void showLoginErrorMessage();
 

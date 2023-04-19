@@ -5,12 +5,12 @@
 package view;
 
 import controller.InitMenuController;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.text.PasswordView;
 
 /**
  *
@@ -45,7 +45,7 @@ public class GUIInitMenuView implements InitMenuView {
      * @return
      */
     @Override
-    public boolean showLoginMenu() {
+    public void showLoginMenu() {
         JLabel lblUsuario = new JLabel("Usuario");
         JTextField txtUsuario = new JTextField();
         JLabel lblContrasena = new JLabel("Contraseña");
@@ -59,7 +59,10 @@ public class GUIInitMenuView implements InitMenuView {
             case 0:
                 String name = txtUsuario.getText();
                 String password = new String(txtContrasena.getPassword());
-                initMenuController.login(name, password);
+               this. initMenuController.login(txtUsuario.toString(), txtContrasena.toString());
+//                String name = txtUsuario.getText();
+//                String password = new String(txtContrasena.getPassword());
+//                initMenuController.login(txtUsuario.getText(), new String(txtContrasena.getPassword()));
                 break;
 
             //Rexistrarse    
@@ -69,9 +72,7 @@ public class GUIInitMenuView implements InitMenuView {
 
             //Sair
             case 2:
-                return true;
         }
-        return false;
     }
 
     /**
@@ -80,7 +81,7 @@ public class GUIInitMenuView implements InitMenuView {
      */
     @Override
     public void showLoginErrorMessage() {
-        System.out.println("Usuario o contrasinal incorrecto");
+        JOptionPane.showMessageDialog(null, "Usuario o contrasinal incorrecto");
     }
 
     /**
@@ -90,38 +91,22 @@ public class GUIInitMenuView implements InitMenuView {
     @Override
     public void showRegisterMenu() {
 
-        JLabel lblUsuario = new JLabel("Usuario");
+        JLabel lblUsuario = new JLabel("Nome de usuario");
         JTextField txtUsuario = new JTextField();
-        JLabel lblContrasena = new JLabel("Contraseña");
+        JLabel lblContrasena = new JLabel("Contrasinal");
         JPasswordField txtContrasena = new JPasswordField();
-        JLabel lblConfCon = new JLabel("ConfCont");
-        JTextField txtConfCon = new JTextField();
+        JLabel lblConfCon = new JLabel("Confirmar contrasinal");
+        JPasswordField txtContrasenConfirmar = new JPasswordField();
+
         JLabel lblEstado = new JLabel("Estado");
-        JPasswordField txtEstado = new JPasswordField();
-        String[] options = {"Iniciar Sesión", "Rexistrarse", "Saír"};
-        Object[] labelsOptions = {lblUsuario, txtUsuario, lblContrasena, txtContrasena, lblConfCon, txtConfCon, lblEstado, txtEstado};
-        int seleccion = JOptionPane.showOptionDialog(null, labelsOptions, "Selector de opciones", 0, 4, null, options, options[0]);
-//        Scanner scan = new Scanner(System.in);
-//
-//        String username;
-//        String password;
-//        String confirmPassword;
-//
-//        System.out.println("Introduce o nome de usuario que desexa crear:");
-//        username = scan.nextLine();
-//        do {
-//            System.out.println("Introduce o contrasinal:");
-//            password = scan.nextLine();
-//            System.out.println("Confirme o contrasinal:");
-//            confirmPassword = scan.nextLine();
-//            if (!password.equals(confirmPassword)) {
-//                System.out.println("As contrasinais non coinciden");
-//            }
-//        } while (!password.equals(confirmPassword));
-//        System.out.println("Estado:");
-//        String status = scan.nextLine();
-//
-//        initMenuController.createProfile(username, password, status);
+        JTextField txtEstado = new JTextField();
+        String[] options = {"Aceptar", "Cancelar"};
+        Object[] labelsOptions = {lblUsuario, txtUsuario, lblContrasena, txtContrasena, lblConfCon, txtContrasenConfirmar, lblEstado, txtEstado};
+        int seleccionRegister = JOptionPane.showOptionDialog(null, labelsOptions, "Rexistrarse", 0, 1, null, options, options[0]);
+        if (!txtContrasena.equals(txtContrasenConfirmar)) {
+            JOptionPane jOptionPane = new JOptionPane("As contrasinais non coinciden");
+        }
+        initMenuController.createProfile(txtUsuario.toString(), txtContrasena.toString(), txtEstado.toString());
     }
 
     /**
@@ -146,7 +131,8 @@ public class GUIInitMenuView implements InitMenuView {
      */
     @Override
     public void showConnectionErrorMessage() {
-        System.out.println("Erro na conexion co almacen de datos!");
+//        System.out.println("Erro na conexion co almacen de datos!");
+        JOptionPane.showMessageDialog(null, "Erro na conexion co almacen de datos!");
     }
 
     /**
@@ -154,7 +140,9 @@ public class GUIInitMenuView implements InitMenuView {
      */
     @Override
     public void showReadErrorMessage() {
-        System.out.println("Erro na lectura de datos!");
+//        System.out.println("Erro na lectura de datos!");
+        JOptionPane.showMessageDialog(null, "Erro na lectura de datos!");
+
     }
 
     /**
@@ -162,27 +150,8 @@ public class GUIInitMenuView implements InitMenuView {
      */
     @Override
     public void showWriteErrorMessage() {
-        System.out.println("Erro na escritura dos datos!");
-    }
+//        System.out.println("Erro na escritura dos datos!");
+        JOptionPane.showMessageDialog(null, "Erro na escritura dos datos!");
 
-    /**
-     * Este método lee un numero y si no es un numero se vuelve a llamar a sí
-     * mismo
-     *
-     * @param scanner el scanner que se utiliza
-     * @return Devuelve un número una vez comprobado que es un número
-     */
-    private int readNumber(Scanner scanner) {
-        int number;
-        try {
-            number = scanner.nextInt();
-            scanner.nextLine();
-        } catch (NoSuchElementException e) {
-            System.out.println("Debes introducir un numero");
-            scanner = new Scanner(System.in);
-            return readNumber(scanner); // Llamada recursiva para leer nuevamente
-        }
-        return number;
     }
-
 }
