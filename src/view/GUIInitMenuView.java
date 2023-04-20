@@ -5,12 +5,14 @@
 package view;
 
 import controller.InitMenuController;
+import java.awt.Panel;
 import java.util.Scanner;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.text.PasswordView;
+import persistence.ProfileDB;
 
 /**
  *
@@ -42,7 +44,6 @@ public class GUIInitMenuView implements InitMenuView {
      * Este método enseña las opciones de login de usuario para que pueda
      * conectarse, registrar o salir de la aplicación.
      *
-     * @return
      */
     @Override
     public void showLoginMenu() {
@@ -53,16 +54,13 @@ public class GUIInitMenuView implements InitMenuView {
         String[] options = {"Iniciar Sesión", "Rexistrarse", "Saír"};
         Object[] labelsOptions = {lblUsuario, txtUsuario, lblContrasena, txtContrasena};
         int seleccion = JOptionPane.showOptionDialog(null, labelsOptions, "Selector de opciones", 0, 2, null, options, options[0]);
-
         switch (seleccion) {
             //Iniciar sesion
             case 0:
                 String name = txtUsuario.getText();
                 String password = new String(txtContrasena.getPassword());
-               this. initMenuController.login(txtUsuario.toString(), txtContrasena.toString());
-//                String name = txtUsuario.getText();
-//                String password = new String(txtContrasena.getPassword());
-//                initMenuController.login(txtUsuario.getText(), new String(txtContrasena.getPassword()));
+                initMenuController.login(name, password);
+                this.initMenuController.login(txtUsuario.getText(), new String(txtContrasena.getPassword()));
                 break;
 
             //Rexistrarse    
@@ -70,8 +68,6 @@ public class GUIInitMenuView implements InitMenuView {
                 initMenuController.register();
                 break;
 
-            //Sair
-            case 2:
         }
     }
 
@@ -90,23 +86,32 @@ public class GUIInitMenuView implements InitMenuView {
      */
     @Override
     public void showRegisterMenu() {
-
+//Aquicrearemos todo el tema del layout y interfaz
         JLabel lblUsuario = new JLabel("Nome de usuario");
         JTextField txtUsuario = new JTextField();
         JLabel lblContrasena = new JLabel("Contrasinal");
         JPasswordField txtContrasena = new JPasswordField();
         JLabel lblConfCon = new JLabel("Confirmar contrasinal");
         JPasswordField txtContrasenConfirmar = new JPasswordField();
-
         JLabel lblEstado = new JLabel("Estado");
         JTextField txtEstado = new JTextField();
         String[] options = {"Aceptar", "Cancelar"};
         Object[] labelsOptions = {lblUsuario, txtUsuario, lblContrasena, txtContrasena, lblConfCon, txtContrasenConfirmar, lblEstado, txtEstado};
-        int seleccionRegister = JOptionPane.showOptionDialog(null, labelsOptions, "Rexistrarse", 0, 1, null, options, options[0]);
-        if (!txtContrasena.equals(txtContrasenConfirmar)) {
-            JOptionPane jOptionPane = new JOptionPane("As contrasinais non coinciden");
+
+        //Aqui ya empieza la parte lógica de verdad, con un sistema de confirmacion de contraseña.
+        boolean passwordsMatch = false;
+        while (!passwordsMatch) {
+            int selectedOption = JOptionPane.showOptionDialog(null, labelsOptions, "Rexistrarse", -1, -1, null, options, null);
+            if (selectedOption == 1) {
+                showLoginMenu();
+                return;
+            }
+            passwordsMatch = new String(txtContrasena.getPassword()).equals(new String(txtContrasenConfirmar.getPassword()));
+            if (!passwordsMatch) {
+                JOptionPane.showMessageDialog(null, "Os contrasinais non coinciden!", "Erro nos datos", 2);
+            }
         }
-        initMenuController.createProfile(txtUsuario.toString(), txtContrasena.toString(), txtEstado.toString());
+        initMenuController.createProfile(txtUsuario.getText(), new String(txtContrasena.getPassword()), txtEstado.getText());
     }
 
     /**
