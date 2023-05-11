@@ -22,45 +22,171 @@ public class GUIProfileMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblPerfilDoUsuario = new javax.swing.JLabel();
+        lblLogoTacebook = new javax.swing.JLabel();
+        lblEstadoActual = new javax.swing.JLabel();
+        tabbedPaneMenu = new javax.swing.JTabbedPane();
+        panelBiografia = new javax.swing.JPanel();
+        lbl10UltimasPublicacions = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableBiografia = new javax.swing.JTable();
+        btnNovaPublicacion = new javax.swing.JButton();
+        btnGustame = new javax.swing.JButton();
+        btnVerPublicacionesAnteriores = new javax.swing.JButton();
+        btnComentar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        panelAmigos = new javax.swing.JPanel();
+        panelMensaxesPrivadas = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/user-1633249_640.png"))); // NOI18N
-        jLabel1.setText("Perfil do usuario: ");
+        lblPerfilDoUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/user-1633249_640.png"))); // NOI18N
+        lblPerfilDoUsuario.setText("Perfil do usuario: ");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/tacebook-logo.jpg"))); // NOI18N
+        lblLogoTacebook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/tacebook-logo.jpg"))); // NOI18N
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/anatomy-2952567_640.png"))); // NOI18N
-        jLabel3.setText("Estado actual de: ");
+        lblEstadoActual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/anatomy-2952567_640.png"))); // NOI18N
+        lblEstadoActual.setText("Estado actual de: ");
+
+        lbl10UltimasPublicacions.setText("10 últimas publicacións");
+
+        tableBiografia.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Data", "Autor", "Texto", "Me gustas"
+            }
+        ));
+        tableBiografia.setUpdateSelectionOnSort(false);
+        jScrollPane1.setViewportView(tableBiografia);
+        tableBiografia.getAccessibleContext().setAccessibleDescription("");
+
+        btnNovaPublicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/post-it-150262_640.png"))); // NOI18N
+        btnNovaPublicacion.setText("Nova publicación");
+
+        btnGustame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/facebook-295478_640.png"))); // NOI18N
+        btnGustame.setText("Gústame");
+
+        btnVerPublicacionesAnteriores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icon-1970474_640.png"))); // NOI18N
+        btnVerPublicacionesAnteriores.setText("Ver anteriores publicacións");
+
+        btnComentar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/speech-bubbles-303206_640.png"))); // NOI18N
+        btnComentar.setText("Comentar");
+
+        jLabel1.setText("Comentarios:");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Texto", "De", "Data"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
+
+        javax.swing.GroupLayout panelBiografiaLayout = new javax.swing.GroupLayout(panelBiografia);
+        panelBiografia.setLayout(panelBiografiaLayout);
+        panelBiografiaLayout.setHorizontalGroup(
+            panelBiografiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBiografiaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnNovaPublicacion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnComentar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnGustame)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnVerPublicacionesAnteriores)
+                .addGap(96, 96, 96))
+            .addGroup(panelBiografiaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelBiografiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(panelBiografiaLayout.createSequentialGroup()
+                        .addGroup(panelBiografiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl10UltimasPublicacions)
+                            .addComponent(jLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
+                .addContainerGap())
+        );
+        panelBiografiaLayout.setVerticalGroup(
+            panelBiografiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBiografiaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbl10UltimasPublicacions)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelBiografiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNovaPublicacion)
+                    .addComponent(btnVerPublicacionesAnteriores)
+                    .addComponent(btnGustame)
+                    .addComponent(btnComentar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        tabbedPaneMenu.addTab("Biografía", new javax.swing.ImageIcon(getClass().getResource("/assets/post-it-150262_640.png")), panelBiografia, ""); // NOI18N
+
+        javax.swing.GroupLayout panelAmigosLayout = new javax.swing.GroupLayout(panelAmigos);
+        panelAmigos.setLayout(panelAmigosLayout);
+        panelAmigosLayout.setHorizontalGroup(
+            panelAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1002, Short.MAX_VALUE)
+        );
+        panelAmigosLayout.setVerticalGroup(
+            panelAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 688, Short.MAX_VALUE)
+        );
+
+        tabbedPaneMenu.addTab("Amig@s", new javax.swing.ImageIcon(getClass().getResource("/assets/people-35681_640.png")), panelAmigos); // NOI18N
+
+        javax.swing.GroupLayout panelMensaxesPrivadasLayout = new javax.swing.GroupLayout(panelMensaxesPrivadas);
+        panelMensaxesPrivadas.setLayout(panelMensaxesPrivadasLayout);
+        panelMensaxesPrivadasLayout.setHorizontalGroup(
+            panelMensaxesPrivadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1002, Short.MAX_VALUE)
+        );
+        panelMensaxesPrivadasLayout.setVerticalGroup(
+            panelMensaxesPrivadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 688, Short.MAX_VALUE)
+        );
+
+        tabbedPaneMenu.addTab("Mensaxes Privadas", new javax.swing.ImageIcon(getClass().getResource("/assets/chat-1873536_640.png")), panelMensaxesPrivadas); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addComponent(jLabel1)
-                .addGap(89, 89, 89)
-                .addComponent(jLabel2)
-                .addGap(86, 86, 86)
-                .addComponent(jLabel3)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addGap(112, 112, 112)
+                .addComponent(lblPerfilDoUsuario)
+                .addGap(76, 76, 76)
+                .addComponent(lblLogoTacebook)
+                .addGap(96, 96, 96)
+                .addComponent(lblEstadoActual)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(tabbedPaneMenu)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addContainerGap(502, Short.MAX_VALUE))
+                    .addComponent(lblPerfilDoUsuario)
+                    .addComponent(lblLogoTacebook)
+                    .addComponent(lblEstadoActual))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tabbedPaneMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -102,8 +228,22 @@ public class GUIProfileMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnComentar;
+    private javax.swing.JButton btnGustame;
+    private javax.swing.JButton btnNovaPublicacion;
+    private javax.swing.JButton btnVerPublicacionesAnteriores;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lbl10UltimasPublicacions;
+    private javax.swing.JLabel lblEstadoActual;
+    private javax.swing.JLabel lblLogoTacebook;
+    private javax.swing.JLabel lblPerfilDoUsuario;
+    private javax.swing.JPanel panelAmigos;
+    private javax.swing.JPanel panelBiografia;
+    private javax.swing.JPanel panelMensaxesPrivadas;
+    private javax.swing.JTabbedPane tabbedPaneMenu;
+    private javax.swing.JTable tableBiografia;
     // End of variables declaration//GEN-END:variables
 }
