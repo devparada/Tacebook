@@ -15,7 +15,8 @@ import model.Post;
 import persistence.PostDB;
 import model.Profile;
 import persistence.PersistenceException;
-import view.GUIProfileView;
+import view.GUIProfileMenu;
+//import view.GUIProfileView;
 import view.TextProfileView;
 
 /**
@@ -58,7 +59,7 @@ public class ProfileController {
         if (textMode) {
             profileView = (ProfileView) new TextProfileView(this);
         } else {
-            profileView = (ProfileView) new GUIProfileView(this);
+            profileView = (ProfileView) new GUIProfileMenu(this);
         }
     }
 
