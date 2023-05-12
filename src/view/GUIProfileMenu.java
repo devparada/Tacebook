@@ -26,6 +26,8 @@ public class GUIProfileMenu extends javax.swing.JFrame {
         lblLogoTacebook = new javax.swing.JLabel();
         lblEstadoActual = new javax.swing.JLabel();
         tabbedPaneMenu = new javax.swing.JTabbedPane();
+        panelAmigos = new javax.swing.JPanel();
+        panelMensaxesPrivadas = new javax.swing.JPanel();
         panelBiografia = new javax.swing.JPanel();
         lbl10UltimasPublicacions = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -37,8 +39,8 @@ public class GUIProfileMenu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        panelAmigos = new javax.swing.JPanel();
-        panelMensaxesPrivadas = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,6 +51,32 @@ public class GUIProfileMenu extends javax.swing.JFrame {
 
         lblEstadoActual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/anatomy-2952567_640.png"))); // NOI18N
         lblEstadoActual.setText("Estado actual de: ");
+
+        javax.swing.GroupLayout panelAmigosLayout = new javax.swing.GroupLayout(panelAmigos);
+        panelAmigos.setLayout(panelAmigosLayout);
+        panelAmigosLayout.setHorizontalGroup(
+            panelAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1002, Short.MAX_VALUE)
+        );
+        panelAmigosLayout.setVerticalGroup(
+            panelAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 491, Short.MAX_VALUE)
+        );
+
+        tabbedPaneMenu.addTab("Amig@s", new javax.swing.ImageIcon(getClass().getResource("/assets/people-35681_640.png")), panelAmigos); // NOI18N
+
+        javax.swing.GroupLayout panelMensaxesPrivadasLayout = new javax.swing.GroupLayout(panelMensaxesPrivadas);
+        panelMensaxesPrivadas.setLayout(panelMensaxesPrivadasLayout);
+        panelMensaxesPrivadasLayout.setHorizontalGroup(
+            panelMensaxesPrivadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1002, Short.MAX_VALUE)
+        );
+        panelMensaxesPrivadasLayout.setVerticalGroup(
+            panelMensaxesPrivadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 491, Short.MAX_VALUE)
+        );
+
+        tabbedPaneMenu.addTab("Mensaxes Privadas", new javax.swing.ImageIcon(getClass().getResource("/assets/chat-1873536_640.png")), panelMensaxesPrivadas); // NOI18N
 
         lbl10UltimasPublicacions.setText("10 últimas publicacións");
 
@@ -88,31 +116,46 @@ public class GUIProfileMenu extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable1);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/exit-97636_640.png"))); // NOI18N
+        jButton1.setText("Pechar sesión");
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/anatomy-2952567_640.png"))); // NOI18N
+        jButton2.setText("Cambiar estado");
+
         javax.swing.GroupLayout panelBiografiaLayout = new javax.swing.GroupLayout(panelBiografia);
         panelBiografia.setLayout(panelBiografiaLayout);
         panelBiografiaLayout.setHorizontalGroup(
             panelBiografiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBiografiaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnNovaPublicacion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnComentar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGustame)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnVerPublicacionesAnteriores)
-                .addGap(96, 96, 96))
             .addGroup(panelBiografiaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelBiografiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(panelBiografiaLayout.createSequentialGroup()
                         .addGroup(panelBiografiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl10UltimasPublicacions)
-                            .addComponent(jLabel1))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2))
-                .addContainerGap())
+                            .addComponent(jScrollPane1)
+                            .addGroup(panelBiografiaLayout.createSequentialGroup()
+                                .addGroup(panelBiografiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbl10UltimasPublicacions)
+                                    .addComponent(jLabel1))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBiografiaLayout.createSequentialGroup()
+                        .addGap(0, 194, Short.MAX_VALUE)
+                        .addGroup(panelBiografiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBiografiaLayout.createSequentialGroup()
+                                .addComponent(btnNovaPublicacion)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnComentar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnGustame)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnVerPublicacionesAnteriores)
+                                .addGap(96, 96, 96))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBiografiaLayout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)
+                                .addGap(344, 344, 344))))))
         );
         panelBiografiaLayout.setVerticalGroup(
             panelBiografiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,39 +171,19 @@ public class GUIProfileMenu extends javax.swing.JFrame {
                     .addComponent(btnGustame)
                     .addComponent(btnComentar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelBiografiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelBiografiaLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47))
+                    .addGroup(panelBiografiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton2)
+                        .addComponent(jButton1)))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         tabbedPaneMenu.addTab("Biografía", new javax.swing.ImageIcon(getClass().getResource("/assets/post-it-150262_640.png")), panelBiografia, ""); // NOI18N
-
-        javax.swing.GroupLayout panelAmigosLayout = new javax.swing.GroupLayout(panelAmigos);
-        panelAmigos.setLayout(panelAmigosLayout);
-        panelAmigosLayout.setHorizontalGroup(
-            panelAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1002, Short.MAX_VALUE)
-        );
-        panelAmigosLayout.setVerticalGroup(
-            panelAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 688, Short.MAX_VALUE)
-        );
-
-        tabbedPaneMenu.addTab("Amig@s", new javax.swing.ImageIcon(getClass().getResource("/assets/people-35681_640.png")), panelAmigos); // NOI18N
-
-        javax.swing.GroupLayout panelMensaxesPrivadasLayout = new javax.swing.GroupLayout(panelMensaxesPrivadas);
-        panelMensaxesPrivadas.setLayout(panelMensaxesPrivadasLayout);
-        panelMensaxesPrivadasLayout.setHorizontalGroup(
-            panelMensaxesPrivadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1002, Short.MAX_VALUE)
-        );
-        panelMensaxesPrivadasLayout.setVerticalGroup(
-            panelMensaxesPrivadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 688, Short.MAX_VALUE)
-        );
-
-        tabbedPaneMenu.addTab("Mensaxes Privadas", new javax.swing.ImageIcon(getClass().getResource("/assets/chat-1873536_640.png")), panelMensaxesPrivadas); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -185,7 +208,7 @@ public class GUIProfileMenu extends javax.swing.JFrame {
                     .addComponent(lblLogoTacebook)
                     .addComponent(lblEstadoActual))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tabbedPaneMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tabbedPaneMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -232,6 +255,8 @@ public class GUIProfileMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnGustame;
     private javax.swing.JButton btnNovaPublicacion;
     private javax.swing.JButton btnVerPublicacionesAnteriores;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
