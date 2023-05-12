@@ -44,25 +44,25 @@ public class GUIProfileMenu extends javax.swing.JFrame {
         btnVerPublicacionesAnteriores = new javax.swing.JButton();
         btnComentar = new javax.swing.JButton();
         SplitPaneAmigos = new javax.swing.JSplitPane();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        panelSolicitudesAmizade = new javax.swing.JPanel();
+        lblSolicitudesAmizade = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        listaSolicitudesAmizade = new javax.swing.JList<>();
+        btnAceptarSolicitude = new javax.swing.JButton();
+        btnNovaSolicitude = new javax.swing.JButton();
+        btnRexeitarSolicitude = new javax.swing.JButton();
+        panelSuperiorAmigos = new javax.swing.JPanel();
+        lblListaDeAmigos = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        tablaListaAmigos = new javax.swing.JTable();
+        btnVerBiografia = new javax.swing.JButton();
+        btnEnviarMensaxePrivada = new javax.swing.JButton();
         panelMensaxesPrivadas = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        lblMensaxesPrivadas = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        tablaMensajes = new javax.swing.JTable();
+        btnEliminarMensaxe = new javax.swing.JButton();
+        btnLerMensaxe = new javax.swing.JButton();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -197,58 +197,58 @@ public class GUIProfileMenu extends javax.swing.JFrame {
 
         SplitPaneAmigos.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        jLabel1.setText("Tes solicitudes dos seguintes perfís:");
+        lblSolicitudesAmizade.setText("Tes solicitudes dos seguintes perfís:");
 
-        jList2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane5.setViewportView(jList2);
+        listaSolicitudesAmizade.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane5.setViewportView(listaSolicitudesAmizade);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/accept.png"))); // NOI18N
-        jButton3.setText("Aceptar solicitude");
+        btnAceptarSolicitude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/accept.png"))); // NOI18N
+        btnAceptarSolicitude.setText("Aceptar solicitude");
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/handshake-152812_640.png"))); // NOI18N
-        jButton4.setText("Nova solicitude de amizade");
+        btnNovaSolicitude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/handshake-152812_640.png"))); // NOI18N
+        btnNovaSolicitude.setText("Nova solicitude de amizade");
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/reject.png"))); // NOI18N
-        jButton5.setText("Rexeitar solicitude");
+        btnRexeitarSolicitude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/reject.png"))); // NOI18N
+        btnRexeitarSolicitude.setText("Rexeitar solicitude");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel1)
+        javax.swing.GroupLayout panelSolicitudesAmizadeLayout = new javax.swing.GroupLayout(panelSolicitudesAmizade);
+        panelSolicitudesAmizade.setLayout(panelSolicitudesAmizadeLayout);
+        panelSolicitudesAmizadeLayout.setHorizontalGroup(
+            panelSolicitudesAmizadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSolicitudesAmizadeLayout.createSequentialGroup()
+                .addComponent(lblSolicitudesAmizade)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jScrollPane5)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(panelSolicitudesAmizadeLayout.createSequentialGroup()
                 .addGap(199, 199, 199)
-                .addComponent(jButton3)
+                .addComponent(btnAceptarSolicitude)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
+                .addComponent(btnRexeitarSolicitude)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(btnNovaSolicitude)
                 .addContainerGap(113, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel1)
+        panelSolicitudesAmizadeLayout.setVerticalGroup(
+            panelSolicitudesAmizadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSolicitudesAmizadeLayout.createSequentialGroup()
+                .addComponent(lblSolicitudesAmizade)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3))
+                .addGroup(panelSolicitudesAmizadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRexeitarSolicitude)
+                    .addComponent(btnNovaSolicitude)
+                    .addComponent(btnAceptarSolicitude))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton5.getAccessibleContext().setAccessibleDescription("");
+        btnRexeitarSolicitude.getAccessibleContext().setAccessibleDescription("");
 
-        SplitPaneAmigos.setRightComponent(jPanel2);
+        SplitPaneAmigos.setRightComponent(panelSolicitudesAmizade);
 
-        jLabel4.setText("Lista de amig@s:");
+        lblListaDeAmigos.setText("Lista de amig@s:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaListaAmigos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -256,50 +256,50 @@ public class GUIProfileMenu extends javax.swing.JFrame {
                 "Nome", "Estado"
             }
         ));
-        jScrollPane4.setViewportView(jTable1);
+        jScrollPane4.setViewportView(tablaListaAmigos);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/post-it-150262_640.png"))); // NOI18N
-        jButton1.setText("Ver biografía");
+        btnVerBiografia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/post-it-150262_640.png"))); // NOI18N
+        btnVerBiografia.setText("Ver biografía");
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/letter-2935365_640.png"))); // NOI18N
-        jButton2.setText("Enviar mensaxe privada");
+        btnEnviarMensaxePrivada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/letter-2935365_640.png"))); // NOI18N
+        btnEnviarMensaxePrivada.setText("Enviar mensaxe privada");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelSuperiorAmigosLayout = new javax.swing.GroupLayout(panelSuperiorAmigos);
+        panelSuperiorAmigos.setLayout(panelSuperiorAmigosLayout);
+        panelSuperiorAmigosLayout.setHorizontalGroup(
+            panelSuperiorAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane4)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(panelSuperiorAmigosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
+                .addComponent(lblListaDeAmigos)
                 .addGap(834, 845, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSuperiorAmigosLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnVerBiografia)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(btnEnviarMensaxePrivada)
                 .addGap(245, 245, 245))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel4)
+        panelSuperiorAmigosLayout.setVerticalGroup(
+            panelSuperiorAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSuperiorAmigosLayout.createSequentialGroup()
+                .addComponent(lblListaDeAmigos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                .addGroup(panelSuperiorAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEnviarMensaxePrivada)
+                    .addComponent(btnVerBiografia))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        SplitPaneAmigos.setTopComponent(jPanel1);
+        SplitPaneAmigos.setTopComponent(panelSuperiorAmigos);
 
         tabbedPaneMenu.addTab("Amig@s", new javax.swing.ImageIcon(getClass().getResource("/assets/people-35681_640.png")), SplitPaneAmigos); // NOI18N
 
-        jLabel3.setText("Mensaxes privadas:");
+        lblMensaxesPrivadas.setText("Mensaxes privadas:");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tablaMensajes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -307,13 +307,13 @@ public class GUIProfileMenu extends javax.swing.JFrame {
                 "Lida", "Data", "De", "Texto"
             }
         ));
-        jScrollPane6.setViewportView(jTable3);
+        jScrollPane6.setViewportView(tablaMensajes);
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/reject.png"))); // NOI18N
-        jButton6.setText("Eliminar mensaxe");
+        btnEliminarMensaxe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/reject.png"))); // NOI18N
+        btnEliminarMensaxe.setText("Eliminar mensaxe");
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/email-2935508_640.png"))); // NOI18N
-        jButton7.setText("Ler mensaxe");
+        btnLerMensaxe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/email-2935508_640.png"))); // NOI18N
+        btnLerMensaxe.setText("Ler mensaxe");
 
         javax.swing.GroupLayout panelMensaxesPrivadasLayout = new javax.swing.GroupLayout(panelMensaxesPrivadas);
         panelMensaxesPrivadas.setLayout(panelMensaxesPrivadasLayout);
@@ -323,25 +323,25 @@ public class GUIProfileMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane6))
             .addGroup(panelMensaxesPrivadasLayout.createSequentialGroup()
-                .addComponent(jLabel3)
+                .addComponent(lblMensaxesPrivadas)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMensaxesPrivadasLayout.createSequentialGroup()
                 .addContainerGap(308, Short.MAX_VALUE)
-                .addComponent(jButton7)
+                .addComponent(btnLerMensaxe)
                 .addGap(31, 31, 31)
-                .addComponent(jButton6)
+                .addComponent(btnEliminarMensaxe)
                 .addGap(304, 304, 304))
         );
         panelMensaxesPrivadasLayout.setVerticalGroup(
             panelMensaxesPrivadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMensaxesPrivadasLayout.createSequentialGroup()
-                .addComponent(jLabel3)
+                .addComponent(lblMensaxesPrivadas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelMensaxesPrivadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7))
+                    .addComponent(btnEliminarMensaxe)
+                    .addComponent(btnLerMensaxe))
                 .addGap(18, 18, 18))
         );
 
@@ -427,45 +427,45 @@ public class GUIProfileMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSplitPane SplitPaneAmigos;
+    private javax.swing.JButton btnAceptarSolicitude;
     private javax.swing.JButton btnCambiarEstado;
     private javax.swing.JButton btnComentar;
+    private javax.swing.JButton btnEliminarMensaxe;
+    private javax.swing.JButton btnEnviarMensaxePrivada;
     private javax.swing.JButton btnGustame;
+    private javax.swing.JButton btnLerMensaxe;
     private javax.swing.JButton btnNovaPublicacion;
+    private javax.swing.JButton btnNovaSolicitude;
     private javax.swing.JButton btnPecharSesion;
+    private javax.swing.JButton btnRexeitarSolicitude;
+    private javax.swing.JButton btnVerBiografia;
     private javax.swing.JButton btnVerPublicacionesAnteriores;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private javax.swing.JLabel lbl10UltimasPublicacions;
     private javax.swing.JLabel lblEstadoActual;
+    private javax.swing.JLabel lblListaDeAmigos;
     private javax.swing.JLabel lblLogoTacebook;
+    private javax.swing.JLabel lblMensaxesPrivadas;
     private javax.swing.JLabel lblPerfilDoUsuario;
+    private javax.swing.JLabel lblSolicitudesAmizade;
+    private javax.swing.JList<String> listaSolicitudesAmizade;
     private javax.swing.JPanel panelBiografia;
     private javax.swing.JPanel panelComentarios;
     private javax.swing.JPanel panelMensaxesPrivadas;
+    private javax.swing.JPanel panelSolicitudesAmizade;
+    private javax.swing.JPanel panelSuperiorAmigos;
     private javax.swing.JSplitPane splitPaneBiografia;
     private javax.swing.JTabbedPane tabbedPaneMenu;
+    private javax.swing.JTable tablaListaAmigos;
+    private javax.swing.JTable tablaMensajes;
     private javax.swing.JTable tableBiografia;
     // End of variables declaration//GEN-END:variables
 }
