@@ -22,14 +22,16 @@ public class GUIProfileMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
         lblPerfilDoUsuario = new javax.swing.JLabel();
         lblLogoTacebook = new javax.swing.JLabel();
         lblEstadoActual = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnCambiarEstado = new javax.swing.JButton();
+        btnPecharSesion = new javax.swing.JButton();
         tabbedPaneMenu = new javax.swing.JTabbedPane();
-        splitPane = new javax.swing.JSplitPane();
-        jPanel1 = new javax.swing.JPanel();
+        splitPaneBiografia = new javax.swing.JSplitPane();
+        panelComentarios = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -41,8 +43,28 @@ public class GUIProfileMenu extends javax.swing.JFrame {
         btnGustame = new javax.swing.JButton();
         btnVerPublicacionesAnteriores = new javax.swing.JButton();
         btnComentar = new javax.swing.JButton();
+        SplitPaneAmigos = new javax.swing.JSplitPane();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<>();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         panelMensaxesPrivadas = new javax.swing.JPanel();
-        panelAmigos = new javax.swing.JPanel();
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jList1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,13 +76,13 @@ public class GUIProfileMenu extends javax.swing.JFrame {
         lblEstadoActual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/anatomy-2952567_640.png"))); // NOI18N
         lblEstadoActual.setText("Estado actual de: ");
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/anatomy-2952567_640.png"))); // NOI18N
-        jButton2.setText("Cambiar estado");
+        btnCambiarEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/anatomy-2952567_640.png"))); // NOI18N
+        btnCambiarEstado.setText("Cambiar estado");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/exit-97636_640.png"))); // NOI18N
-        jButton1.setText("Pechar sesión");
+        btnPecharSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/exit-97636_640.png"))); // NOI18N
+        btnPecharSesion.setText("Pechar sesión");
 
-        splitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        splitPaneBiografia.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
         jLabel2.setText("Comentarios:");
 
@@ -74,22 +96,22 @@ public class GUIProfileMenu extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable2);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelComentariosLayout = new javax.swing.GroupLayout(panelComentarios);
+        panelComentarios.setLayout(panelComentariosLayout);
+        panelComentariosLayout.setHorizontalGroup(
+            panelComentariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelComentariosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addGroup(panelComentariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelComentariosLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 971, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 959, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelComentariosLayout.setVerticalGroup(
+            panelComentariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelComentariosLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -97,7 +119,7 @@ public class GUIProfileMenu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        splitPane.setRightComponent(jPanel1);
+        splitPaneBiografia.setRightComponent(panelComentarios);
 
         lbl10UltimasPublicacions.setText("10 últimas publicacións");
 
@@ -154,8 +176,8 @@ public class GUIProfileMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lbl10UltimasPublicacions)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelBiografiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovaPublicacion)
                     .addComponent(btnVerPublicacionesAnteriores)
@@ -164,35 +186,124 @@ public class GUIProfileMenu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        splitPane.setTopComponent(panelBiografia);
+        splitPaneBiografia.setTopComponent(panelBiografia);
 
-        tabbedPaneMenu.addTab("Biografía", splitPane);
+        tabbedPaneMenu.addTab("Biografía", new javax.swing.ImageIcon(getClass().getResource("/assets/post-it-150262_640.png")), splitPaneBiografia); // NOI18N
+
+        SplitPaneAmigos.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        jLabel1.setText("Tes solicitudes dos seguintes perfís:");
+
+        jList2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane5.setViewportView(jList2);
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/accept.png"))); // NOI18N
+        jButton3.setText("Aceptar solicitude");
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/handshake-152812_640.png"))); // NOI18N
+        jButton4.setText("Nova solicitude de amizade");
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/reject.png"))); // NOI18N
+        jButton5.setText("Rexeitar solicitude");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane5)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(199, 199, 199)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addContainerGap(113, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5)
+                    .addComponent(jButton4)
+                    .addComponent(jButton3))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jButton5.getAccessibleContext().setAccessibleDescription("");
+
+        SplitPaneAmigos.setRightComponent(jPanel2);
+
+        jLabel4.setText("Lista de amig@s:");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome", "Estado"
+            }
+        ));
+        jScrollPane4.setViewportView(jTable1);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/post-it-150262_640.png"))); // NOI18N
+        jButton1.setText("Ver biografía");
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/letter-2935365_640.png"))); // NOI18N
+        jButton2.setText("Enviar mensaxe privada");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addGap(834, 845, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addGap(245, 245, 245))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        SplitPaneAmigos.setTopComponent(jPanel1);
+
+        tabbedPaneMenu.addTab("Amig@s", new javax.swing.ImageIcon(getClass().getResource("/assets/people-35681_640.png")), SplitPaneAmigos); // NOI18N
 
         javax.swing.GroupLayout panelMensaxesPrivadasLayout = new javax.swing.GroupLayout(panelMensaxesPrivadas);
         panelMensaxesPrivadas.setLayout(panelMensaxesPrivadasLayout);
         panelMensaxesPrivadasLayout.setHorizontalGroup(
             panelMensaxesPrivadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 997, Short.MAX_VALUE)
+            .addGap(0, 973, Short.MAX_VALUE)
         );
         panelMensaxesPrivadasLayout.setVerticalGroup(
             panelMensaxesPrivadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 473, Short.MAX_VALUE)
+            .addGap(0, 449, Short.MAX_VALUE)
         );
 
         tabbedPaneMenu.addTab("Mensaxes Privadas", new javax.swing.ImageIcon(getClass().getResource("/assets/chat-1873536_640.png")), panelMensaxesPrivadas); // NOI18N
-
-        javax.swing.GroupLayout panelAmigosLayout = new javax.swing.GroupLayout(panelAmigos);
-        panelAmigos.setLayout(panelAmigosLayout);
-        panelAmigosLayout.setHorizontalGroup(
-            panelAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 997, Short.MAX_VALUE)
-        );
-        panelAmigosLayout.setVerticalGroup(
-            panelAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 473, Short.MAX_VALUE)
-        );
-
-        tabbedPaneMenu.addTab("Amig@s", new javax.swing.ImageIcon(getClass().getResource("/assets/people-35681_640.png")), panelAmigos); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -208,14 +319,14 @@ public class GUIProfileMenu extends javax.swing.JFrame {
                         .addGap(96, 96, 96)
                         .addComponent(lblEstadoActual))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(tabbedPaneMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 1002, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(348, 348, 348)
-                        .addComponent(jButton2)
+                        .addComponent(btnCambiarEstado)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnPecharSesion))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(tabbedPaneMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 975, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,13 +336,13 @@ public class GUIProfileMenu extends javax.swing.JFrame {
                     .addComponent(lblPerfilDoUsuario)
                     .addComponent(lblLogoTacebook)
                     .addComponent(lblEstadoActual))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tabbedPaneMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tabbedPaneMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addComponent(btnCambiarEstado)
+                    .addComponent(btnPecharSesion))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -273,25 +384,40 @@ public class GUIProfileMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSplitPane SplitPaneAmigos;
+    private javax.swing.JButton btnCambiarEstado;
     private javax.swing.JButton btnComentar;
     private javax.swing.JButton btnGustame;
     private javax.swing.JButton btnNovaPublicacion;
+    private javax.swing.JButton btnPecharSesion;
     private javax.swing.JButton btnVerPublicacionesAnteriores;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JLabel lbl10UltimasPublicacions;
     private javax.swing.JLabel lblEstadoActual;
     private javax.swing.JLabel lblLogoTacebook;
     private javax.swing.JLabel lblPerfilDoUsuario;
-    private javax.swing.JPanel panelAmigos;
     private javax.swing.JPanel panelBiografia;
+    private javax.swing.JPanel panelComentarios;
     private javax.swing.JPanel panelMensaxesPrivadas;
-    private javax.swing.JSplitPane splitPane;
+    private javax.swing.JSplitPane splitPaneBiografia;
     private javax.swing.JTabbedPane tabbedPaneMenu;
     private javax.swing.JTable tableBiografia;
     // End of variables declaration//GEN-END:variables
