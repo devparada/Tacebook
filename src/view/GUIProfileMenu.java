@@ -2,8 +2,12 @@ package view;
 
 import controller.ProfileController;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableModel;
 import model.Comment;
 import model.Message;
 import model.Post;
@@ -107,13 +111,18 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
         lblLogoTacebook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/tacebook-logo.jpg"))); // NOI18N
 
         lblEstadoActual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/anatomy-2952567_640.png"))); // NOI18N
-        lblEstadoActual.setText("Estado actual de: ");
+        lblEstadoActual.setText("Estado actual: ");
 
         btnCambiarEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/anatomy-2952567_640.png"))); // NOI18N
         btnCambiarEstado.setText("Cambiar estado");
 
         btnPecharSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/exit-97636_640.png"))); // NOI18N
         btnPecharSesion.setText("Pechar sesión");
+        btnPecharSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPecharSesionActionPerformed(evt);
+            }
+        });
 
         splitPaneBiografia.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
@@ -418,40 +427,44 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnPecharSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPecharSesionActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnPecharSesionActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIProfileMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIProfileMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIProfileMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIProfileMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                // new GUIProfileMenu().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(GUIProfileMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(GUIProfileMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(GUIProfileMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(GUIProfileMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                // new GUIProfileMenu().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSplitPane SplitPaneAmigos;
@@ -525,25 +538,36 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      *
      */
     private void showProfileInfo(boolean ownProfile, Profile profile) {
+        System.out.println("Número de hilos activos: " + Thread.activeCount());
 
-        System.out.println("");
-        System.out.println("[VER9438UHIUHUYG457USION GUI]");
-        GUIProfileMenu menu = new GUIProfileMenu(this.profileController);
-        menu.setVisible(true);
-
-        lblEstadoActual.setText("DIOS");
-
-        System.out.println("ddd " + lblEstadoActual.getText());
+        GUIProfileMenu c = new GUIProfileMenu(profileController);
+        c.setVisible(true);
+        if (ownProfile) {
+            c.lblPerfilDoUsuario.setText("Perfil do usuario: " + profile.getName());
+            c.lblEstadoActual.setText("Estado actual: " + profile.getStatus());
+        } else {
+            c.lblPerfilDoUsuario.setText("Perfil do usuario: " + profile.getName());
+            c.lblEstadoActual.setText("Estado actual: " + profile.getStatus());
+        }
 
         if (ownProfile) {
-        }
-//        if (ownProfile) {
-//            System.out.println("Hola " + profile.getName() + ", Benvenido ao Tacebook!");
-//            System.out.println("");
-//            System.out.println("Estado actual: " + profile.getStatus());
-//        } else {
-//            System.out.println("Estado actual de " + profile.getName() + ": " + profile.getStatus());
-//        }
+            /**
+             * CHECK POINT DEL ULTIMO DIA QUE TOCAMOS CODIGO, YA SE CAMBIAN LAS
+             * LABELS Y AHORA FALTA CONSEGUIR HACER QUE SE CARGUEN LAS TABLAS
+             * ETC ETC ETC ETC MI POLLA
+             */
+//            DefaultTableModel model = (DefaultTableModel) tableBiografia.getModel();
+//
+//            // Obtener referencia al ArrayList con los datos
+//            ArrayList<Post> data = profile.getPosts();
+//            for (int i = 0; i < profile.getPosts().size(); i++) {
+//                Object[] fila = new Object[4];
+//                fila[0] = profile.getPosts().get(i).getDate();
+//                fila[1] = profile.getPosts().get(i).getAuthor().getName();
+//                fila[2] = profile.getPosts().get(i).getText();
+//                fila[3] = profile.getPosts().get(i).getProfileLikes().size();
+//                model.addRow(fila);
+
 //
 //        if (ownProfile) {
 //            System.out.println("[A tua biografia] " + this.postsShowed + " ultimas publicacions");
@@ -614,6 +638,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
 //                }
 //            }
 //        }
+        }
     }
 
     /**
