@@ -29,6 +29,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      * Los posts a visualizar
      */
     private int postsShowed = 10;
+
     /**
      * Mantiene la referencia al objecto controlador (ProfileController)
      */
@@ -71,7 +72,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         panelBiografia = new javax.swing.JPanel();
-        lbl10UltimasPublicacions = new javax.swing.JLabel();
+        lblUltimasPublicacions = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableBiografia = new javax.swing.JTable();
         btnNovaPublicacion = new javax.swing.JButton();
@@ -171,7 +172,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
 
         splitPaneBiografia.setRightComponent(panelComentarios);
 
-        lbl10UltimasPublicacions.setText("10 últimas publicacións");
+        lblUltimasPublicacions.setText("10 últimas publicacións");
 
         tableBiografia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -226,7 +227,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
                 .addGroup(panelBiografiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(panelBiografiaLayout.createSequentialGroup()
-                        .addComponent(lbl10UltimasPublicacions)
+                        .addComponent(lblUltimasPublicacions)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBiografiaLayout.createSequentialGroup()
@@ -244,7 +245,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
             panelBiografiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBiografiaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbl10UltimasPublicacions)
+                .addComponent(lblUltimasPublicacions)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -513,11 +514,17 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
     }//GEN-LAST:event_btnComentarActionPerformed
 
     private void btnGustameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGustameActionPerformed
-        // BOTÓN DE DAR LIKE
+         // BOTÓN DE DAR LIKE
+        profileController.newLike(profileController.getSessionProfile().getPosts().get(jTable2.getSelectedRow() + 1));
     }//GEN-LAST:event_btnGustameActionPerformed
 
     private void btnVerPublicacionesAnterioresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPublicacionesAnterioresActionPerformed
         // BOTÓN DE VER PUBLICACIONES ANTERIORES
+
+        postsShowed = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese a cantidade máxima de posts a mostrar:"));
+        lblUltimasPublicacions.setText(postsShowed + " últimas publicacións");
+        showProfileInfo(false, profileController.getSessionProfile());
+
     }//GEN-LAST:event_btnVerPublicacionesAnterioresActionPerformed
 
     private void btnVerBiografiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerBiografiaActionPerformed
@@ -541,8 +548,6 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
 
         String newStatus = JOptionPane.showInputDialog(null, "Ingrese un nuevo estado:");
         profileController.updateProfileStatus(newStatus);
-
-        // NO FUNCIONA POR EL RELOADPROFILE, VA A PASAR CON TODO HAY QUE MIRARLO
 
     }//GEN-LAST:event_btnCambiarEstadoActionPerformed
 
@@ -613,13 +618,13 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTable jTable2;
-    private javax.swing.JLabel lbl10UltimasPublicacions;
     private javax.swing.JLabel lblEstadoActual;
     private javax.swing.JLabel lblListaDeAmigos;
     private javax.swing.JLabel lblLogoTacebook;
     private javax.swing.JLabel lblMensaxesPrivadas;
     private javax.swing.JLabel lblPerfilDoUsuario;
     private javax.swing.JLabel lblSolicitudesAmizade;
+    private javax.swing.JLabel lblUltimasPublicacions;
     private javax.swing.JList<String> listaSolicitudesAmizade;
     private javax.swing.JPanel panelBiografia;
     private javax.swing.JPanel panelComentarios;
@@ -677,10 +682,12 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
              * ETC ETC ETC ETC MI POLLA
              */
             DefaultTableModel model = (DefaultTableModel) tableBiografia.getModel();
-            
             model.setRowCount(0); // Elimina todas las filas
-            
-            for (int i = 0; i < profile.getPosts().size(); i++) {
+
+            int numPosts = profile.getPosts().size();
+            int startIndex = Math.max(0, numPosts - postsShowed); // Índice de inicio para mostrar los posts
+
+            for (int i = startIndex; i < numPosts; i++) {
                 Object[] fila = new Object[4];
                 fila[0] = profile.getPosts().get(i).getDate();
                 fila[1] = profile.getPosts().get(i).getAuthor().getName();
