@@ -50,7 +50,7 @@ public class InitMenuController {
      * pantalla
      */
     private void init() {
-      this.initMenuView.showLoginMenu();
+        this.initMenuView.showLoginMenu();
 
     }
 
@@ -71,8 +71,7 @@ public class InitMenuController {
             } else {
                 profileController.openSession(profile);
             }
-        }
-        catch (PersistenceException ex) {
+        } catch (PersistenceException ex) {
             this.proccessPersistenceException(ex);
         }
         this.initMenuView.showLoginMenu();

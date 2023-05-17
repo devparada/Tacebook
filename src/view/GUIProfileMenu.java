@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Comment;
 import model.Message;
@@ -42,6 +44,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      */
     public GUIProfileMenu(ProfileController profileController) {
         initComponents();
+        this.setResizable(false);
         this.profileController = profileController;
     }
 
@@ -115,6 +118,11 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
 
         btnCambiarEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/anatomy-2952567_640.png"))); // NOI18N
         btnCambiarEstado.setText("Cambiar estado");
+        btnCambiarEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCambiarEstadoActionPerformed(evt);
+            }
+        });
 
         btnPecharSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/exit-97636_640.png"))); // NOI18N
         btnPecharSesion.setText("Pechar sesión");
@@ -179,15 +187,35 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
 
         btnNovaPublicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/post-it-150262_640.png"))); // NOI18N
         btnNovaPublicacion.setText("Nova publicación");
+        btnNovaPublicacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovaPublicacionActionPerformed(evt);
+            }
+        });
 
         btnGustame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/facebook-295478_640.png"))); // NOI18N
         btnGustame.setText("Gústame");
+        btnGustame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGustameActionPerformed(evt);
+            }
+        });
 
         btnVerPublicacionesAnteriores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icon-1970474_640.png"))); // NOI18N
         btnVerPublicacionesAnteriores.setText("Ver anteriores publicacións");
+        btnVerPublicacionesAnteriores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerPublicacionesAnterioresActionPerformed(evt);
+            }
+        });
 
         btnComentar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/speech-bubbles-303206_640.png"))); // NOI18N
         btnComentar.setText("Comentar");
+        btnComentar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComentarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelBiografiaLayout = new javax.swing.GroupLayout(panelBiografia);
         panelBiografia.setLayout(panelBiografiaLayout);
@@ -241,12 +269,27 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
 
         btnAceptarSolicitude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/accept.png"))); // NOI18N
         btnAceptarSolicitude.setText("Aceptar solicitude");
+        btnAceptarSolicitude.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarSolicitudeActionPerformed(evt);
+            }
+        });
 
         btnNovaSolicitude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/handshake-152812_640.png"))); // NOI18N
         btnNovaSolicitude.setText("Nova solicitude de amizade");
+        btnNovaSolicitude.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovaSolicitudeActionPerformed(evt);
+            }
+        });
 
         btnRexeitarSolicitude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/reject.png"))); // NOI18N
         btnRexeitarSolicitude.setText("Rexeitar solicitude");
+        btnRexeitarSolicitude.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRexeitarSolicitudeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelSolicitudesAmizadeLayout = new javax.swing.GroupLayout(panelSolicitudesAmizade);
         panelSolicitudesAmizade.setLayout(panelSolicitudesAmizadeLayout);
@@ -297,9 +340,19 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
 
         btnVerBiografia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/post-it-150262_640.png"))); // NOI18N
         btnVerBiografia.setText("Ver biografía");
+        btnVerBiografia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerBiografiaActionPerformed(evt);
+            }
+        });
 
         btnEnviarMensaxePrivada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/letter-2935365_640.png"))); // NOI18N
         btnEnviarMensaxePrivada.setText("Enviar mensaxe privada");
+        btnEnviarMensaxePrivada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarMensaxePrivadaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelSuperiorAmigosLayout = new javax.swing.GroupLayout(panelSuperiorAmigos);
         panelSuperiorAmigos.setLayout(panelSuperiorAmigosLayout);
@@ -348,9 +401,19 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
 
         btnEliminarMensaxe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/reject.png"))); // NOI18N
         btnEliminarMensaxe.setText("Eliminar mensaxe");
+        btnEliminarMensaxe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarMensaxeActionPerformed(evt);
+            }
+        });
 
         btnLerMensaxe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/email-2935508_640.png"))); // NOI18N
         btnLerMensaxe.setText("Ler mensaxe");
+        btnLerMensaxe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLerMensaxeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelMensaxesPrivadasLayout = new javax.swing.GroupLayout(panelMensaxesPrivadas);
         panelMensaxesPrivadas.setLayout(panelMensaxesPrivadasLayout);
@@ -428,8 +491,63 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPecharSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPecharSesionActionPerformed
+        // BOTÓN DE CERRAR SESIÓN
         dispose();
     }//GEN-LAST:event_btnPecharSesionActionPerformed
+
+    private void btnNovaSolicitudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaSolicitudeActionPerformed
+        // BOTÓN DE NUEVA SOLICITUD DE AMISTAD
+    }//GEN-LAST:event_btnNovaSolicitudeActionPerformed
+
+    private void btnNovaPublicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaPublicacionActionPerformed
+        // BOTÓN DE NUEVA PUBLICACIÓN
+    }//GEN-LAST:event_btnNovaPublicacionActionPerformed
+
+    private void btnComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentarActionPerformed
+        // BOTÓN DE CREAR COMENTARIO
+    }//GEN-LAST:event_btnComentarActionPerformed
+
+    private void btnGustameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGustameActionPerformed
+        // BOTÓN DE DAR LIKE
+    }//GEN-LAST:event_btnGustameActionPerformed
+
+    private void btnVerPublicacionesAnterioresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPublicacionesAnterioresActionPerformed
+        // BOTÓN DE VER PUBLICACIONES ANTERIORES
+    }//GEN-LAST:event_btnVerPublicacionesAnterioresActionPerformed
+
+    private void btnVerBiografiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerBiografiaActionPerformed
+        // BOTÓN DE VER BIOGRAFÍA DE UN AMIGO SELECCIONADO
+    }//GEN-LAST:event_btnVerBiografiaActionPerformed
+
+    private void btnEnviarMensaxePrivadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarMensaxePrivadaActionPerformed
+        // BOTÓN DE ENVIAR MENSAJE PRIVADO A UN AMIGO SELECCIONADO
+    }//GEN-LAST:event_btnEnviarMensaxePrivadaActionPerformed
+
+    private void btnAceptarSolicitudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarSolicitudeActionPerformed
+        // BOTÓN DE ACEPTAR SOLICITUD DE AMISTAD
+    }//GEN-LAST:event_btnAceptarSolicitudeActionPerformed
+
+    private void btnRexeitarSolicitudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRexeitarSolicitudeActionPerformed
+        // BOTÓN DE RECHAZAR SOLICITUD DE AMISTAD
+    }//GEN-LAST:event_btnRexeitarSolicitudeActionPerformed
+
+    private void btnCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarEstadoActionPerformed
+        // BOTÓN DE CAMBIAR ESTADO
+
+        String newStatus = JOptionPane.showInputDialog(null, "Ingrese un nuevo estado:");
+        profileController.updateProfileStatus(newStatus);
+        
+        // NO FUNCIONA POR EL RELOADPROFILE, VA A PASAR CON TODO HAY QUE MIRARLO
+        
+    }//GEN-LAST:event_btnCambiarEstadoActionPerformed
+
+    private void btnLerMensaxeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLerMensaxeActionPerformed
+        // BOTÓN DE LEER MENSAJE PRIVADO
+    }//GEN-LAST:event_btnLerMensaxeActionPerformed
+
+    private void btnEliminarMensaxeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarMensaxeActionPerformed
+        // BOTÓN DE ELIMINAR MENSAJE PRIVADO
+    }//GEN-LAST:event_btnEliminarMensaxeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -516,7 +634,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      * @return postsShowed
      */
     @Override
-    public int getPostsShowed() {
+public int getPostsShowed() {
         return postsShowed;
     }
 
@@ -675,7 +793,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      * @param profile el perfil al que se entrega las opciones
      */
     @Override
-    public void showProfileMenu(Profile profile) {
+public void showProfileMenu(Profile profile) {
         Scanner scan = new Scanner(System.in);
         boolean ownProfile = this.profileController.getSessionProfile().getName().equals(profile.getName());
         showProfileInfo(ownProfile, profile);
@@ -1022,7 +1140,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      * perfil
      */
     @Override
-    public void showProfileNotFoundMessage() {
+public void showProfileNotFoundMessage() {
         System.out.println("O perfil que estas intentando buscar non existe");
     }
 
@@ -1031,7 +1149,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      * tu proia publicación
      */
     @Override
-    public void showCannotLikeOwnPostMessage() {
+public void showCannotLikeOwnPostMessage() {
         System.out.println("Non podes dar like a tua propia publicacion");
     }
 
@@ -1040,7 +1158,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      * like a una publicación que ya distes
      */
     @Override
-    public void showAlreadyLikedPostMessage() {
+public void showAlreadyLikedPostMessage() {
         System.out.println("Non e posible dar like a unha publicacion que xa diste like");
     }
 
@@ -1051,7 +1169,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      * @param profileName nombre de la persona
      */
     @Override
-    public void showIsAlreadyFriendMessage(String profileName) {
+public void showIsAlreadyFriendMessage(String profileName) {
         System.out.println("Xa eres amigo de " + profileName);
     }
 
@@ -1062,7 +1180,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      * @param profileName nombre de la persona
      */
     @Override
-    public void showExistsFrienshipRequestMessage(String profileName) {
+public void showExistsFrienshipRequestMessage(String profileName) {
         System.out.println("Xa tes unha solicitude de amizade enviada a " + profileName);
     }
 
@@ -1073,7 +1191,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      * @param profileName nombre de la persona
      */
     @Override
-    public void showDuplicateFrienshipRequestMessage(String profileName) {
+public void showDuplicateFrienshipRequestMessage(String profileName) {
         System.out.println("Xa tes unha peticion de amizade con " + profileName);
     }
 
@@ -1081,7 +1199,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      * Este método muestra un error de conexión con el almacen de datos
      */
     @Override
-    public void showConnectionErrorMessage() {
+public void showConnectionErrorMessage() {
         System.out.println("Erro na conexion co almacen de datos!");
     }
 
@@ -1089,7 +1207,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      * Este método muestra un error de lectura de datos
      */
     @Override
-    public void showReadErrorMessage() {
+public void showReadErrorMessage() {
         System.out.println("Erro na lectura de datos!");
     }
 
@@ -1097,7 +1215,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      * Este método muestra un error de escritura de los datos
      */
     @Override
-    public void showWriteErrorMessage() {
+public void showWriteErrorMessage() {
         System.out.println("Erro na escritura dos datos!");
     }
 

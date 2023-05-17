@@ -127,6 +127,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Cambiar estado"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCambiarEstadoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnPecharSesion">
       <Properties>
@@ -363,6 +366,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Nova publicaci&#xf3;n"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNovaPublicacionActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnGustame">
                   <Properties>
@@ -371,6 +377,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="G&#xfa;stame"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGustameActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnVerPublicacionesAnteriores">
                   <Properties>
@@ -379,6 +388,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Ver anteriores publicaci&#xf3;ns"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVerPublicacionesAnterioresActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnComentar">
                   <Properties>
@@ -387,6 +399,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Comentar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnComentarActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -485,6 +500,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Aceptar solicitude"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAceptarSolicitudeActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnNovaSolicitude">
                   <Properties>
@@ -493,6 +511,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Nova solicitude de amizade"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNovaSolicitudeActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnRexeitarSolicitude">
                   <Properties>
@@ -504,6 +525,9 @@
                   <AccessibilityProperties>
                     <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
                   </AccessibilityProperties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRexeitarSolicitudeActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -597,6 +621,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Ver biograf&#xed;a"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVerBiografiaActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnEnviarMensaxePrivada">
                   <Properties>
@@ -605,6 +632,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Enviar mensaxe privada"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEnviarMensaxePrivadaActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -719,6 +749,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Eliminar mensaxe"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarMensaxeActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnLerMensaxe">
               <Properties>
@@ -727,6 +760,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Ler mensaxe"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLerMensaxeActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
