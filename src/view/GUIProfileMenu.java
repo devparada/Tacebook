@@ -504,9 +504,8 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
         // BOTÓN DE NUEVA PUBLICACIÓN
         String newStatus = JOptionPane.showInputDialog(null, "Ingrese una nueva publicación:");
         Scanner scan = new Scanner(newStatus);
-        // TODO: NO FUNCIONA DEL TODO BIEN
         writeNewPost(scan, profileController.getSessionProfile());
-        showProfileInfo(false, profileController.getSessionProfile());
+        showProfileInfo(true, profileController.getSessionProfile());
     }//GEN-LAST:event_btnNovaPublicacionActionPerformed
 
     private void btnComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentarActionPerformed
@@ -514,7 +513,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
     }//GEN-LAST:event_btnComentarActionPerformed
 
     private void btnGustameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGustameActionPerformed
-         // BOTÓN DE DAR LIKE
+        // BOTÓN DE DAR LIKE
         profileController.newLike(profileController.getSessionProfile().getPosts().get(jTable2.getSelectedRow() + 1));
     }//GEN-LAST:event_btnGustameActionPerformed
 
