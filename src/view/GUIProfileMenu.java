@@ -503,7 +503,9 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
         // BOTÓN DE NUEVA PUBLICACIÓN
         String newStatus = JOptionPane.showInputDialog(null, "Ingrese una nueva publicación:");
         Scanner scan = new Scanner(newStatus);
-        writeNewPost(scan, profileController.getShownProfile());
+        // TODO: NO FUNCIONA DEL TODO BIEN
+        writeNewPost(scan, profileController.getSessionProfile());
+        showProfileInfo(false, profileController.getSessionProfile());
     }//GEN-LAST:event_btnNovaPublicacionActionPerformed
 
     private void btnComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentarActionPerformed
@@ -675,7 +677,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
              * ETC ETC ETC ETC MI POLLA
              */
             DefaultTableModel model = (DefaultTableModel) tableBiografia.getModel();
-//
+//  
             for (int i = 0; i < profile.getPosts().size(); i++) {
                 Object[] fila = new Object[4];
                 fila[0] = profile.getPosts().get(i).getDate();
@@ -820,61 +822,6 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
             System.out.println("8. Enviar unha mensaxe privada");
             System.out.println("11. Ver publicacions anteriores");
             System.out.println("13. Pechar a sesion");
-        }
-        select = readNumber(scan);
-
-        switch (select) {
-            case 1:
-                writeNewPost(scan, profile);
-                break;
-            case 2:
-                commentPost(scan, profile);
-                break;
-            case 3:
-                addLike(scan, profile);
-                break;
-            case 4:
-                showBiography(true, scan, profile);
-                break;
-            case 5:
-                sendFriendshipRequest(true, scan, profile);
-                break;
-            case 6:
-                // Si acepta la solicitud es true el valor de la variable accept
-                proccessFriendshipRequest(true, scan, profile, true);
-                break;
-            case 7:
-                // Si rechaza la solicitud es false el valor de la variable accept
-                proccessFriendshipRequest(true, scan, profile, false);
-                break;
-            case 8:
-                sendPrivateMessage(true, scan, profile);
-                break;
-            case 9:
-                readPrivateMessage(true, scan, profile);
-                break;
-            case 10:
-                deletePrivateMessage(true, scan, profile);
-                break;
-            case 11:
-                showOldPosts(scan, profile);
-                break;
-            /*
-            Si el usuario selecciona la opcion 12, que reciba un scanner para que
-            pueda cambiar su estado.
-             */
-            case 12:
-                changeStatus(true, scan, profile);
-                break;
-            /*
-            Si el usuario selecciona la opcion 13, que simplemente cierre la 
-            sesión y que salga del bucle.
-             */
-            case 13:
-                break;
-            default:
-                showProfileMenu(profile);
-                break;
         }
     }
 
