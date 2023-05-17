@@ -677,7 +677,9 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
              * ETC ETC ETC ETC MI POLLA
              */
             DefaultTableModel model = (DefaultTableModel) tableBiografia.getModel();
-//  
+            
+            model.setRowCount(0); // Elimina todas las filas
+            
             for (int i = 0; i < profile.getPosts().size(); i++) {
                 Object[] fila = new Object[4];
                 fila[0] = profile.getPosts().get(i).getDate();
