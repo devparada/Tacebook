@@ -501,6 +501,9 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
 
     private void btnNovaPublicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaPublicacionActionPerformed
         // BOTÓN DE NUEVA PUBLICACIÓN
+        String newStatus = JOptionPane.showInputDialog(null, "Ingrese una nueva publicación:");
+        Scanner scan = new Scanner(newStatus);
+        writeNewPost(scan, profileController.getShownProfile());
     }//GEN-LAST:event_btnNovaPublicacionActionPerformed
 
     private void btnComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentarActionPerformed
@@ -536,9 +539,9 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
 
         String newStatus = JOptionPane.showInputDialog(null, "Ingrese un nuevo estado:");
         profileController.updateProfileStatus(newStatus);
-        
+
         // NO FUNCIONA POR EL RELOADPROFILE, VA A PASAR CON TODO HAY QUE MIRARLO
-        
+
     }//GEN-LAST:event_btnCambiarEstadoActionPerformed
 
     private void btnLerMensaxeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLerMensaxeActionPerformed
@@ -634,7 +637,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      * @return postsShowed
      */
     @Override
-public int getPostsShowed() {
+    public int getPostsShowed() {
         return postsShowed;
     }
 
@@ -656,16 +659,13 @@ public int getPostsShowed() {
      *
      */
     private void showProfileInfo(boolean ownProfile, Profile profile) {
-        System.out.println("Número de hilos activos: " + Thread.activeCount());
-
-        GUIProfileMenu c = new GUIProfileMenu(profileController);
-        c.setVisible(true);
+        setVisible(true);
         if (ownProfile) {
-            c.lblPerfilDoUsuario.setText("Perfil do usuario: " + profile.getName());
-            c.lblEstadoActual.setText("Estado actual: " + profile.getStatus());
+            lblPerfilDoUsuario.setText("Perfil do usuario: " + profile.getName());
+            lblEstadoActual.setText("Estado actual: " + profile.getStatus());
         } else {
-            c.lblPerfilDoUsuario.setText("Perfil do usuario: " + profile.getName());
-            c.lblEstadoActual.setText("Estado actual: " + profile.getStatus());
+            lblPerfilDoUsuario.setText("Perfil do usuario: " + profile.getName());
+            lblEstadoActual.setText("Estado actual: " + profile.getStatus());
         }
 
         if (ownProfile) {
@@ -674,18 +674,16 @@ public int getPostsShowed() {
              * LABELS Y AHORA FALTA CONSEGUIR HACER QUE SE CARGUEN LAS TABLAS
              * ETC ETC ETC ETC MI POLLA
              */
-//            DefaultTableModel model = (DefaultTableModel) tableBiografia.getModel();
+            DefaultTableModel model = (DefaultTableModel) tableBiografia.getModel();
 //
-//            // Obtener referencia al ArrayList con los datos
-//            ArrayList<Post> data = profile.getPosts();
-//            for (int i = 0; i < profile.getPosts().size(); i++) {
-//                Object[] fila = new Object[4];
-//                fila[0] = profile.getPosts().get(i).getDate();
-//                fila[1] = profile.getPosts().get(i).getAuthor().getName();
-//                fila[2] = profile.getPosts().get(i).getText();
-//                fila[3] = profile.getPosts().get(i).getProfileLikes().size();
-//                model.addRow(fila);
-
+            for (int i = 0; i < profile.getPosts().size(); i++) {
+                Object[] fila = new Object[4];
+                fila[0] = profile.getPosts().get(i).getDate();
+                fila[1] = profile.getPosts().get(i).getAuthor().getName();
+                fila[2] = profile.getPosts().get(i).getText();
+                fila[3] = profile.getPosts().get(i).getProfileLikes().size();
+                model.addRow(fila);
+            }
 //
 //        if (ownProfile) {
 //            System.out.println("[A tua biografia] " + this.postsShowed + " ultimas publicacions");
@@ -793,7 +791,7 @@ public int getPostsShowed() {
      * @param profile el perfil al que se entrega las opciones
      */
     @Override
-public void showProfileMenu(Profile profile) {
+    public void showProfileMenu(Profile profile) {
         Scanner scan = new Scanner(System.in);
         boolean ownProfile = this.profileController.getSessionProfile().getName().equals(profile.getName());
         showProfileInfo(ownProfile, profile);
@@ -1140,7 +1138,7 @@ public void showProfileMenu(Profile profile) {
      * perfil
      */
     @Override
-public void showProfileNotFoundMessage() {
+    public void showProfileNotFoundMessage() {
         System.out.println("O perfil que estas intentando buscar non existe");
     }
 
@@ -1149,7 +1147,7 @@ public void showProfileNotFoundMessage() {
      * tu proia publicación
      */
     @Override
-public void showCannotLikeOwnPostMessage() {
+    public void showCannotLikeOwnPostMessage() {
         System.out.println("Non podes dar like a tua propia publicacion");
     }
 
@@ -1158,7 +1156,7 @@ public void showCannotLikeOwnPostMessage() {
      * like a una publicación que ya distes
      */
     @Override
-public void showAlreadyLikedPostMessage() {
+    public void showAlreadyLikedPostMessage() {
         System.out.println("Non e posible dar like a unha publicacion que xa diste like");
     }
 
@@ -1169,7 +1167,7 @@ public void showAlreadyLikedPostMessage() {
      * @param profileName nombre de la persona
      */
     @Override
-public void showIsAlreadyFriendMessage(String profileName) {
+    public void showIsAlreadyFriendMessage(String profileName) {
         System.out.println("Xa eres amigo de " + profileName);
     }
 
@@ -1180,7 +1178,7 @@ public void showIsAlreadyFriendMessage(String profileName) {
      * @param profileName nombre de la persona
      */
     @Override
-public void showExistsFrienshipRequestMessage(String profileName) {
+    public void showExistsFrienshipRequestMessage(String profileName) {
         System.out.println("Xa tes unha solicitude de amizade enviada a " + profileName);
     }
 
@@ -1191,7 +1189,7 @@ public void showExistsFrienshipRequestMessage(String profileName) {
      * @param profileName nombre de la persona
      */
     @Override
-public void showDuplicateFrienshipRequestMessage(String profileName) {
+    public void showDuplicateFrienshipRequestMessage(String profileName) {
         System.out.println("Xa tes unha peticion de amizade con " + profileName);
     }
 
@@ -1199,7 +1197,7 @@ public void showDuplicateFrienshipRequestMessage(String profileName) {
      * Este método muestra un error de conexión con el almacen de datos
      */
     @Override
-public void showConnectionErrorMessage() {
+    public void showConnectionErrorMessage() {
         System.out.println("Erro na conexion co almacen de datos!");
     }
 
@@ -1207,7 +1205,7 @@ public void showConnectionErrorMessage() {
      * Este método muestra un error de lectura de datos
      */
     @Override
-public void showReadErrorMessage() {
+    public void showReadErrorMessage() {
         System.out.println("Erro na lectura de datos!");
     }
 
@@ -1215,7 +1213,7 @@ public void showReadErrorMessage() {
      * Este método muestra un error de escritura de los datos
      */
     @Override
-public void showWriteErrorMessage() {
+    public void showWriteErrorMessage() {
         System.out.println("Erro na escritura dos datos!");
     }
 
