@@ -166,7 +166,6 @@ public class ProfileController {
             PostDB.save(post);
         } catch (PersistenceException e) {
             proccessPersistenceException(e);
-
         }
         reloadProfile();
     }
@@ -277,8 +276,8 @@ public class ProfileController {
     }
 
     /**
-     * Este método elimina la solicitud de amistad, y guarda la amistad entre los
-     * dos usuarios
+     * Este método elimina la solicitud de amistad, y guarda la amistad entre
+     * los dos usuarios
      *
      * @param sourceProfile
      */

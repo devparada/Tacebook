@@ -502,10 +502,23 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
 
     private void btnNovaPublicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaPublicacionActionPerformed
         // BOTÓN DE NUEVA PUBLICACIÓN
-        String newStatus = JOptionPane.showInputDialog(null, "Ingrese una nueva publicación:");
-        Scanner scan = new Scanner(newStatus);
-        writeNewPost(scan, profileController.getSessionProfile());
-        showProfileInfo(false, profileController.getSessionProfile());
+//        String newStatus = JOptionPane.showInputDialog(null, "Ingrese una nueva publicación:");
+//        Scanner scan = new Scanner(newStatus);
+//        writeNewPost(scan, profileController.getSessionProfile());
+//        showProfileInfo(true, profileController.getSessionProfile());
+
+        /**
+         * public void newPost(String text, Profile destProfile): Crea un novo
+         * obxecto "Post", chama á clase "PostDB" para gardalo e chama ao método
+         * "reloadProfile" para refrescar a información do perfil.
+         */
+        String postText = JOptionPane.showInputDialog("Introduce aqui la publicación.", "");
+        if (!postText.isBlank()) {
+            profileController.newPost(postText, profileController.getSessionProfile());
+        } else {
+            JOptionPane.showMessageDialog(this, "Debes introducir un texto para la publicación!",
+                    "Error", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnNovaPublicacionActionPerformed
 
     private void btnComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentarActionPerformed
@@ -692,7 +705,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
             fila[2] = profile.getPosts().get(i).getText();
             fila[3] = profile.getPosts().get(i).getProfileLikes().size();
             model.addRow(fila);
-            
+
 //
 //        if (ownProfile) {
 //            System.out.println("[A tua biografia] " + this.postsShowed + " ultimas publicacions");
