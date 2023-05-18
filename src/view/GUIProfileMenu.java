@@ -17,7 +17,7 @@ import model.Profile;
 
 /**
  *
- * @author Bilo Alejandro Martins Gonzalez
+ * @author Bilo Alejandro Martins Gonzalez, Pedro Sanchez Castejón
  */
 public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
 
@@ -505,7 +505,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
         String newStatus = JOptionPane.showInputDialog(null, "Ingrese una nueva publicación:");
         Scanner scan = new Scanner(newStatus);
         writeNewPost(scan, profileController.getSessionProfile());
-        showProfileInfo(true, profileController.getSessionProfile());
+        showProfileInfo(false, profileController.getSessionProfile());
     }//GEN-LAST:event_btnNovaPublicacionActionPerformed
 
     private void btnComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentarActionPerformed
@@ -514,7 +514,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
 
     private void btnGustameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGustameActionPerformed
         // BOTÓN DE DAR LIKE
-        profileController.newLike(profileController.getSessionProfile().getPosts().get(jTable2.getSelectedRow() + 1));
+        addLike(null, profileController.getSessionProfile());
     }//GEN-LAST:event_btnGustameActionPerformed
 
     private void btnVerPublicacionesAnterioresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPublicacionesAnterioresActionPerformed
@@ -674,26 +674,25 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
             lblEstadoActual.setText("Estado actual: " + profile.getStatus());
         }
 
-        if (ownProfile) {
-            /**
-             * CHECK POINT DEL ULTIMO DIA QUE TOCAMOS CODIGO, YA SE CAMBIAN LAS
-             * LABELS Y AHORA FALTA CONSEGUIR HACER QUE SE CARGUEN LAS TABLAS
-             * ETC ETC ETC ETC MI POLLA
-             */
-            DefaultTableModel model = (DefaultTableModel) tableBiografia.getModel();
-            model.setRowCount(0); // Elimina todas las filas
+        /**
+         * CHECK POINT DEL ULTIMO DIA QUE TOCAMOS CODIGO, YA SE CAMBIAN LAS
+         * LABELS Y AHORA FALTA CONSEGUIR HACER QUE SE CARGUEN LAS TABLAS ETC
+         * ETC ETC ETC MI POLLA
+         */
+        DefaultTableModel model = (DefaultTableModel) tableBiografia.getModel();
+        model.setRowCount(0); // Elimina todas las filas
 
-            int numPosts = profile.getPosts().size();
-            int startIndex = Math.max(0, numPosts - postsShowed); // Índice de inicio para mostrar los posts
+        int numPosts = profile.getPosts().size();
+        int startIndex = Math.max(0, numPosts - postsShowed); // Índice de inicio para mostrar los posts
 
-            for (int i = startIndex; i < numPosts; i++) {
-                Object[] fila = new Object[4];
-                fila[0] = profile.getPosts().get(i).getDate();
-                fila[1] = profile.getPosts().get(i).getAuthor().getName();
-                fila[2] = profile.getPosts().get(i).getText();
-                fila[3] = profile.getPosts().get(i).getProfileLikes().size();
-                model.addRow(fila);
-            }
+        for (int i = startIndex; i < numPosts; i++) {
+            Object[] fila = new Object[4];
+            fila[0] = profile.getPosts().get(i).getDate();
+            fila[1] = profile.getPosts().get(i).getAuthor().getName();
+            fila[2] = profile.getPosts().get(i).getText();
+            fila[3] = profile.getPosts().get(i).getProfileLikes().size();
+            model.addRow(fila);
+            
 //
 //        if (ownProfile) {
 //            System.out.println("[A tua biografia] " + this.postsShowed + " ultimas publicacions");
@@ -893,8 +892,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      * @param profile el perfil que da like
      */
     private void addLike(Scanner scanner, Profile profile) {
-        int position = selectElement("Introduce o numero da publicacion", profile.getPosts().size(), scanner);
-        profileController.newLike(profile.getPosts().get(position));
+        profileController.newLike(profileController.getSessionProfile().getPosts().get(jTable2.getSelectedRow() + 1));
     }
 
     /**
