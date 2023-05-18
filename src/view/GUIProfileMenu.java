@@ -908,7 +908,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      * @param profile el perfil que da like
      */
     private void addLike(Scanner scanner, Profile profile) {
-        profileController.newLike(profile.getPosts().get(jTable2.getSelectedRow() + 1));
+        profileController.newLike(profileController.getSessionProfile().getPosts().get(jTable2.getSelectedRow() + 1));
     }
 
     /**
