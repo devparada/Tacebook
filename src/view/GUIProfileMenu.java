@@ -501,11 +501,6 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
     }//GEN-LAST:event_btnNovaSolicitudeActionPerformed
 
     private void btnNovaPublicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaPublicacionActionPerformed
-        // BOTÓN DE NUEVA PUBLICACIÓN
-//        String newStatus = JOptionPane.showInputDialog(null, "Ingrese una nueva publicación:");
-//        Scanner scan = new Scanner(newStatus);
-//        writeNewPost(scan, profileController.getSessionProfile());
-//        showProfileInfo(true, profileController.getSessionProfile());
 
         /**
          * public void newPost(String text, Profile destProfile): Crea un novo
@@ -523,7 +518,9 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
 
     private void btnComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentarActionPerformed
         // BOTÓN DE CREAR COMENTARIO
+        commentPost(profileController.getSessionProfile());
     }//GEN-LAST:event_btnComentarActionPerformed
+
 
     private void btnGustameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGustameActionPerformed
         // BOTÓN DE DAR LIKE
@@ -895,6 +892,21 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
             scanner.nextLine();
             String commentTxt = scanner.nextLine();
             this.profileController.newComment(commentedPost, commentTxt);
+        }
+    }
+
+    
+    /////////@TODO
+    private void commentPost(Profile profile) {
+        if (profile.getPosts().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debes introducir un texto para hacer un comentario!",
+                    "Error", JOptionPane.WARNING_MESSAGE);
+            showProfileMenu(profile);
+        } else {
+            String commentText = JOptionPane.showInputDialog("Introduce aqui la publicación.", "");
+            tableBiografia.getSelectedRow();
+            //Falta por acabar esto.
+         ///TODO   this.profileController.newComment(commentText);
         }
     }
 
