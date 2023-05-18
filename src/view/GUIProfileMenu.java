@@ -1,5 +1,6 @@
 package view;
 
+import controller.InitMenuController;
 import controller.ProfileController;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -494,6 +495,8 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
     private void btnPecharSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPecharSesionActionPerformed
         // BOTÓN DE CERRAR SESIÓN
         dispose();
+        GUIInitMenuView guiimv = new GUIInitMenuView(new InitMenuController(false));
+        guiimv.showLoginMenu();
     }//GEN-LAST:event_btnPecharSesionActionPerformed
 
     private void btnNovaSolicitudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaSolicitudeActionPerformed

@@ -5,14 +5,11 @@
 package view;
 
 import controller.InitMenuController;
-import java.awt.Panel;
 import java.util.Scanner;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.text.PasswordView;
-import persistence.ProfileDB;
 
 /**
  *
@@ -55,7 +52,7 @@ public class GUIInitMenuView implements InitMenuView {
         Object[] labelsOptions = {lblUsuario, txtUsuario, lblContrasena, txtContrasena};
         int seleccion = JOptionPane.showOptionDialog(null, labelsOptions, "Selector de opciones", 0, 2, null, options, options[0]);
         switch (seleccion) {
-            //Iniciar sesion
+            // Iniciar sesion
             case 0:
                 String name = txtUsuario.getText();
                 String password = new String(txtContrasena.getPassword());
@@ -63,11 +60,14 @@ public class GUIInitMenuView implements InitMenuView {
                 this.initMenuController.login(txtUsuario.getText(), new String(txtContrasena.getPassword()));
                 break;
 
-            //Rexistrarse    
+            // Rexistrarse    
             case 1:
                 initMenuController.register();
                 break;
 
+            // Saír
+            default:
+                break;
         }
     }
 
