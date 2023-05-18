@@ -1103,7 +1103,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      */
     @Override
     public void showCannotLikeOwnPostMessage() {
-        System.out.println("Non podes dar like a tua propia publicacion");
+        JOptionPane.showMessageDialog(null, "Non podes dar like a tua propia publicacion", "ERROR", JOptionPane.ERROR_MESSAGE);
     }
 
     /**
