@@ -1034,6 +1034,27 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
     }
 
     /**
+     * Este método pide el número de la solicitud de amistad para aceptarla o
+     * rechazarla
+     * 
+     * MÉTODO SOBRECARGADO
+     *
+     * @param ownProfile si está en su perfil o no
+     * @param scanner el scanner que se utiliza
+     * @param profile el perfil que recibe la solicitud de amistad
+     * @param accept true para aceptar la solicitud o false para rechazarla
+     */
+    private void proccessFriendshipRequest(boolean accept) {
+
+        if (accept) {
+            this.profileController.acceptFriendshipRequest(profile.getFriendshipRequests().get(pedidoAmistadNumber));
+        } else {
+            this.profileController.rejectFriendshipRequest(profile.getFriendshipRequests().get(pedidoAmistadNumber));
+        }
+
+    }
+
+    /**
      * Este método envia un mensaje privado a una amistad
      *
      * @param ownProfile si está en su perfil o no
