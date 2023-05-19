@@ -893,15 +893,31 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
         }
     }
 
-    /////////@TODO
+    /**
+     * Este es el método commentpost sobrecargado, para la version GUI, ya que
+     * en la GUI bo utilizaremos scanners sino, option panes con cajas de input
+     * para introducir datos.
+     *
+     * @param profile
+     */
     private void commentPost(Profile profile) {
+        //Si dicho usuario no tiene ningun post seleccionado, saltará este aviso.
         if (profile.getPosts().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debes introducir un texto para hacer un comentario!",
+            JOptionPane.showMessageDialog(this, "No seleccionaste ningun post.",
                     "Error", JOptionPane.WARNING_MESSAGE);
             showProfileMenu(profile);
         } else {
+            //Por otro lado.. Si el usuario selecciona un post, se abrirá un option pane
+            //que pedirá introducción de datos y este se cambiará en función de los datos recibidos 
+            //desde la tabla, que tiene una lista de posts, cada posts tiene datos, pues estos posts
+            //son lo que se irán cambiando segun lost comentarios.
             String commentText = JOptionPane.showInputDialog("Introduce aqui la publicación.", "");
             Post commentedPost = profile.getPosts().get(tableBiografia.getSelectedRow());
+            //Una vez realizado el comentario, este metodo finalmente llamará al metodo
+            //newComment de la clase profile controler, que se utiliza para asignar un
+            //Definir todos los cambios realizados indicando 2 cosas:
+            //1º param: un Post
+            //2º param: Un texto que se enlaza a ese post, que pertenece a ese post.
             this.profileController.newComment(commentedPost, commentText);
         }
     }
