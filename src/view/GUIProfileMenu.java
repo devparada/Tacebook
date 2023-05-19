@@ -5,6 +5,7 @@ import controller.ProfileController;
 import java.text.SimpleDateFormat;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Message;
@@ -25,11 +26,14 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      * Los posts a visualizar
      */
     private int postsShowed = 10;
-
     /**
      * Mantiene la referencia al objecto controlador (ProfileController)
      */
     private ProfileController profileController;
+    /**
+     * Modelo de la lista de solicitudes de amistad.
+     */
+    private DefaultListModel modelSolicitudes;
 
     /**
      * Este constructor se inicia pasando como parametro el objeto "profile
@@ -496,6 +500,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
 
     private void btnNovaSolicitudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaSolicitudeActionPerformed
         // BOTÓN DE NUEVA SOLICITUD DE AMISTAD
+        sendFriendshipRequest(true, new Scanner(JOptionPane.showInputDialog(null, "Introduce o nome do usuario que queres mandar a solicitude de amistade", "Pregunta", JOptionPane.QUESTION_MESSAGE)), profileController.getSessionProfile());
     }//GEN-LAST:event_btnNovaSolicitudeActionPerformed
 
     private void btnNovaPublicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaPublicacionActionPerformed
@@ -700,6 +705,18 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
             fila[2] = profile.getPosts().get(i).getText();
             fila[3] = profile.getPosts().get(i).getProfileLikes().size();
             model.addRow(fila);
+        }
+
+        if (!profile.getFriendshipRequests().isEmpty()) {
+            // Bucle for para las solicitudes de amistad
+
+            modelSolicitudes = new DefaultListModel();
+
+            for (int i = 0; i < profile.getFriendshipRequests().size(); i++) {
+                modelSolicitudes.addElement(profile.getFriendshipRequests().get(i).getName());
+            }
+            listaSolicitudesAmizade.setModel(modelSolicitudes);
+        }
 
 //
 //        if (ownProfile) {
@@ -771,7 +788,6 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
 //                }
 //            }
 //        }
-        }
     }
 
     /**
@@ -1129,7 +1145,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      */
     @Override
     public void showProfileNotFoundMessage() {
-        System.out.println("O perfil que estas intentando buscar non existe");
+        JOptionPane.showMessageDialog(null, "O perfil que estas intentando buscar non existe", "ERROR", JOptionPane.ERROR_MESSAGE);
     }
 
     /**
@@ -1147,7 +1163,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      */
     @Override
     public void showAlreadyLikedPostMessage() {
-        System.out.println("Non e posible dar like a unha publicacion que xa diste like");
+        JOptionPane.showMessageDialog(null, "Non e posible dar like a unha publicacion que xa diste like", "ERROR", JOptionPane.ERROR_MESSAGE);
     }
 
     /**
@@ -1158,7 +1174,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      */
     @Override
     public void showIsAlreadyFriendMessage(String profileName) {
-        System.out.println("Xa eres amigo de " + profileName);
+        JOptionPane.showMessageDialog(null, "Xa eres amigo de " + profileName, "ERROR", JOptionPane.ERROR_MESSAGE);
     }
 
     /**
@@ -1169,7 +1185,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      */
     @Override
     public void showExistsFrienshipRequestMessage(String profileName) {
-        System.out.println("Xa tes unha solicitude de amizade enviada a " + profileName);
+        JOptionPane.showMessageDialog(null, "Xa tes unha solicitude de amizade enviada a " + profileName, "ERROR", JOptionPane.ERROR_MESSAGE);
     }
 
     /**
@@ -1180,7 +1196,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      */
     @Override
     public void showDuplicateFrienshipRequestMessage(String profileName) {
-        System.out.println("Xa tes unha peticion de amizade con " + profileName);
+        JOptionPane.showMessageDialog(null, "Xa tes unha peticion de amizade con " + profileName, "ERROR", JOptionPane.ERROR_MESSAGE);
     }
 
     /**
@@ -1188,7 +1204,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      */
     @Override
     public void showConnectionErrorMessage() {
-        System.out.println("Erro na conexion co almacen de datos!");
+        JOptionPane.showMessageDialog(null, "Erro na conexion co almacen de datos!", "ERROR", JOptionPane.ERROR_MESSAGE);
     }
 
     /**
@@ -1196,7 +1212,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      */
     @Override
     public void showReadErrorMessage() {
-        System.out.println("Erro na lectura de datos!");
+        JOptionPane.showMessageDialog(null, "Erro na lectura de datos!", "ERROR", JOptionPane.ERROR_MESSAGE);
     }
 
     /**
@@ -1204,7 +1220,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      */
     @Override
     public void showWriteErrorMessage() {
-        System.out.println("Erro na escritura dos datos!");
+        JOptionPane.showMessageDialog(null, "Erro na escritura dos datos!", "ERROR", JOptionPane.ERROR_MESSAGE);
     }
 
     /**
