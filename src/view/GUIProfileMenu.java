@@ -3,15 +3,10 @@ package view;
 import controller.InitMenuController;
 import controller.ProfileController;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Comment;
 import model.Message;
 import model.Post;
 import model.Profile;
@@ -898,7 +893,6 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
         }
     }
 
-    
     /////////@TODO
     private void commentPost(Profile profile) {
         if (profile.getPosts().isEmpty()) {
@@ -907,9 +901,8 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
             showProfileMenu(profile);
         } else {
             String commentText = JOptionPane.showInputDialog("Introduce aqui la publicación.", "");
-            tableBiografia.getSelectedRow();
-            //Falta por acabar esto.
-         ///TODO   this.profileController.newComment(commentText);
+            Post commentedPost = profile.getPosts().get(tableBiografia.getSelectedRow());
+            this.profileController.newComment(commentedPost, commentText);
         }
     }
 
