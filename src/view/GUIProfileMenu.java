@@ -527,7 +527,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
 
     private void btnGustameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGustameActionPerformed
         // BOTÓN DE DAR LIKE
-        addLike(null, profileController.getSessionProfile());
+        addLike(profileController.getSessionProfile());
 
     }//GEN-LAST:event_btnGustameActionPerformed
 
@@ -940,13 +940,24 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
     }
 
     /**
+     * Este método hace que a una publicición un usuario le de like en la GUI
+     *
+     * @param scanner el scanner que se utiliza
+     * @param profile el perfil que da like
+     */
+    private void addLike(Profile profile) {
+        profileController.newLike(profile.getPosts().get(jTable2.getSelectedRow() + 1));
+    }
+
+    /**
      * Este método hace que a una publicición un usuario le de like
      *
      * @param scanner el scanner que se utiliza
      * @param profile el perfil que da like
      */
     private void addLike(Scanner scanner, Profile profile) {
-        profileController.newLike(profile.getPosts().get(jTable2.getSelectedRow() + 1));
+        int position = selectElement("Introduce o numero da publicacion", profile.getPosts().size(), scanner);
+        profileController.newLike(profile.getPosts().get(position));
     }
 
     /**
