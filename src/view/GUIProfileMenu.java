@@ -522,7 +522,6 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
     private void btnComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentarActionPerformed
         // BOTÓN DE CREAR COMENTARIO
         commentPost(profileController.getSessionProfile());
-        comm
     }//GEN-LAST:event_btnComentarActionPerformed
 
 
