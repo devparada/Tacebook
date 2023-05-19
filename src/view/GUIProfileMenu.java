@@ -522,12 +522,14 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
     private void btnComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentarActionPerformed
         // BOTÓN DE CREAR COMENTARIO
         commentPost(profileController.getSessionProfile());
+        comm
     }//GEN-LAST:event_btnComentarActionPerformed
 
 
     private void btnGustameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGustameActionPerformed
         // BOTÓN DE DAR LIKE
         addLike(null, profileController.getSessionProfile());
+
     }//GEN-LAST:event_btnGustameActionPerformed
 
     private void btnVerPublicacionesAnterioresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPublicacionesAnterioresActionPerformed
