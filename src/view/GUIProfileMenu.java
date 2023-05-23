@@ -70,7 +70,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
         panelComentarios = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tableComentarios = new javax.swing.JTable();
         panelBiografia = new javax.swing.JPanel();
         lblUltimasPublicacions = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -137,7 +137,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
 
         jLabel2.setText("Comentarios:");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tableComentarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -145,7 +145,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
                 "Texto", "De", "Data"
             }
         ));
-        jScrollPane3.setViewportView(jTable2);
+        jScrollPane3.setViewportView(tableComentarios);
 
         javax.swing.GroupLayout panelComentariosLayout = new javax.swing.GroupLayout(panelComentarios);
         panelComentarios.setLayout(panelComentariosLayout);
@@ -511,7 +511,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
          * "reloadProfile" para refrescar a información do perfil.
          */
         String postText = JOptionPane.showInputDialog("Introduce aqui la publicación.", "");
-        if (!postText.isBlank()) {
+        if (!postText.isBlank() && tableBiografia.getSelectedColumns() != null) {
             profileController.newPost(postText, profileController.getSessionProfile());
         } else {
             JOptionPane.showMessageDialog(this, "Debes introducir un texto para la publicación!",
@@ -522,6 +522,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
     private void btnComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentarActionPerformed
         // BOTÓN DE CREAR COMENTARIO
         commentPost(profileController.getSessionProfile());
+        
     }//GEN-LAST:event_btnComentarActionPerformed
 
 
@@ -630,7 +631,6 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTable jTable2;
     private javax.swing.JLabel lblEstadoActual;
     private javax.swing.JLabel lblListaDeAmigos;
     private javax.swing.JLabel lblLogoTacebook;
@@ -649,6 +649,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
     private javax.swing.JTable tablaListaAmigos;
     private javax.swing.JTable tablaMensajes;
     private javax.swing.JTable tableBiografia;
+    private javax.swing.JTable tableComentarios;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -945,7 +946,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
      * @param profile el perfil que da like
      */
     private void addLike(Profile profile) {
-        profileController.newLike(profile.getPosts().get(jTable2.getSelectedRow() + 1));
+        profileController.newLike(profile.getPosts().get(tableComentarios.getSelectedRow() + 1));
     }
 
     /**
