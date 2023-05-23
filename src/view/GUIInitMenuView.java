@@ -50,14 +50,13 @@ public class GUIInitMenuView implements InitMenuView {
         JPasswordField txtContrasena = new JPasswordField();
         String[] options = {"Iniciar Sesión", "Rexistrarse", "Saír"};
         Object[] labelsOptions = {lblUsuario, txtUsuario, lblContrasena, txtContrasena};
-        int seleccion = JOptionPane.showOptionDialog(null, labelsOptions, "Selector de opciones", 0, 2, null, options, options[0]);
+        int seleccion = JOptionPane.showOptionDialog(null, labelsOptions, "Selector de opciones", 0, JOptionPane.WARNING_MESSAGE, null, options, null);
         switch (seleccion) {
             // Iniciar sesion
             case 0:
                 String name = txtUsuario.getText();
                 String password = new String(txtContrasena.getPassword());
                 initMenuController.login(name, password);
-                this.initMenuController.login(txtUsuario.getText(), new String(txtContrasena.getPassword()));
                 break;
 
             // Rexistrarse    
@@ -66,7 +65,7 @@ public class GUIInitMenuView implements InitMenuView {
                 break;
 
             // Saír
-            default:
+            case 2:
                 break;
         }
     }
@@ -86,7 +85,7 @@ public class GUIInitMenuView implements InitMenuView {
      */
     @Override
     public void showRegisterMenu() {
-//Aquicrearemos todo el tema del layout y interfaz
+        //Aqui crearemos todo el tema del layout y interfaz
         JLabel lblUsuario = new JLabel("Nome de usuario");
         JTextField txtUsuario = new JTextField();
         JLabel lblContrasena = new JLabel("Contrasinal");
@@ -108,7 +107,7 @@ public class GUIInitMenuView implements InitMenuView {
             }
             passwordsMatch = new String(txtContrasena.getPassword()).equals(new String(txtContrasenConfirmar.getPassword()));
             if (!passwordsMatch) {
-                JOptionPane.showMessageDialog(null, "Os contrasinais non coinciden!", "Erro nos datos", 2);
+                JOptionPane.showMessageDialog(null, "Os contrasinais non coinciden!", "Erro nos datos", JOptionPane.WARNING_MESSAGE);
             }
         }
         initMenuController.createProfile(txtUsuario.getText(), new String(txtContrasena.getPassword()), txtEstado.getText());

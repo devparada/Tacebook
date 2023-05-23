@@ -51,7 +51,6 @@ public class InitMenuController {
      */
     private void init() {
         this.initMenuView.showLoginMenu();
-
     }
 
     /**
