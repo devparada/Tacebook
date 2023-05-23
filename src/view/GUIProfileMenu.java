@@ -688,11 +688,6 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
             lblEstadoActual.setText("Estado actual: " + profile.getStatus());
         }
 
-        /**
-         * CHECK POINT DEL ULTIMO DIA QUE TOCAMOS CODIGO, YA SE CAMBIAN LAS
-         * LABELS Y AHORA FALTA CONSEGUIR HACER QUE SE CARGUEN LAS TABLAS ETC
-         * ETC ETC ETC MI POLLA
-         */
         DefaultTableModel model = (DefaultTableModel) tableBiografia.getModel();
         model.setRowCount(0); // Elimina todas las filas
 
