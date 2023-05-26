@@ -14,7 +14,11 @@ import model.Profile;
 
 /**
  *
- * @author Bilo Alejandro Martins Gonzalez, Pedro Sanchez Castejón
+ * Esta clase hace lo mismo que TextProfileView pero mostrando en los menús el
+ * texto "Versión GUI"
+ *
+ * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
+ * Parada de la Fuente
  */
 public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
 
@@ -522,7 +526,7 @@ public class GUIProfileMenu extends javax.swing.JFrame implements ProfileView {
     private void btnComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentarActionPerformed
         // BOTÓN DE CREAR COMENTARIO
         commentPost(profileController.getSessionProfile());
-        
+
     }//GEN-LAST:event_btnComentarActionPerformed
 
 

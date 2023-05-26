@@ -39,9 +39,9 @@ public class InitMenuController {
     public InitMenuController(boolean textMode) {
         this.textMode = textMode;
         if (textMode) {
-            this.initMenuView = (InitMenuView) new TextInitMenuView(this);
+            this.initMenuView = new TextInitMenuView(this);
         } else {
-            this.initMenuView = (InitMenuView) new GUIInitMenuView(this);
+            this.initMenuView = new GUIInitMenuView(this);
         }
     }
 
@@ -108,29 +108,6 @@ public class InitMenuController {
             this.proccessPersistenceException(ex);
         }
         this.initMenuView.showLoginMenu();
-
-//        try {
-//            Profile exactProfile;
-//            do {
-//                if (exactProfile) {
-//                    
-//                }
-//            // Comprobamos que o nome non estea repetido
-//            while (ProfileDB.findByName(name, 0) != null) {
-//                name = initMenuView.showNewNameMenu();
-//            }
-//
-//            // Creamos o perfil e gardamos
-//            Profile profile = new Profile(name, password, status);
-//            ProfileDB.save(profile);
-//
-//            // Abrimos a sesion do usuario
-//            ProfileController profileController = new ProfileController(textMode);
-//            profileController.openSession(profile);
-//        } catch (PersistenceException e) {
-//            proccessPersistenceException(e);
-//
-//        }
     }
 
     /**

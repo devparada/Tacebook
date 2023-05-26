@@ -37,8 +37,6 @@ public class TextInitMenuView implements InitMenuView {
     /**
      * Este método enseña las opciones de login de usuario para que pueda
      * conectarse, registrar o salir de la aplicación.
-     *
-     * @return
      */
     @Override
     public void showLoginMenu() {

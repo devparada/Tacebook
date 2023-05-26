@@ -135,7 +135,6 @@ public class GUIInitMenuView implements InitMenuView {
      */
     @Override
     public void showConnectionErrorMessage() {
-//        System.out.println("Erro na conexion co almacen de datos!");
         JOptionPane.showMessageDialog(null, "Erro na conexion co almacen de datos!");
     }
 
@@ -144,7 +143,6 @@ public class GUIInitMenuView implements InitMenuView {
      */
     @Override
     public void showReadErrorMessage() {
-//        System.out.println("Erro na lectura de datos!");
         JOptionPane.showMessageDialog(null, "Erro na lectura de datos!");
 
     }
@@ -154,7 +152,6 @@ public class GUIInitMenuView implements InitMenuView {
      */
     @Override
     public void showWriteErrorMessage() {
-//        System.out.println("Erro na escritura dos datos!");
         JOptionPane.showMessageDialog(null, "Erro na escritura dos datos!");
 
     }

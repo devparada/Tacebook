@@ -16,7 +16,6 @@ import persistence.PostDB;
 import model.Profile;
 import persistence.PersistenceException;
 import view.GUIProfileMenu;
-//import view.GUIProfileView;
 import view.TextProfileView;
 
 /**
@@ -162,7 +161,7 @@ public class ProfileController {
     public void newPost(String text, Profile destProfile) {
         try {
             //Creamos date ya pasando como parametro en la creacion del objeto post
-            Post post = new Post(0, new Date(), text, destProfile, destProfile);
+            Post post = new Post(0, new Date(), text, destProfile, sessionProfile);
             PostDB.save(post);
         } catch (PersistenceException e) {
             proccessPersistenceException(e);
